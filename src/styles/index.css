@@ -1,0 +1,47 @@
+@keyframes shake {
+	0% { transform: translateX(0); }
+	20% { transform: translateX(-4px); }
+	40% { transform: translateX(4px); }
+	60% { transform: translateX(-3px); }
+	80% { transform: translateX(3px); }
+	100% { transform: translateX(0); }
+}
+
+.animate-shake {
+	animation: shake 0.35s cubic-bezier(.36,.07,.19,.97) both;
+}
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+.desktop-content-gutter {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+	.desktop-content-gutter {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.desktop-content-gutter {
+		width: calc(100% - 188px);
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Bangla MN", serif;
+}
