@@ -14,7 +14,6 @@ function RootContent() {
   const navItems = [
     { path: "/", label: "Work" },
     { path: "/about", label: "About" },
-    { path: "#", label: "Resume" },
   ];
 
   const isActive = (path: string) => {
@@ -68,6 +67,17 @@ function RootContent() {
                     {item.label}
                   </Link>
                 ))}
+                <a
+                  href="https://drive.google.com/file/d/1EuN8mWnQP6zZKy7y-yRidjpiSqzAftEI/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs md:text-sm transition-colors"
+                  style={{ color: theme === "light" ? (isActive("/resume") ? "#FFA500" : "#222") : (isActive("/resume") ? "#E879F9" : "#fff") }}
+                  onMouseEnter={e => { e.currentTarget.style.color = theme === 'light' ? '#FFA500' : '#E879F9'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = theme === 'light' ? '#222' : '#fff'; }}
+                >
+                  Resume
+                </a>
                 <a
                   href="mailto:emilieneha@gmail.com"
                   className="text-xs md:text-sm transition-colors px-4 py-3.5 border rounded-full md:border-border md:hover:bg-accent"
@@ -197,7 +207,7 @@ function RootContent() {
                     </svg>
                   </a>
                   <a
-                    href="#"
+                    href="https://drive.google.com/file/d/1EuN8mWnQP6zZKy7y-yRidjpiSqzAftEI/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors flex items-center"

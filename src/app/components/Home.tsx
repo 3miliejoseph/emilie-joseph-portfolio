@@ -1094,7 +1094,9 @@ function handlePopState(event: PopStateEvent) {
                     <div
                       className="relative overflow-hidden mb-6 rounded-3xl transition-transform duration-300 ease-out group-hover:scale-[1.015] aspect-video bg-muted"
                     >
-                      {project.previewVideo ? (
+                      {project.slug === "playground" ? (
+                        <PlaygroundInteractivePreview />
+                      ) : project.previewVideo ? (
                         <video
                           src={project.previewVideo}
                           autoPlay
@@ -1103,8 +1105,6 @@ function handlePopState(event: PopStateEvent) {
                           playsInline
                           className="w-full h-full object-cover transition-transform duration-700 ease-out"
                         />
-                      ) : project.slug === "playground" ? (
-                        <PlaygroundInteractivePreview />
                       ) : (
                         <ImageWithFallback
                           src={project.image}
@@ -1270,7 +1270,9 @@ function handlePopState(event: PopStateEvent) {
                             About
                           </a>
                           <a
-                            href="#"
+                            href="/Emilie_Joseph_Resume.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="text-xs md:text-sm transition-colors"
                             style={{ color: theme === "light" ? '#222' : '#fff' }}
                             onMouseEnter={e => { e.currentTarget.style.color = theme === 'light' ? '#FFA500' : '#E879F9'; }}
@@ -1827,6 +1829,9 @@ function handlePopState(event: PopStateEvent) {
                                     />
                                   </svg>
                                 </a>
+                              </div>
+                              <div className="mt-4 text-muted-foreground text-base text-left">
+                                An experimental brand investigating how visual systems can express ideas through structured yet flexible design language.
                               </div>
                             </div>
                           </div>
