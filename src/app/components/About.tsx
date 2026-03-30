@@ -3,7 +3,6 @@ import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Palette, Lightbulb, Users, Code, GraduationCap } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import DragPuzzle from "./DragPuzzle";
 import { useTheme } from "next-themes";
 
 export function About() {

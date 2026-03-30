@@ -79,30 +79,30 @@ const projects = [
     previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774116417/MURAL_r1vxa9.mp4",
     caseStudy: (
       <>
-        <h2 className="text-lg font-semibold mb-2 text-foreground">The Idea</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
         <p className="mb-4 text-base text-muted-foreground">
           MURAL is a shared painting experience where any screen becomes a collaborative canvas. Users scan a QR code to turn their phones into brushes, allowing multiple people to create together in real time—no downloads, no setup.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">The Problem I Wanted to Solve</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
         <p className="mb-4 text-base text-muted-foreground">
           Most creative tools are solitary—you make something alone, then share it. I wanted to design a system where the act of creation itself is social, where multiple people can contribute simultaneously in a shared space.<br/>
           I was also interested in removing friction from interaction. Your phone is already in your pocket, so instead of building a new interface, I wanted to transform an existing device into a creative input tool.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Technical Decisions</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Technical Decisions</h2>
         <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
           <li><span className="font-semibold text-foreground">Phone as a real-time controller</span><br/>Users connect via QR code, instantly turning their phone into a brush. They can change color, adjust brush or stamp size, and switch tools directly from their device.</li>
           <li><span className="font-semibold text-foreground">WebSocket-based multi-user system</span><br/>Real-time communication allows multiple users to draw simultaneously on a shared canvas, with each device continuously sending input data to stay in sync.</li>
           <li><span className="font-semibold text-foreground">Dynamic brush and stamp system</span><br/>Users can paint freely or place stamps, enabling both expressive drawing and structured composition within the same environment.</li>
           <li><span className="font-semibold text-foreground">Session-based output</span><br/>At the end of each session, users can save the final canvas—capturing the collaborative artifact created together.</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">What It Demonstrates</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>What It Demonstrates</h2>
         <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
           <li>Real-time multi-user systems</li>
           <li>Cross-device interaction design</li>
           <li>Experimental UI using everyday hardware</li>
           <li>Creative coding for collaborative experiences</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Future Iterations</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Future Iterations</h2>
         <p className="text-base text-muted-foreground">
           Scaling to support larger groups, introducing more expressive tools (animated brushes, physics-based paint), and exploring projection-based installations for physical spaces.
         </p>
@@ -122,29 +122,29 @@ const projects = [
     previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774860080/artmuseum_ptlzj9.mp4",
     caseStudy: (
       <>
-        <h2 className="text-lg font-semibold mb-2 text-foreground">The Idea</h2>
-        <p className="mb-4 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
+        <p className="mb-4 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           Em’s Art Museum is a 3D virtual gallery where users navigate through a space to experience artwork, transforming a traditional portfolio into an interactive environment.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">The Problem I Wanted to Solve</h2>
-        <p className="mb-4 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
+        <p className="mb-4 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           Most portfolios are static and linear, limiting how people experience creative work. I wanted to design a system where users explore my art through movement and spatial interaction rather than scrolling.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Technical Decisions</h2>
-        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Technical Decisions</h2>
+        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           <li><span className="font-semibold text-foreground">3D navigation system</span><br/>Users move through a virtual environment, creating a sense of presence and exploration.</li>
           <li><span className="font-semibold text-foreground">Spatial artwork placement</span><br/>Paintings are arranged intentionally in 3D space to encourage discovery and flow.</li>
           <li><span className="font-semibold text-foreground">Web-based rendering</span><br/>Built for the browser to make the experience easily accessible without downloads.</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">What It Demonstrates</h2>
-        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>What It Demonstrates</h2>
+        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           <li>Spatial interaction design</li>
           <li>3D interfaces and navigation</li>
           <li>Experimental portfolio systems</li>
           <li>Creative use of web-based graphics</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Future Iterations</h2>
-        <p className="text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Future Iterations</h2>
+        <p className="text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           Adding multiplayer exploration, interactive artwork elements, and more immersive environmental details.
         </p>
       </>
@@ -163,18 +163,18 @@ const projects = [
     previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774132085/Tank_j5g2y0.mp4",
     caseStudy: (
       <>
-        <h2 className="text-lg font-semibold mb-2 text-foreground">The Idea</h2>
-        <p className="mb-4 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
+        <p className="mb-4 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           What if a digital environment could behave like a living system?<br/>
           Tank is an interactive aquarium where users influence fish behavior in real time using hand tracking—feeding them, guiding their movement, or startling them through physical gestures.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">The Problem I Wanted to Solve</h2>
-        <p className="mb-4 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
+        <p className="mb-4 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           Most digital environments are visually dynamic but behaviorally shallow—they respond, but they don’t behave. I wanted to create a system where interaction produces emergent responses, making the environment feel alive rather than animated.<br/>
           I was especially interested in how simple inputs—like hand movement or gesture—could drive complex, lifelike behaviors.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Technical Decisions</h2>
-        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Technical Decisions</h2>
+        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
           <li><span className="font-semibold text-foreground">Gesture-based interaction system</span><br/>Hand tracking translates user movement into input, allowing users to feed fish, guide them to follow their finger, or scare them by knocking.</li>
           <li><span className="font-semibold text-foreground">Behavior-driven animation model</span><br/>Fish are not pre-animated—they respond dynamically to stimuli, shifting between states like attraction, avoidance, and idle movement.</li>
           <li><span className="font-semibold text-foreground">Real-time response loop</span><br/>Every interaction immediately affects the system, creating a continuous feedback loop between user input and environmental behavior.</li>
@@ -206,30 +206,30 @@ const projects = [
     previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774407893/Screen_Recording_2026-03-24_at_7.59.51_PM_kjhbcs.mov",
     caseStudy: (
       <>
-        <h2 className="text-lg font-semibold mb-2 text-foreground">The Idea</h2>
+         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
         <p className="mb-4 text-base text-muted-foreground">
           What if productivity felt like growing something instead of completing a checklist?<br/>
           TaskSprout is a digital task system where completing actions directly drives visual growth, turning productivity into a continuous, living feedback loop.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">The Problem I Wanted to Solve</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
         <p className="mb-4 text-base text-muted-foreground">
           Most productivity tools rely on lists, notifications, and deadlines—but they rarely change how people feel about completing tasks. I wanted to design a system that motivates behavior through interaction and visual feedback rather than pressure.<br/>
           I was particularly interested in how small actions, when visualized over time, could create a stronger sense of progress and engagement.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Technical Decisions</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Technical Decisions</h2>
         <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
           <li><span className="font-semibold text-foreground">Growth-based feedback system</span><br/>Each completed task contributes to the growth of a flower, creating a direct mapping between user behavior and visual output.</li>
           <li><span className="font-semibold text-foreground">Audio capture as input</span><br/>Users can record voice notes, expanding interaction beyond typing and allowing for more flexible task capture.</li>
           <li><span className="font-semibold text-foreground">Daily feedback loop</span><br/>At the end of the day, users see the cumulative result of their actions, reinforcing consistency through visual reward.</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">What It Demonstrates</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>What It Demonstrates</h2>
         <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
           <li>Behavioral systems design</li>
           <li>Interaction design for habit formation</li>
           <li>Real-time feedback loops</li>
           <li>Blending utility with experiential design</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Future Iterations</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Future Iterations</h2>
         <p className="text-base text-muted-foreground">
           Exploring adaptive growth patterns, long-term habit visualization, and shared systems for collaborative accountability.
         </p>
@@ -291,18 +291,7 @@ const projects = [
     tags: ["Prototyping", "Motion", "Design Systems", "Interaction Design"],
     previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774238990/Figma_k18e1w.mp4",
     caseStudy: (
-      <>
-        <h2 className="text-lg font-semibold mb-2 text-foreground">Animated Prototypes</h2>
-        <p className="mb-4 text-base text-muted-foreground">
-          A collection of animated Figma prototypes exploring product storytelling through motion design. These demos showcase how motion can enhance user experience and communicate intent.
-        </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Techniques</h2>
-        <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
-          <li>Layered animation</li>
-          <li>Micro-interactions</li>
-          <li>Component-driven motion</li>
-        </ul>
-      </>
+      <></>
     ),
   },
   {
@@ -1390,6 +1379,65 @@ function handlePopState(event: PopStateEvent) {
                     </div>
                     {/* Embedded Project Content - Now Below */}
                     <div className="desktop-content-gutter mb-6">
+                                            {selectedProject.slug === "figma-experiments" && (
+                                              <div className="space-y-4">
+                                                <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
+                                                  <iframe
+                                                    src="https://embed.figma.com/proto/KgUYsHwHqSJCjEhIjIpN1N/QueueNection?node-id=5-51&scaling=scale-down&content-scaling=fixed&page-id=5%3A45&starting-point-node-id=5%3A46&embed-host=share"
+                                                    className="w-full h-full"
+                                                    style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+                                                    allowFullScreen
+                                                    title="Figma Demo Prototype 1"
+                                                  />
+                                                </div>
+                                                <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] h-[78vh] rounded-2xl overflow-visible border-none p-0">
+                                                  <div className={`flex flex-row items-start w-full h-full gap-6 ${isExpanding ? '' : ''}`}>
+                                                    <div className={`w-full ${isExpanding ? 'max-w-3xl' : 'max-w-xl'} h-full`}>
+                                                      <iframe
+                                                        src="https://embed.figma.com/proto/KRHLrDyaZMGVgPTFdBWz3N/Final-Project-Redesign?page-id=0%3A1&node-id=33-9&starting-point-node-id=33%3A9&embed-host=share"
+                                                        className="w-full h-full rounded-2xl"
+                                                        style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
+                                                        allowFullScreen
+                                                        title="Figma Demo Prototype 2"
+                                                      />
+                                                    </div>
+                                                    <div className={`w-full ${isExpanding ? 'max-w-3xl' : 'max-w-xl'} h-full`}>
+                                                      <iframe
+                                                        src="https://embed.figma.com/proto/mVE9KxGxQtc1iPjTjsg8cM/Star-Wars-Club-UCSD?page-id=720%3A121&node-id=933-5148&viewport=-5774%2C-1639%2C0.22&scaling=scale-down&content-scaling=fixed&starting-point-node-id=933%3A5075&embed-host=share"
+                                                        className="w-full h-full rounded-2xl"
+                                                        style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
+                                                        allowFullScreen
+                                                        title="Figma Demo Prototype 3"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                {/* Third Figma Embed Below the Row */}
+                                                                                                {/* Fourth Figma Embed Below the Third */}
+                                                                                                <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] h-[78vh] rounded-2xl overflow-hidden border border-border mt-8">
+                                                                                                  <iframe
+                                                                                                    src="https://embed.figma.com/proto/D0f4bA8hTs7pXaL7RLImMd/Houseplant?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&embed-host=share"
+                                                                                                    className="w-full h-full rounded-2xl"
+                                                                                                    style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
+                                                                                                    allowFullScreen
+                                                                                                    title="Figma Demo Prototype 5"
+                                                                                                  />
+                                                                                                </div>
+                                                <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] h-[78vh] rounded-2xl overflow-hidden border border-border mt-8">
+                                                  <iframe
+                                                    src="https://embed.figma.com/proto/BeCgfbk1aXFaGQY0jeXrvi/Airpods-Max?page-id=0%3A1&node-id=1-2&embed-host=share"
+                                                    className="w-full h-full rounded-2xl"
+                                                    style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
+                                                    allowFullScreen
+                                                    title="Figma Demo Prototype 4"
+                                                  />
+                                                </div>
+                                                {/* Case Study Content Section */}
+                                                <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                                                  {selectedProject.caseStudy}
+                                                </section>
+                                              </div>
+                                            )}
                       {selectedProject.slug === "tasksprout" && (
                         <div className="space-y-4">
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
@@ -1475,8 +1523,8 @@ function handlePopState(event: PopStateEvent) {
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
                             <iframe
                               src="https://emsartmuseum.netlify.app/"
-                              className="w-full h-full"
-                              style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
+                              className="w-full h-full rounded-2xl"
+                              style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
                               title="Em's Art Museum Live Project"
                               allow="fullscreen"
                             />
