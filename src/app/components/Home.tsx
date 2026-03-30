@@ -27,7 +27,7 @@ const projects = [
     id: 2,
     slug: "planetology",
     title: "Planetology — Interactive Planet Systems",
-    category: "Creative Coding",
+    category: "Generative Systems",
     description: "A 3D interactive solar system using hand tracking and particle systems to explore how learning can become immersive and experiential.",
     year: "2024",
     image: "https://drive.google.com/uc?export=download&id=1fvUoD6E0lrXAjyV2e2VOnUgKZT7T6omp",
@@ -69,8 +69,8 @@ const projects = [
   {
     id: 4,
     slug: "mural",
-    title: "MURAL — Interactive Wall Art",
-    category: "Brand Design & Motion",
+    title: "MURAL — A Real-Time Collaborative Canvas",
+    category: "Collaborative Systems",
     description: "A real-time collaborative canvas where multiple users draw simultaneously—turning individual devices into a shared, interactive system.",
     year: "2024",
     image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
@@ -119,7 +119,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1642756060888-aa5f4bc4d86b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGRlc2lnbiUyMHZpc3VhbGl6YXRpb258ZW58MXx8fHwxNzcyODY4Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mediaAspectRatio: "4 / 3",
     tags: ["Spatial Interface", "3D Interaction", "Three.js", "Antigravity"],
-    previewVideo: undefined, // No longer needed, using iframe embed
+    previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774860080/artmuseum_ptlzj9.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground">The Idea</h2>
@@ -196,8 +196,8 @@ const projects = [
   {
     id: 11,
     slug: "tasksprout",
-    title: "TaskSprout — AI Task Manager",
-    category: "Productivity",
+    title: "TaskSprout — A Living Productivity System",
+    category: "Behavioral Systems",
     description: "A productivity tool that visualizes tasks as a growing system—exploring how interaction design can influence behavior.",
     year: "2026",
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
@@ -240,7 +240,7 @@ const projects = [
     id: 7,
     slug: "lesli-website",
     title: "Lesli’s Pet Services — Brand & Web Experience",
-    category: "Web Design",
+    category: "Web & Brand Design",
     description: "A full brand identity and responsive website for a small business, combining visual design with custom front-end interactions and motion.",
     year: "2023",
     image: "https://images.unsplash.com/photo-1760071744047-5542cbfda184?auto=format&fit=crop&w=800&q=80",
@@ -282,8 +282,8 @@ const projects = [
   {
     id: 5,
     slug: "figma-experiments",
-    title: "Figma Demos — Animated Prototypes",
-    category: "Brand Design & Motion",
+    title: "Figma Demos — Interactive Prototypes",
+    category: "Prototpying",
     description: "A collection of interactive prototypes exploring motion, design systems, and micro-interactions to test how interface behavior shapes user experience.",
     year: "2025",
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
@@ -308,9 +308,9 @@ const projects = [
   {
     id: 6,
     slug: "playground",
-    title: "Playground — Interactive Particle Demo",
-    category: "Interactive Systems",
-    description: "A collection of experimental creative coding sketches exploring generative visuals, interaction, and unconventional interfaces.",
+    title: "Playground",
+    category: "Creative Coding",
+    description: "A collection of creative coding experiments exploring generative visuals, interaction, and innovative interfaces.",
     year: "2026",
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
@@ -1094,36 +1094,9 @@ function handlePopState(event: PopStateEvent) {
                     <div
                       className="relative overflow-hidden mb-6 rounded-3xl transition-transform duration-300 ease-out group-hover:scale-[1.015] aspect-video bg-muted"
                     >
-                      {project.slug === "planetology" ? (
+                      {project.previewVideo ? (
                         <video
-                          src="https://res.cloudinary.com/dd7k5vprq/video/upload/v1773031107/planetgif_nwt8mc.mp4"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                        />
-                      ) : project.slug === "figma-experiments" ? (
-                        <video
-                          src={figmaPreviewVideo}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                        />
-                      ) : project.slug === "mural" ? (
-                        <video
-                          src={muralPreviewVideo}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                        />
-                      ) : project.slug === "lesli-website" ? (
-                        <video
-                          src={lesliPreviewVideo}
+                          src={project.previewVideo}
                           autoPlay
                           loop
                           muted
@@ -1132,15 +1105,6 @@ function handlePopState(event: PopStateEvent) {
                         />
                       ) : project.slug === "playground" ? (
                         <PlaygroundInteractivePreview />
-                      ) : project.slug === "tank" ? (
-                        <video
-                          src={tankPreviewVideo}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out"
-                        />
                       ) : (
                         <ImageWithFallback
                           src={project.image}
@@ -1437,6 +1401,46 @@ function handlePopState(event: PopStateEvent) {
                           <div className="flex items-center mt-4 justify-end">
                             <a
                               href="https://task-sprout.vercel.app/"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
+                            >
+                              Try it
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          {/* Case Study Content Section */}
+                          <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                            {selectedProject.caseStudy}
+                          </section>
+                        </div>
+                      )}
+                      {selectedProject.slug === "planetology" && (
+                        <div className="space-y-4">
+                          <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
+                            <iframe
+                              src="https://planetology.figma.site/"
+                              className="w-full h-full"
+                              style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
+                              title="Planetology Live Project"
+                              allow="fullscreen"
+                            />
+                          </div>
+                          <div className="flex items-center mt-4 justify-end">
+                            <a
+                              href="https://planetology.figma.site/"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
