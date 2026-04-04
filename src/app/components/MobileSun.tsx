@@ -213,8 +213,8 @@ export function MobileSun({
       : isDesktop
         ? 1020
         : 760;
-    const positions = new Float32Array(numParticles * 3);
-    const colors = new Float32Array(numParticles * 3);
+    const positionList: number[] = [];
+    const colorList: number[] = [];
     const radius = 0.61; // Reduced from 0.68 for smaller sun
 
     // Golden ratio distribution (Fibonacci sphere)
@@ -232,18 +232,23 @@ export function MobileSun({
       const y = y_norm * radius;
       const z = z_norm * radius;
 
-      positions[i * 3] = x;
-      positions[i * 3 + 1] = y;
-      positions[i * 3 + 2] = z;
+      // On mobile, cull a thin equatorial rim so sphere particles do not overlap ray origins.
+      const overlapsRayBand = !isDesktop && Math.abs(z_norm) < 0.22 && radiusAtY > 0.9;
+      if (overlapsRayBand) {
+        continue;
+      }
+
+      positionList.push(x, y, z);
 
       // Random color from palette
       const colorIndex = Math.floor(Math.random() * colorPalette.length);
       const color = colorPalette[colorIndex];
 
-      colors[i * 3] = color.r;
-      colors[i * 3 + 1] = color.g;
-      colors[i * 3 + 2] = color.b;
+      colorList.push(color.r, color.g, color.b);
     }
+
+    const positions = new Float32Array(positionList);
+    const colors = new Float32Array(colorList);
 
     // Create geometry
     const geometry = new THREE.BufferGeometry();
@@ -312,10 +317,10 @@ export function MobileSun({
     const particlesPerArm = hasReducedDensity
       ? isDesktop
         ? 180
-        : 128
+        : 156
       : isDesktop
         ? 306
-        : 192;
+        : 236;
     const totalSpiralParticles = spiralArms * particlesPerArm;
 
     const spiralPositions = new Float32Array(totalSpiralParticles * 3);
@@ -330,9 +335,10 @@ export function MobileSun({
       const armOffset = (arm / spiralArms) * Math.PI * 2;
 
       for (let i = 0; i < particlesPerArm; i++) {
-        const t = i / particlesPerArm;
+        const t = i / Math.max(1, particlesPerArm - 1);
         const angle = t * spiralTurns * Math.PI * 2 + armOffset;
-        const r = t * spiralMaxRadius; // Start from 0 to eliminate black hole in center
+        const radialT = isDesktop ? t : Math.pow(t, 0.72);
+        const r = radialT * spiralMaxRadius; // Bias mobile density toward outer ring without increasing particle size
 
         const x = Math.cos(angle) * r;
         const y = Math.sin(angle) * r;
