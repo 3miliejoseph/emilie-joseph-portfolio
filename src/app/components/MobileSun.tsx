@@ -321,7 +321,10 @@ export function MobileSun({
       : isDesktop
         ? 306
         : 236;
-    const totalSpiralParticles = spiralArms * particlesPerArm;
+    const effectiveParticlesPerArm = isDesktop
+      ? particlesPerArm
+      : Math.max(1, particlesPerArm - 8);
+    const totalSpiralParticles = spiralArms * effectiveParticlesPerArm;
 
     const spiralPositions = new Float32Array(totalSpiralParticles * 3);
     const spiralColors = new Float32Array(totalSpiralParticles * 3);
@@ -334,8 +337,8 @@ export function MobileSun({
     for (let arm = 0; arm < spiralArms; arm++) {
       const armOffset = (arm / spiralArms) * Math.PI * 2;
 
-      for (let i = 0; i < particlesPerArm; i++) {
-        const t = i / Math.max(1, particlesPerArm - 1);
+      for (let i = 0; i < effectiveParticlesPerArm; i++) {
+        const t = i / Math.max(1, effectiveParticlesPerArm - 1);
         const angle = t * spiralTurns * Math.PI * 2 + armOffset;
         const radialT = isDesktop ? t : Math.pow(t, 1.12);
         const r = radialT * spiralMaxRadius; // Keep mobile spiral tighter near center before expanding outward
