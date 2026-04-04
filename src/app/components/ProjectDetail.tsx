@@ -129,6 +129,13 @@ export function ProjectDetail() {
       >
         {/* Project Details */}
         <div className="p-6 sm:p-8">
+          {/* Project Information */}
+          <div className="space-y-4 mb-8">
+            <h1 className="text-4xl md:text-5xl">{project.title}</h1>
+            <p className="text-xl font-bold">{project.category}</p>
+            <p className="text-lg text-muted-foreground">{project.description}</p>
+          </div>
+
           {/* Embedded Project Content - Moved to top */}
           <div className="mb-6">
             {project.externalUrl ? (
@@ -192,19 +199,7 @@ export function ProjectDetail() {
             )}
           </div>
 
-          {/* Project Information */}
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl mb-8">{project.title}</h1>
-            <p className="text-xl font-bold">{project.category}</p>
-            <p className="text-lg text-muted-foreground">{project.description}</p>
-            <p className="text-sm text-muted-foreground">Year: {project.year}</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, index) => (
-                <span key={index} className="px-2 py-1 border text-sm rounded-full" style={{ borderColor: '#FFA500' }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
             {caseStudyProject?.caseStudy && (
               <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {caseStudyProject.caseStudy}
