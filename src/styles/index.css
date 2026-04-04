@@ -45,3 +45,9 @@ h5,
 h6 {
 	font-family: "Bangla MN", serif;
 }
+
+@media (max-width: 767px) {
+	.case-study-mobile-title {
+		font-family: "Poppins", sans-serif;
+	}
+}

@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router";
 import { FileText, X } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { MobileSun } from "./MobileSun";
 import { projects as homeProjects } from "./Home";
 
@@ -83,6 +84,7 @@ const projectData: Record<string, { title: string; category: string; description
     description: "A navigable 3D gallery exploring spatial interaction and new ways of experiencing art.",
     year: "2024",
     tags: ["Spatial Interface", "3D Interaction", "Three.js", "WebGL", "Immersive Experience"],
+    externalUrl: "https://ems-art-museum.vercel.app/",
   },
   "tasksprout": {
     title: "TaskSprout — A Living Productivity System",
@@ -90,6 +92,7 @@ const projectData: Record<string, { title: string; category: string; description
     description: "A productivity tool that visualizes tasks as a growing system—exploring how interaction design can influence behavior.",
     year: "2024",
     tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
+    externalUrl: "https://task-sprout.vercel.app/",
   },
 };
 
@@ -98,6 +101,25 @@ export function ProjectDetail() {
   const { projectId } = useParams();
   const project = projectId ? projectData[projectId] : null;
   const caseStudyProject = projectId ? homeProjects.find((item) => item.slug === projectId) : null;
+  const isPlaygroundProject = projectId === "playground";
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [activePrototypeIndex, setActivePrototypeIndex] = useState(0);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateViewport);
+    };
+  }, []);
+
+  useEffect(() => {
+    setActivePrototypeIndex(0);
+  }, [projectId]);
 
   if (!project) {
     return (
@@ -131,14 +153,85 @@ export function ProjectDetail() {
         <div className="p-6 sm:p-8">
           {/* Project Information */}
           <div className="space-y-4 mb-8">
-            <h1 className="text-4xl md:text-5xl">{project.title}</h1>
+            <h1 className="case-study-mobile-title text-4xl md:text-5xl">{project.title}</h1>
             <p className="text-xl font-bold">{project.category}</p>
             <p className="text-lg text-muted-foreground">{project.description}</p>
           </div>
 
           {/* Embedded Project Content - Moved to top */}
           <div className="mb-6">
-            {project.externalUrl ? (
+            {isPlaygroundProject ? (
+              <div className="space-y-10">
+                <div className="space-y-6">
+                  <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
+                    <iframe
+                      src="https://3miliejoseph.github.io/magic8ball/"
+                      className="w-full h-full"
+                      style={{ transform: 'scale(0.78)', transformOrigin: 'center top', width: '128.21%', height: '128.21%', marginLeft: '-14.105%', marginTop: '0' }}
+                      title="Magic 8 Ball Playground"
+                    />
+                  </div>
+                  <a
+                    href="https://3miliejoseph.github.io/magic8ball/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+                  >
+                    View Live Project
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                  <p className="text-base text-muted-foreground">
+                    A playful interactive system that responds to user questions with dynamic, generative answers—exploring randomness, anticipation, and delight in digital experiences.
+                  </p>
+                </div>
+                <div className="space-y-6">
+                  <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
+                    <iframe
+                      src="https://static-brand.vercel.app/"
+                      className="w-full h-full"
+                      style={{ transform: 'scale(0.78)', transformOrigin: 'center top', width: '128.21%', height: '128.21%', marginLeft: '-14.105%', marginTop: '0' }}
+                      title="Static Brand Live Project"
+                    />
+                  </div>
+                  <a
+                    href="https://static-brand.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+                  >
+                    View Live Project
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                  <p className="text-base text-muted-foreground">
+                    An experimental brand investigating how visual systems can express ideas through structured yet flexible design language.
+                  </p>
+                </div>
+              </div>
+            ) : project.externalUrl ? (
               <div className="space-y-6">
                 <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
                   <iframe
@@ -172,16 +265,52 @@ export function ProjectDetail() {
               </div>
             ) : project.embedUrls ? (
               <div className="space-y-6">
-                {project.embedUrls.map((url, index) => (
-                  <div key={index} className="w-full aspect-[16/10] md:aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
-                    <iframe
-                      src={url}
-                      className="w-full h-full"
-                      allowFullScreen
-                      title={`${project.title} Figma Prototype ${index + 1}`}
-                    />
-                  </div>
-                ))}
+                {isMobileViewport && projectId === "figma-experiments" ? (
+                  <>
+                    <div className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh]">
+                      <iframe
+                        src={project.embedUrls[activePrototypeIndex]}
+                        className="w-full h-full"
+                        allowFullScreen
+                        loading="lazy"
+                        title={`${project.title} Figma Prototype ${activePrototypeIndex + 1}`}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setActivePrototypeIndex((prev) => Math.max(0, prev - 1))}
+                        disabled={activePrototypeIndex === 0}
+                        className="px-4 py-2 rounded-lg border border-border text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
+                        Previous
+                      </button>
+                      <span className="text-sm text-muted-foreground">
+                        Prototype {activePrototypeIndex + 1} of {project.embedUrls.length}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setActivePrototypeIndex((prev) => Math.min(project.embedUrls.length - 1, prev + 1))}
+                        disabled={activePrototypeIndex === project.embedUrls.length - 1}
+                        className="px-4 py-2 rounded-lg border border-border text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  project.embedUrls.map((url, index) => (
+                    <div key={index} className="w-full aspect-[16/10] md:aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
+                      <iframe
+                        src={url}
+                        className="w-full h-full"
+                        allowFullScreen
+                        loading="lazy"
+                        title={`${project.title} Figma Prototype ${index + 1}`}
+                      />
+                    </div>
+                  ))
+                )}
               </div>
             ) : project.embedUrl ? (
               <div className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
@@ -200,7 +329,14 @@ export function ProjectDetail() {
           </div>
 
           <div className="space-y-4">
-            {caseStudyProject?.caseStudy && (
+            {isPlaygroundProject ? (
+              <p
+                className="mt-8 mb-2 text-[18px] font-medium"
+                style={{ color: theme === "light" ? "#FFA500" : "#E879F9" }}
+              >
+                Stay tuned —more experiments coming soon!
+              </p>
+            ) : caseStudyProject?.caseStudy && (
               <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
                 {caseStudyProject.caseStudy}
               </section>
