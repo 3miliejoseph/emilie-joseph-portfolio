@@ -718,6 +718,7 @@ export function Home() {
   const [isExpanding, setIsExpanding] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [interactiveHoverIndex, setInteractiveHoverIndex] = useState<number | null>(null);
   
   // Refs for sphere rotation animation
@@ -734,7 +735,9 @@ export function Home() {
   // Detect mobile on mount
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsDesktopViewport(width >= 1024);
     };
     
     checkMobile();
@@ -876,10 +879,23 @@ function handlePopState(event: PopStateEvent) {
       <style>{sunScaleStyles}</style>
       
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-visible">
+      <section className="min-h-screen relative overflow-visible pt-24 sm:pt-28 md:pt-32 lg:pt-0 flex items-start lg:items-center">
         <div className="desktop-content-gutter w-full overflow-visible">
+          {/* Mobile and tablet sun - placed in normal flow between nav and intro text */}
+          <div className="lg:hidden flex justify-center mb-6 sm:mb-8 md:mb-10">
+            <div className="w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] overflow-visible pointer-events-none">
+              <MobileSun
+                theme={theme}
+                width={360}
+                height={360}
+                sunScale={1.08}
+                densityVariant="reduced"
+              />
+            </div>
+          </div>
+
           {/* Left side - Name and Bio */}
-          <div className="space-y-5 sm:space-y-7 flex-shrink-0 relative text-center lg:text-left lg:max-w-[50%]" style={{ marginTop: 'calc(0.5rem + 33vh)', zIndex: 30 }}>
+          <div className="space-y-5 sm:space-y-7 flex-shrink-0 relative text-center lg:text-left lg:max-w-[50%] mt-2 sm:mt-4 lg:mt-[calc(0.5rem+33vh)]" style={{ zIndex: 30 }}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight lg:-translate-y-[16vh]" style={{ fontFamily: '"Bangla MN", serif' }}>
               Emilie Joseph
             </h1>
@@ -1015,31 +1031,20 @@ function handlePopState(event: PopStateEvent) {
             </div>
           </div>
 
-          {/* Right side - Nebula Sphere - Changes based on theme */}
-          {/* Mobile and Tablet - smaller scale, optimized performance */}
-          <div className="lg:hidden absolute overflow-visible z-30 left-1/2 mobile-sun-container" style={{ top: '-97%' }}>
-            <NebulaSphere 
-              theme={theme}
-              primaryColor={theme === "light" ? "#FDB813" : "#8B5CF6"}
-              secondaryColor={theme === "light" ? "#FFDD57" : "#6366F1"}
-              tertiaryColor={theme === "light" ? "#FFA500" : "#D946EF"}
-              particleCount={60}
-              width={1800}
-              height={1800}
-            />
-          </div>
-          {/* Desktop - original scale */}
-          <div className="hidden lg:block absolute top-[45.5%] overflow-visible z-20" style={{ right: '29%', transform: 'translate(50%, -50%) scale(0.7885)' }}>
-            <NebulaSphere 
-              theme={theme}
-              primaryColor={theme === "light" ? "#FDB813" : "#8B5CF6"}
-              secondaryColor={theme === "light" ? "#FFDD57" : "#6366F1"}
-              tertiaryColor={theme === "light" ? "#FFA500" : "#D946EF"}
-              particleCount={2222}
-              width={1800}
-              height={1800}
-            />
-          </div>
+          {/* Right side - Nebula Sphere - desktop */}
+          {isDesktopViewport && (
+            <div className="absolute top-[45.5%] overflow-visible z-20" style={{ right: '29%', transform: 'translate(50%, -50%) scale(0.7885)' }}>
+              <NebulaSphere 
+                theme={theme}
+                primaryColor={theme === "light" ? "#FDB813" : "#8B5CF6"}
+                secondaryColor={theme === "light" ? "#FFDD57" : "#6366F1"}
+                tertiaryColor={theme === "light" ? "#FFA500" : "#D946EF"}
+                particleCount={2222}
+                width={1800}
+                height={1800}
+              />
+            </div>
+          )}
         </div>
       </section>
 
@@ -1924,6 +1929,12 @@ function handlePopState(event: PopStateEvent) {
                                 An experimental brand investigating how visual systems can express ideas through structured yet flexible design language.
                               </div>
                             </div>
+                            <p
+                              className="text-[18px] text-left font-medium"
+                              style={{ color: theme === "light" ? "#FFA500" : "#E879F9" }}
+                            >
+                              Stay tuned —more experiments coming soon!
+                            </p>
                           </div>
                         ) : null}
                     </div>
