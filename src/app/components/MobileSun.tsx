@@ -32,6 +32,8 @@ export function MobileSun({
   const animationFrameRef = useRef<number | null>(null);
   const rotationRef = useRef({ x: 0, y: 0 });
   const hoveredRef = useRef(false);
+  const hoverProgressRef = useRef(0);
+  const hoverVelocityRef = useRef(0);
   const spiralRef = useRef<THREE.Points | null>(null); // Spiral particles reference
   const raysRef = useRef<THREE.Points | null>(null); // Ray particles reference
   const glowRef = useRef<THREE.Mesh | null>(null); // Center glow reference
@@ -59,7 +61,7 @@ export function MobileSun({
 
     return currentTheme === "dark"
       ? ["#A855F7", "#8B5CF6", "#6366F1", "#E879F9", "#EC4899"]
-      : ["#FF6A00", "#FF7A00", "#FF8C00", "#FF9F1C", "#E85D04"];
+      : ["#F28C00", "#FFA000", "#FFB000", "#FFC247", "#E97800"];
   };
 
   const getSpiralPalette = (currentTheme: string) => {
@@ -71,7 +73,7 @@ export function MobileSun({
 
     return currentTheme === "dark"
       ? ["#FF6FD8", "#E879F9", "#F0ABFC", "#D946EF"]
-      : ["#FF5A00", "#FF6A00", "#FF7A00", "#FF9F1C", "#E85D04"];
+      : ["#C95B00", "#D96A00", "#E97800", "#F28C00", "#FFB84D"];
   };
 
   const getRayPalettes = (currentTheme: string) => {
@@ -92,11 +94,11 @@ export function MobileSun({
       even:
         currentTheme === "dark"
           ? ["#8B5CF6", "#A78BFA", "#7C3AED", "#6D28D9"]
-          : ["#FF6A00", "#FF7A00", "#FF8C00", "#E85D04"],
+          : ["#E97800", "#F28C00", "#FFA000", "#FFB84D"],
       odd:
         currentTheme === "dark"
           ? ["#FF6FD8", "#F0ABFC", "#E879F9", "#D946EF"]
-          : ["#FF9F1C", "#FFB703", "#FB8500", "#E76F51"],
+          : ["#FFA000", "#FFB84D", "#FFC247", "#F4A261"],
     };
   };
 
@@ -656,9 +658,19 @@ export function MobileSun({
         return;
       }
 
-      // Auto-spin — speeds up on hover
-      const spinSpeed = hoveredRef.current ? 0.010 : 0.005;
-      const raySpeed = hoveredRef.current ? 0.004 : 0.002;
+      // Spring-smoothed hover intensity for a softer, slightly bouncy response.
+      const hoverTarget = hoveredRef.current ? 1 : 0;
+      hoverVelocityRef.current += (hoverTarget - hoverProgressRef.current) * 0.16;
+      hoverVelocityRef.current *= 0.76;
+      hoverProgressRef.current = Math.max(
+        -0.08,
+        Math.min(1.08, hoverProgressRef.current + hoverVelocityRef.current)
+      );
+      const hoverMix = hoverProgressRef.current;
+
+      // Auto-spin — speeds up smoothly as hover intensity rises.
+      const spinSpeed = 0.005 + hoverMix * 0.0055;
+      const raySpeed = 0.002 + hoverMix * 0.0026;
       rotationRef.current.y += spinSpeed;
 
       // Apply rotation to sphere particles (rotates with sphere)

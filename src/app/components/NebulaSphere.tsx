@@ -697,13 +697,10 @@ export function NebulaSphere({
     autoRotate,
   ]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  const updateHoverFromPointer = (e: React.MouseEvent<HTMLDivElement>) => {
+    const bounds = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - bounds.left) / bounds.width) * width;
+    const y = ((e.clientY - bounds.top) / bounds.height) * height;
 
     // Check if mouse is within the sphere radius (use smaller radius to avoid ray edges)
     const centerX = width / 2;
@@ -718,6 +715,8 @@ export function NebulaSphere({
         setIsHovered(true);
         isHoveredRef.current = true;
       }
+      mousePos.current.x = x;
+      mousePos.current.y = y;
       targetMousePos.current.x = x;
       targetMousePos.current.y = y;
     } else {
@@ -729,65 +728,50 @@ export function NebulaSphere({
     }
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    // Check if mouse is within the sphere radius (use smaller radius to avoid ray edges)
-    const centerX = width / 2;
-    const centerY = height / 2 - 50;
-    const dx = x - centerX;
-    const dy = y - centerY;
-    const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
-
-    // Use 0.9 multiplier to create a smaller detection zone, excluding ray edges
-    if (distanceFromCenter <= sphereRadius * 0.9) {
-      mousePos.current.x = x;
-      mousePos.current.y = y;
-      targetMousePos.current.x = x;
-      targetMousePos.current.y = y;
-      
-      setIsHovered(true);
-      isHoveredRef.current = true;
-    }
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseLeave = () => {
     setIsHovered(false);
     isHoveredRef.current = false;
   };
 
   // Use MobileSun component for all devices, animate scale on hover
   return (
-    <div
+    <motion.div
       ref={containerRef}
       className="relative"
+      animate={{
+        scale: isHovered ? 1.055 : 1,
+        y: isHovered ? -6 : 0,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 18,
+        mass: 0.9,
+      }}
       style={{
         cursor: 'pointer',
         transition: 'filter 0.4s ease',
-        filter: isHovered
-          ? theme === 'light'
-            ? 'drop-shadow(0 0 18px rgba(255,165,0,0.35))'
-            : 'drop-shadow(0 0 18px rgba(232,121,249,0.35))'
-          : 'none',
+        filter: theme === 'light'
+          ? isHovered
+            ? 'drop-shadow(0 0 20px rgba(255,165,0,0.42))'
+            : 'drop-shadow(0 0 10px rgba(255,165,0,0.16))'
+          : isHovered
+            ? 'drop-shadow(0 0 20px rgba(232,121,249,0.42))'
+            : 'drop-shadow(0 0 10px rgba(232,121,249,0.16))',
       }}
     >
       <MobileSun
         width={width}
         height={height}
         theme={theme}
-        sunScale={isHovered ? 1.12 : 1}
+        sunScale={1}
         hovered={isHovered}
       />
       <div
         style={{ position: 'absolute', inset: 0, zIndex: 10 }}
-        onMouseEnter={() => { setIsHovered(true); isHoveredRef.current = true; }}
-        onMouseLeave={() => { setIsHovered(false); isHoveredRef.current = false; }}
+        onMouseMove={updateHoverFromPointer}
+        onMouseLeave={handleMouseLeave}
       />
-    </div>
+    </motion.div>
   );
 }
