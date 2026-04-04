@@ -209,9 +209,9 @@ export function ProjectDetail() {
                     href="https://3miliejoseph.github.io/magic8ball/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                   >
-                    View Live Project
+                    Try it
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -240,9 +240,9 @@ export function ProjectDetail() {
                     href="https://static-brand.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                   >
-                    View Live Project
+                    Try it
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -260,15 +260,40 @@ export function ProjectDetail() {
                 </div>
               </div>
             ) : isMobileViewport && caseStudyProject?.previewVideo ? (
-              <div className="w-full overflow-hidden rounded-3xl bg-muted aspect-video">
-                <video
-                  src={caseStudyProject.previewVideo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
+              <div className="space-y-6">
+                <div className="w-full overflow-hidden rounded-3xl bg-muted aspect-video">
+                  <video
+                    src={caseStudyProject.previewVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {project.externalUrl && (
+                  <a
+                    href={project.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
+                  >
+                    Try it
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                )}
               </div>
             ) : project.externalUrl ? (
               <div className="space-y-6">
@@ -284,9 +309,9 @@ export function ProjectDetail() {
                   href={project.externalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                 >
-                  View Live Project
+                  Try it
                   <svg
                     className="w-4 h-4"
                     fill="none"

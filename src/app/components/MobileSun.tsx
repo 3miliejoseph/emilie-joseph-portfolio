@@ -166,9 +166,15 @@ export function MobileSun({
       failIfMajorPerformanceCaveat: false, // Still render on low-end devices
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(
-      isDesktop ? Math.min(window.devicePixelRatio, 3) : Math.min(window.devicePixelRatio, 2)
-    ); // Lower pixel ratio for mobile to improve performance
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    const targetPixelRatio = isDesktop
+      ? Math.min(devicePixelRatio, 3)
+      : Math.min(devicePixelRatio, hasReducedDensity ? 2 : 2.5);
+    renderer.setPixelRatio(targetPixelRatio);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    renderer.setClearAlpha(0);
     rendererRef.current = renderer;
 
     // Cleanup
@@ -261,6 +267,15 @@ export function MobileSun({
     ctx.fillRect(0, 0, textureSize, textureSize);
 
     const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.generateMipmaps = true;
+    texture.minFilter = THREE.LinearMipmapLinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+    texture.anisotropy = Math.min(
+      8,
+      rendererRef.current?.capabilities.getMaxAnisotropy() ?? 1
+    );
+    texture.needsUpdate = true;
 
     // Create material with glowing effect
     const material = new THREE.PointsMaterial({
