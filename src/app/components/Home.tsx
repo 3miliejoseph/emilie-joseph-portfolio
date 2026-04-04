@@ -12,7 +12,7 @@ const exploreMoreMap: Record<string, string[]> = {
 };
 import { MobileSun } from "./MobileSun";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { Moon, Sun, Volume2, VolumeX, X, FileText } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -704,6 +704,7 @@ function ModalEmbedFrame({ scrollContainerRef: _scrollContainerRef, ...iframePro
 }
 
 export function Home() {
+  const navigate = useNavigate();
   const staticPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774113817/Static_pmgft8.mov";
   const muralPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774116417/MURAL_r1vxa9.mp4";
   const lesliPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774116989/LPS_hrqcin.mp4";
@@ -784,7 +785,7 @@ export function Home() {
 
     if (!isDesktopViewport) {
       // On mobile/smaller tablets, navigate directly to the case-study page route.
-      window.location.href = `/project/${project.slug}`;
+      navigate(`/project/${project.slug}`);
       return;
     }
 
