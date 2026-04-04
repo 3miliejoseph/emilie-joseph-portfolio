@@ -882,8 +882,8 @@ function handlePopState(event: PopStateEvent) {
       <section className="min-h-screen relative overflow-visible pt-24 sm:pt-28 md:pt-32 lg:pt-0 flex items-start lg:items-center">
         <div className="desktop-content-gutter w-full overflow-visible">
           {/* Mobile and tablet sun - placed in normal flow between nav and intro text */}
-          <div className="lg:hidden flex justify-center mb-6 sm:mb-8 md:mb-10">
-            <div className="w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] md:w-[360px] md:h-[360px] overflow-visible pointer-events-none">
+          <div className="lg:hidden flex w-full justify-center -mt-4 sm:-mt-3 md:-mt-2 mb-10 sm:mb-12 md:mb-14">
+            <div className="w-[360px] h-[360px] overflow-visible pointer-events-none scale-[0.74] sm:scale-[0.88] md:scale-100 origin-center mx-auto">
               <MobileSun
                 theme={theme}
                 width={360}
@@ -896,7 +896,7 @@ function handlePopState(event: PopStateEvent) {
           </div>
 
           {/* Left side - Name and Bio */}
-          <div className="space-y-5 sm:space-y-7 flex-shrink-0 relative text-center lg:text-left lg:max-w-[50%] mt-2 sm:mt-4 lg:mt-[calc(0.5rem+33vh)]" style={{ zIndex: 30 }}>
+          <div className="space-y-5 sm:space-y-7 flex-shrink-0 relative text-center lg:text-left lg:max-w-[50%] mt-0 sm:mt-1 lg:mt-[calc(0.5rem+33vh)]" style={{ zIndex: 30 }}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight lg:-translate-y-[16vh]" style={{ fontFamily: '"Bangla MN", serif' }}>
               Emilie Joseph
             </h1>
