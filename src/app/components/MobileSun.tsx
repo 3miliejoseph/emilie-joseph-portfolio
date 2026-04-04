@@ -337,8 +337,8 @@ export function MobileSun({
       for (let i = 0; i < particlesPerArm; i++) {
         const t = i / Math.max(1, particlesPerArm - 1);
         const angle = t * spiralTurns * Math.PI * 2 + armOffset;
-        const radialT = isDesktop ? t : Math.pow(t, 0.72);
-        const r = radialT * spiralMaxRadius; // Bias mobile density toward outer ring without increasing particle size
+        const radialT = isDesktop ? t : Math.pow(t, 1.12);
+        const r = radialT * spiralMaxRadius; // Keep mobile spiral tighter near center before expanding outward
 
         const x = Math.cos(angle) * r;
         const y = Math.sin(angle) * r;
