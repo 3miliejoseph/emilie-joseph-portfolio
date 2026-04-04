@@ -59,7 +59,7 @@ export function MobileSun({
 
     return currentTheme === "dark"
       ? ["#A855F7", "#8B5CF6", "#6366F1", "#E879F9", "#EC4899"]
-      : ["#FFB300", "#FF9E00", "#FF7A00", "#FFD54A", "#FFC107"];
+      : ["#FF6A00", "#FF7A00", "#FF8C00", "#FF9F1C", "#E85D04"];
   };
 
   const getSpiralPalette = (currentTheme: string) => {
@@ -71,7 +71,7 @@ export function MobileSun({
 
     return currentTheme === "dark"
       ? ["#FF6FD8", "#E879F9", "#F0ABFC", "#D946EF"]
-      : ["#FF8A00", "#FF9E00", "#FFB300", "#FFC107", "#FFD54A"];
+      : ["#FF5A00", "#FF6A00", "#FF7A00", "#FF9F1C", "#E85D04"];
   };
 
   const getRayPalettes = (currentTheme: string) => {
@@ -92,11 +92,11 @@ export function MobileSun({
       even:
         currentTheme === "dark"
           ? ["#8B5CF6", "#A78BFA", "#7C3AED", "#6D28D9"]
-          : ["#FFA500", "#FFB84D", "#FFCC80", "#FFC107"],
+          : ["#FF6A00", "#FF7A00", "#FF8C00", "#E85D04"],
       odd:
         currentTheme === "dark"
           ? ["#FF6FD8", "#F0ABFC", "#E879F9", "#D946EF"]
-          : ["#FFD700", "#FFED4E", "#FFEB3B", "#FFE082"],
+          : ["#FF9F1C", "#FFB703", "#FB8500", "#E76F51"],
     };
   };
 
@@ -255,12 +255,12 @@ export function MobileSun({
     canvas.height = textureSize;
     const ctx = canvas.getContext("2d")!;
 
-    // Radial gradient for soft particles
+    // Radial gradient for crisp particles with less halo on mobile
     const centerPoint = textureSize / 2;
     const gradient = ctx.createRadialGradient(centerPoint, centerPoint, 0, centerPoint, centerPoint, centerPoint);
     gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-    gradient.addColorStop(0.4, "rgba(255, 255, 255, 1)"); // Sharper - keep solid longer
-    gradient.addColorStop(0.7, "rgba(255, 255, 255, 0.5)"); // Steeper falloff
+    gradient.addColorStop(0.55, "rgba(255, 255, 255, 1)");
+    gradient.addColorStop(0.82, "rgba(255, 255, 255, 0.22)");
     gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
     ctx.fillStyle = gradient;
@@ -285,7 +285,7 @@ export function MobileSun({
       sizeAttenuation: true,
       transparent: true,
       opacity: hasReducedDensity ? 0.95 : 1.0,
-      blending: isDesktop ? THREE.NormalBlending : THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       depthWrite: false, // Prevent z-fighting
     });
 
@@ -398,7 +398,7 @@ export function MobileSun({
       sizeAttenuation: true,
       transparent: true,
       opacity: hasReducedDensity ? (isDesktop ? 0.9 : 0.98) : isDesktop ? 0.575 : 0.86,
-      blending: isDesktop ? THREE.NormalBlending : THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       depthWrite: false,
     });
 
@@ -508,7 +508,7 @@ export function MobileSun({
       sizeAttenuation: true,
       transparent: true,
       opacity: hasReducedDensity ? 0.88 : 1.0,
-      blending: isDesktop ? THREE.NormalBlending : THREE.AdditiveBlending,
+      blending: THREE.NormalBlending,
       depthWrite: false,
     });
 
@@ -525,24 +525,27 @@ export function MobileSun({
       (glowRef.current.material as THREE.Material).dispose();
     }
 
-    // Create soft radial glow texture
-    const glowTexture = createGlowTexture(theme);
-    if (!glowTexture) return;
+    if (isDesktop) {
+      // Keep subtle center glow on desktop only.
+      const glowTexture = createGlowTexture(theme);
+      if (!glowTexture) return;
 
-    // Create plane for glow (positioned behind everything)
-    const glowGeometry = new THREE.PlaneGeometry(radius * 2, radius * 2);
-    const glowMaterial = new THREE.MeshBasicMaterial({
-      map: glowTexture,
-      transparent: true,
-      opacity: hasReducedDensity ? 0.78 : 1.0,
-      blending: THREE.NormalBlending, // Additive for glow effect
-      depthWrite: false,
-    });
+      const glowGeometry = new THREE.PlaneGeometry(radius * 2, radius * 2);
+      const glowMaterial = new THREE.MeshBasicMaterial({
+        map: glowTexture,
+        transparent: true,
+        opacity: hasReducedDensity ? 0.78 : 1.0,
+        blending: THREE.NormalBlending,
+        depthWrite: false,
+      });
 
-    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-    glow.position.z = -0.5; // Position behind sphere and spiral
-    sceneRef.current.add(glow);
-    glowRef.current = glow;
+      const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+      glow.position.z = -0.5;
+      sceneRef.current.add(glow);
+      glowRef.current = glow;
+    } else {
+      glowRef.current = null;
+    }
 
 
     return () => {
@@ -559,8 +562,8 @@ export function MobileSun({
         rayMaterial.dispose();
       }
       if (glowRef.current) {
-        glowGeometry.dispose();
-        glowMaterial.dispose();
+        glowRef.current.geometry.dispose();
+        (glowRef.current.material as THREE.Material).dispose();
       }
     };
   }, []);
