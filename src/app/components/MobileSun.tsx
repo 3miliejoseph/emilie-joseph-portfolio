@@ -282,14 +282,14 @@ export function MobileSun({
     // Spiral configuration - much more prominent to match reference
     const spiralArms = 3;
     const spiralTurns = 2.8; // Reduced turns to spread arms apart more
-    const spiralMaxRadius = radius * (isDesktop ? 1.0 : 1.06); // Extend slightly farther on mobile so the spiral reaches the sphere edge
+    const spiralMaxRadius = radius * (isDesktop ? 1.0 : 1.12); // Extend farther on mobile so the spiral pushes more visibly toward the sphere edge
     const particlesPerArm = hasReducedDensity
       ? isDesktop
         ? 180
-        : 84
+        : 96
       : isDesktop
         ? 306
-        : 138; // Keep mobile spiral dense enough to read as continuous without overloading mobile
+        : 156; // Increase mobile density moderately so the spiral reads fuller without a large performance jump
     const totalSpiralParticles = spiralArms * particlesPerArm;
 
     const spiralPositions = new Float32Array(totalSpiralParticles * 3);
