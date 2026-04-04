@@ -84,15 +84,15 @@ export function About() {
   return (
     <div className="min-h-screen bg-background" style={{ position: 'relative' }}>
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-visible">
+      <section className="relative overflow-visible pt-4 sm:pt-8 md:pt-10 lg:pt-0 min-h-[auto] lg:min-h-screen flex items-start lg:items-center pb-10 sm:pb-14 lg:pb-0">
         <div className="desktop-content-gutter">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center">
-            <div className="mt-4 md:mt-8 lg:mt-12">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-6 sm:mb-8" style={{ fontFamily: '"Bangla MN", serif' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
+            <div className="mt-2 sm:mt-4 md:mt-6 lg:mt-12 order-2 lg:order-1">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-4 sm:mb-6 lg:mb-8 text-center lg:text-left" style={{ fontFamily: '"Bangla MN", serif' }}>
                 Hi, I'm <span className="text-accent" style={{ color: theme === 'dark' ? '#E879F9' : '#FFA500' }}>Emilie</span>!
               </h1>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed w-full lg:ml-0">
-                <span style={{ fontSize: '1.08em' }} className="max-w-2xl block">
+              <p className="text-[15px] sm:text-base md:text-lg text-muted-foreground leading-relaxed w-full text-center lg:text-left lg:ml-0">
+                <span style={{ fontSize: '1.05em' }} className="max-w-2xl block mx-auto lg:mx-0">
                   I’m a designer interested in exploring ideas at the intersection of design, technology, and human experience. I enjoy experimenting with different creative concepts and building interactive and generative systems through creative coding that turn curiosity into playful, intuitive experiences—bringing ideas to fruition through hands-on exploration and iteration.
                   <br />
                   <span className="block mt-4">
@@ -101,8 +101,8 @@ export function About() {
                 </span>
               </p>
             </div>
-            <div className="relative order-first lg:order-last flex items-start">
-              <div className="flex flex-row items-start relative" style={{ height: '26rem' }}>
+            <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end items-start">
+              <div className="hidden lg:flex flex-row items-start relative" style={{ height: '26rem' }}>
                 <div className="relative w-[22rem] h-[28rem]">
                   <div
                     className="absolute right-0 top-0 transition-transform duration-300"
@@ -129,31 +129,50 @@ export function About() {
                   </div>
                 </div>
               </div>
-              {/* Absolutely position the bottom image at the right edge of the About section */}
-              <div
-                style={{
-                  position: 'absolute',
-                  right: 0,
-                  bottom: '-40px',
-                  width: '22rem',
-                  height: '30rem',
-                  zIndex: 20,
-                  cursor: 'pointer',
-                  transition: 'transform 0.4s cubic-bezier(.4,2,.6,1)',
-                  transform: hoveredRight
-                    ? 'scale(1.08) rotate(3deg)'
-                    : 'none',
-                }}
-                onMouseEnter={() => setHoveredRight(true)}
-                onMouseLeave={() => setHoveredRight(false)}
-              >
-                <ImageWithFallback
-                  src="/Suki.png"
-                  alt="Suki the cat"
-                  className="w-full h-full object-cover rounded-lg shadow-lg"
-                  style={{ pointerEvents: 'none' }}
-                />
-                <div className="text-center mt-2 text-sm text-muted-foreground font-medium">My cat, Suki</div>
+              {/* Absolutely position the bottom image at the right edge on desktop, stack neatly on mobile/tablet */}
+              <div className="hidden lg:block">
+                <div
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    bottom: '-40px',
+                    width: '22rem',
+                    height: '30rem',
+                    zIndex: 20,
+                    cursor: 'pointer',
+                    transition: 'transform 0.4s cubic-bezier(.4,2,.6,1)',
+                    transform: hoveredRight
+                      ? 'scale(1.08) rotate(3deg)'
+                      : 'none',
+                  }}
+                  onMouseEnter={() => setHoveredRight(true)}
+                  onMouseLeave={() => setHoveredRight(false)}
+                >
+                  <ImageWithFallback
+                    src="/Suki.png"
+                    alt="Suki the cat"
+                    className="w-full h-full object-cover rounded-lg shadow-lg"
+                    style={{ pointerEvents: 'none' }}
+                  />
+                  <div className="text-center mt-2 text-sm text-muted-foreground font-medium">My cat, Suki</div>
+                </div>
+              </div>
+              <div className="flex w-full max-w-[18rem] sm:max-w-[22rem] md:max-w-[26rem] flex-col gap-3 sm:gap-4 lg:hidden">
+                <div className="w-full overflow-hidden rounded-2xl shadow-lg aspect-[4/5] border border-border/40 bg-muted/20">
+                  <ImageWithFallback
+                    src="/ME.png"
+                    alt="Portrait of Emilie"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="w-full overflow-hidden rounded-2xl shadow-lg aspect-[4/5] border border-border/40 bg-muted/20">
+                  <ImageWithFallback
+                    src="/Suki.png"
+                    alt="Suki the cat"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-center text-sm text-muted-foreground font-medium">My cat, Suki</div>
               </div>
             </div>
           </div>
@@ -169,7 +188,7 @@ export function About() {
       {/* Passion Projects */}
       <section className="py-16 sm:py-24 md:py-32">
         <div className="desktop-content-gutter">
-          <div className="rounded-2xl p-8" style={{ fontFamily: 'Poppins, sans-serif', background: 'none', boxShadow: 'none' }}>
+          <div className="rounded-2xl px-0 py-4 sm:p-8" style={{ fontFamily: 'Poppins, sans-serif', background: 'none', boxShadow: 'none' }}>
             <div className="mb-12 sm:mb-16">
               {/* Passion Projects label removed */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-4 sm:mb-6" style={{ fontFamily: '"Bangla MN", serif', position: 'relative' }}>
@@ -183,16 +202,16 @@ export function About() {
                 {/* ...crochet project block removed... */}
                 {/* Dining Table Painting - Left aligned */}
                 <Dialog.Root>
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
                     <div className="flex-1">
-                      <div className="flex flex-row flex-wrap gap-6 mb-2">
-                        <div className="flex flex-col items-center mr-6">
-                          <div className="flex flex-row gap-2 mb-1">
+                      <div className="flex flex-row flex-wrap gap-6 mb-2 justify-center md:justify-start">
+                        <div className="flex flex-col items-center md:mr-6 w-full md:w-auto">
+                          <div className="flex flex-col sm:flex-row gap-2 mb-1 w-full items-center">
                             <Dialog.Trigger asChild>
-                              <img src="/Fish%20table.png" alt="Fish Table Painting" className="w-64 h-96 object-cover rounded-lg cursor-pointer" />
+                              <img src="/Fish%20table.png" alt="Fish Table Painting" className="w-full max-w-64 h-auto sm:h-96 aspect-[2/3] object-cover rounded-lg cursor-pointer" />
                             </Dialog.Trigger>
                             <Dialog.Trigger asChild>
-                              <img src="/Table%20Progress.png" alt="Table Progress Painting" className="w-64 h-96 object-cover rounded-lg cursor-pointer" />
+                              <img src="/Table%20Progress.png" alt="Table Progress Painting" className="w-full max-w-64 h-auto sm:h-96 aspect-[2/3] object-cover rounded-lg cursor-pointer" />
                             </Dialog.Trigger>
                           </div>
                           <span className="block text-xs text-muted-foreground text-center mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
@@ -214,16 +233,16 @@ export function About() {
                 </Dialog.Root>
                 {/* Mural Image & Video - Right aligned, moved down */}
                 <Dialog.Root>
-                  <div className="flex flex-col md:flex-row-reverse items-center md:items-start gap-8">
+                  <div className="flex flex-col md:flex-row-reverse items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
                     <div className="flex-1">
                       <div className="flex flex-row flex-wrap gap-6 mb-2 justify-end">
-                        <div className="flex flex-col items-center">
-                          <div className="flex flex-row gap-2 mb-1">
+                        <div className="flex flex-col items-center w-full md:w-auto">
+                          <div className="flex flex-col sm:flex-row gap-2 mb-1 w-full items-center md:items-start md:justify-end">
                             <Dialog.Trigger asChild>
-                              <img src="/bunny%20chow.png" alt="Bunny Chow Painting" className="w-[30rem] h-80 object-cover rounded-lg cursor-pointer" />
+                              <img src="/bunny%20chow.png" alt="Bunny Chow Painting" className="w-full max-w-[30rem] h-auto sm:h-80 aspect-[3/2] object-cover rounded-lg cursor-pointer" />
                             </Dialog.Trigger>
                             <Dialog.Trigger asChild>
-                              <video className="w-56 h-80 object-cover rounded-lg cursor-pointer" controls>
+                              <video className="w-full max-w-56 h-auto sm:h-80 aspect-[7/10] object-cover rounded-lg cursor-pointer" controls>
                                 <source src="/bunnychow.mov" type="video/mp4" />
                                 Your browser does not support the video tag.
                               </video>
@@ -248,9 +267,9 @@ export function About() {
                 </Dialog.Root>
                 {/* ...sketchbook project block removed... */}
                 {/* Music Mashup Demo - Right aligned */}
-                <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
                   <div className="flex-1">
-                    <div className="w-[28rem] h-44 flex flex-col items-start justify-center rounded-2xl mb-4 shadow-lg border-2"
+                    <div className="w-full max-w-[28rem] min-h-44 flex flex-col items-start justify-center rounded-2xl mb-4 shadow-lg border-2 px-3 sm:px-0"
                       style={{
                         background: theme === 'dark'
                           ? 'rgba(36, 18, 54, 0.65)'
@@ -265,7 +284,7 @@ export function About() {
                         <audio
                           controls
                           controlsList="nodownload"
-                          className="w-[25rem] mb-1"
+                          className="w-full max-w-[25rem] mb-1"
                           style={{ filter: theme === 'dark' ? 'invert(0.85)' : 'none', borderRadius: '0.75rem' }}
                         >
                           <source src="/Dontcha%20x%20Your%20Teeth%20in%20My%20Neck.mp3" type="audio/mpeg" />
@@ -276,7 +295,7 @@ export function About() {
                         </span>
                       </div>
                     </div>
-                    <div className="w-[28rem] flex justify-center">
+                    <div className="w-full max-w-[28rem] flex justify-center px-2 sm:px-0">
                       <p className="text-sm text-muted-foreground text-center max-w-xs" style={{ fontFamily: 'Poppins, sans-serif' }}>
                         Experimenting with mixing music:  Dontcha by The Internet x Your Teeth in My Neck by Kali Uchis
                       </p>

@@ -390,25 +390,16 @@ export function MobileSun({
 
     // Ray configuration - create horizontal segments that form ray shapes
     const numRayArms = 12; // Keep 12 rays for both mobile and desktop
-    const particlesPerRayArm = hasReducedDensity
-      ? isDesktop
-        ? 145
-        : 68
-      : isDesktop
-        ? 250
-        : 108; // 10% reduction for mobile
-    const totalRayParticles = numRayArms * particlesPerRayArm;
-    const rayPositions = new Float32Array(totalRayParticles * 3);
-    const rayColors = new Float32Array(totalRayParticles * 3);
-    const raySizes = new Float32Array(totalRayParticles); // Individual particle sizes
-    const rayArmIndices = new Float32Array(totalRayParticles);
+    const rayPositions: number[] = [];
+    const rayColors: number[] = [];
+    const raySizes: number[] = [];
+    const rayArmIndices: number[] = [];
 
     // Create alternating color palettes for rays based on theme
     const rayPalettes = getRayPalettes(theme);
     const rayColorPalette1 = rayPalettes.even.map((hex) => new THREE.Color(hex));
     const rayColorPalette2 = rayPalettes.odd.map((hex) => new THREE.Color(hex));
 
-    let rayIndex = 0;
     for (let arm = 0; arm < numRayArms; arm++) {
       const baseAngle = (arm / numRayArms) * Math.PI * 2;
       
@@ -439,8 +430,6 @@ export function MobileSun({
         const particlesInSegment = Math.max(1, Math.floor(20 * Math.pow(1 - distT, 1.5))); // Sharper taper to 1 particle at tip
         
         for (let p = 0; p < particlesInSegment; p++) {
-          if (rayIndex >= totalRayParticles) break;
-          
           // Position along the horizontal segment (perpendicular to ray direction)
           const segT = (p / particlesInSegment) - 0.5; // -0.5 to 0.5 (centered)
           
@@ -459,23 +448,17 @@ export function MobileSun({
           const y = rayY + offsetY;
           const z = 0; // Flat on XY plane
 
-          rayPositions[rayIndex * 3] = x;
-          rayPositions[rayIndex * 3 + 1] = y;
-          rayPositions[rayIndex * 3 + 2] = z;
+          rayPositions.push(x, y, z);
 
           // Random color from ray palette
           const colorIndex = Math.floor(Math.random() * rayColorPalette.length);
           const color = rayColorPalette[colorIndex];
 
-          rayColors[rayIndex * 3] = color.r;
-          rayColors[rayIndex * 3 + 1] = color.g;
-          rayColors[rayIndex * 3 + 2] = color.b;
+          rayColors.push(color.r, color.g, color.b);
 
           // Set individual particle size
-          raySizes[rayIndex] = (hasReducedDensity ? 0.052 : 0.055) * particleScale; // Slightly larger footer rays for better definition while keeping the spiral readable
-          rayArmIndices[rayIndex] = arm;
-
-          rayIndex++;
+          raySizes.push((hasReducedDensity ? 0.052 : 0.055) * particleScale); // Slightly larger footer rays for better definition while keeping the spiral readable
+          rayArmIndices.push(arm);
         }
       }
     }
@@ -484,11 +467,11 @@ export function MobileSun({
     const rayGeometry = new THREE.BufferGeometry();
     rayGeometry.setAttribute(
       "position",
-      new THREE.BufferAttribute(rayPositions, 3)
+      new THREE.BufferAttribute(new Float32Array(rayPositions), 3)
     );
-    rayGeometry.setAttribute("color", new THREE.BufferAttribute(rayColors, 3));
-    rayGeometry.setAttribute("size", new THREE.BufferAttribute(raySizes, 1));
-    rayGeometry.setAttribute("armIndex", new THREE.BufferAttribute(rayArmIndices, 1));
+    rayGeometry.setAttribute("color", new THREE.BufferAttribute(new Float32Array(rayColors), 3));
+    rayGeometry.setAttribute("size", new THREE.BufferAttribute(new Float32Array(raySizes), 1));
+    rayGeometry.setAttribute("armIndex", new THREE.BufferAttribute(new Float32Array(rayArmIndices), 1));
 
     // Reuse same texture for consistency
     const rayMaterial = new THREE.PointsMaterial({

@@ -890,6 +890,7 @@ function handlePopState(event: PopStateEvent) {
                 height={360}
                 sunScale={1.08}
                 densityVariant="reduced"
+                particleScale={1.06}
               />
             </div>
           </div>
