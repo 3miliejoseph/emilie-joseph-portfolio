@@ -286,10 +286,10 @@ export function MobileSun({
     const particlesPerArm = hasReducedDensity
       ? isDesktop
         ? 180
-        : 72
+        : 84
       : isDesktop
         ? 306
-        : 120; // Keep mobile spiral dense enough to read as continuous
+        : 138; // Keep mobile spiral dense enough to read as continuous without overloading mobile
     const totalSpiralParticles = spiralArms * particlesPerArm;
 
     const spiralPositions = new Float32Array(totalSpiralParticles * 3);
@@ -331,10 +331,10 @@ export function MobileSun({
         const baseSize = hasReducedDensity
           ? isDesktop
             ? 0.084
-            : 0.044
+            : 0.05
           : isDesktop
             ? 0.066
-            : 0.058;
+            : 0.064;
         const centerBoost = hasReducedDensity
           ? isDesktop
             ? t < 0.38
@@ -369,7 +369,7 @@ export function MobileSun({
 
     // Reuse same texture for consistency
     const spiralMaterial = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.044) : isDesktop ? 0.066 : 0.058) * particleScale, // Base size (overridden by individual sizes)
+      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.05) : isDesktop ? 0.066 : 0.064) * particleScale, // Base size (overridden by individual sizes)
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
