@@ -22,7 +22,7 @@ import { NebulaSphere } from "./NebulaSphere";
 import * as Dialog from "@radix-ui/react-dialog";
 
 // Main projects array for homepage and modals
-const projects = [
+export const projects = [
   {
     id: 2,
     slug: "planetology",

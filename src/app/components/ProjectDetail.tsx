@@ -1,5 +1,8 @@
 import { useParams, Link } from "react-router";
-import { ArrowLeft, X } from "lucide-react";
+import { FileText, X } from "lucide-react";
+import { useTheme } from "next-themes";
+import { MobileSun } from "./MobileSun";
+import { projects as homeProjects } from "./Home";
 
 const projectData: Record<string, { title: string; category: string; description: string; year: string; tags: string[]; embedUrls?: string[]; embedUrl?: string; externalUrl?: string }> = {
   "figma-animations": {
@@ -36,8 +39,11 @@ const projectData: Record<string, { title: string; category: string; description
     year: "2022-2024",
     tags: ["Prototyping", "User Interface", "Motion", "Design Systems", "Interaction Design"],
     embedUrls: [
-      "https://embed.figma.com/proto/CPY12RB4HZNtvoDMgsalFY/EmilieJoseph_Figma?page-id=336%3A19&node-id=338-21&viewport=108%2C397%2C0.14&t=K7p5ldObPAJzxyLp-1&scaling=scale-down&content-scaling=fixed&embed-host=share",
-      "https://embed.figma.com/proto/Y5rh4n0DvbJFNJUkRXL8ic/Queuenect?node-id=5-46&p=f&m=dev&scaling=scale-down&content-scaling=fixed&page-id=5%3A45&starting-point-node-id=5%3A46&embed-host=share"
+      "https://embed.figma.com/proto/KgUYsHwHqSJCjEhIjIpN1N/QueueNection?node-id=5-51&scaling=scale-down&content-scaling=fixed&page-id=5%3A45&starting-point-node-id=5%3A46&embed-host=share",
+      "https://embed.figma.com/proto/KRHLrDyaZMGVgPTFdBWz3N/Final-Project-Redesign?page-id=0%3A1&node-id=33-9&starting-point-node-id=33%3A9&embed-host=share",
+      "https://embed.figma.com/proto/mVE9KxGxQtc1iPjTjsg8cM/Star-Wars-Club-UCSD?page-id=720%3A121&node-id=933-5148&viewport=-5774%2C-1639%2C0.22&scaling=scale-down&content-scaling=fixed&starting-point-node-id=933%3A5075&embed-host=share",
+      "https://embed.figma.com/proto/D0f4bA8hTs7pXaL7RLImMd/Houseplant?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&embed-host=share",
+      "https://embed.figma.com/proto/BeCgfbk1aXFaGQY0jeXrvi/Airpods-Max?page-id=0%3A1&node-id=1-2&embed-host=share"
     ]
   },
   "playground": {
@@ -88,8 +94,10 @@ const projectData: Record<string, { title: string; category: string; description
 };
 
 export function ProjectDetail() {
+  const { theme } = useTheme();
   const { projectId } = useParams();
   const project = projectId ? projectData[projectId] : null;
+  const caseStudyProject = projectId ? homeProjects.find((item) => item.slug === projectId) : null;
 
   if (!project) {
     return (
@@ -109,7 +117,7 @@ export function ProjectDetail() {
       {/* Close Button - Top Right */}
       <Link
         to="/"
-        className="absolute top-4 right-4 z-10 p-2 hover:bg-accent transition-colors rounded-md"
+        className="hidden md:block absolute top-4 right-4 z-10 p-2 hover:bg-accent transition-colors rounded-md"
       >
         <X className="w-5 h-5" />
       </Link>
@@ -125,6 +133,13 @@ export function ProjectDetail() {
           <div className="mb-6">
             {project.externalUrl ? (
               <div className="space-y-6">
+                <div className="w-full h-[80vh] bg-muted rounded-lg overflow-hidden">
+                  <iframe
+                    src={project.externalUrl}
+                    className="w-full h-full"
+                    title={`${project.title} Live Project`}
+                  />
+                </div>
                 <a
                   href={project.externalUrl}
                   target="_blank"
@@ -146,13 +161,6 @@ export function ProjectDetail() {
                     />
                   </svg>
                 </a>
-                <div className="w-full h-[80vh] bg-muted rounded-lg overflow-hidden">
-                  <iframe
-                    src={project.externalUrl}
-                    className="w-full h-full"
-                    title={`${project.title} Live Project`}
-                  />
-                </div>
               </div>
             ) : project.embedUrls ? (
               <div className="space-y-6">
@@ -196,6 +204,11 @@ export function ProjectDetail() {
                 </span>
               ))}
             </div>
+            {caseStudyProject?.caseStudy && (
+              <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                {caseStudyProject.caseStudy}
+              </section>
+            )}
           </div>
         </div>
         {/* Footer-like Section */}
@@ -204,13 +217,22 @@ export function ProjectDetail() {
             <div className="lg:px-[79px]">
               <div
                 className="border-t-[1.5px] mb-0"
-                style={{ borderColor: '#FFA50055' }}
+                style={{ borderColor: theme === "light" ? "rgba(255, 165, 0, 0.35)" : "rgba(139, 92, 246, 0.35)" }}
               ></div>
               <div className="flex flex-col items-start gap-3">
                 <div className="flex items-center gap-6">
+                  <div style={{ marginLeft: '-25px' }}>
+                    <MobileSun
+                      isStatic
+                      theme={theme}
+                      width={220}
+                      height={220}
+                      sunScale={1.3}
+                    />
+                  </div>
                   <span
                     className="text-[34px] sm:text-[46px] font-medium leading-none relative"
-                    style={{ fontFamily: '"Bangla MN", serif', left: '-26px', top: '8px', color: '#000' }}
+                    style={{ fontFamily: '"Bangla MN", serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
                     id="footer-emilie-joseph"
                   >
                     Emilie Joseph
@@ -220,14 +242,20 @@ export function ProjectDetail() {
                   <div className="flex flex-col items-start mb-1">
                     <span
                       className="text-[15px] sm:text-[18px] font-medium"
-                      style={{ fontFamily: 'Poppins, sans-serif', color: '#000' }}
+                      style={{ fontFamily: 'Poppins, sans-serif', color: theme === "light" ? "#000" : "#fff" }}
                     >
                       Let's Connect!
                     </span>
                     <a
                       href="mailto:emilieneha@gmail.com"
                       className="text-[13px] sm:text-[15px] mt-1"
-                      style={{ fontFamily: 'Poppins, sans-serif', textDecoration: 'none', color: '#000', position: 'relative', top: '-2px' }}
+                      style={{ fontFamily: 'Poppins, sans-serif', textDecoration: 'none', color: theme === "light" ? "#000" : "#fff", position: 'relative', top: '-2px' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#FFA500" : "#E879F9";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#000" : "#fff";
+                      }}
                     >
                       emilieneha@gmail.com
                     </a>
@@ -238,7 +266,13 @@ export function ProjectDetail() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="transition-colors flex items-center"
-                      style={{ color: '#000', marginRight: '0.5rem' }}
+                      style={{ color: theme === "light" ? "#000" : "#fff", marginRight: '0.5rem' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#FFA500" : "#E879F9";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#000" : "#fff";
+                      }}
                     >
                       <svg className="w-[22px] h-[22px]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -249,11 +283,32 @@ export function ProjectDetail() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="transition-colors flex items-center"
-                      style={{ color: '#000', marginRight: '0.5rem' }}
+                      style={{ color: theme === "light" ? "#000" : "#fff", marginRight: '0.5rem' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#FFA500" : "#E879F9";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#000" : "#fff";
+                      }}
                     >
                       <svg className="w-[22px] h-[22px]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
                       </svg>
+                    </a>
+                    <a
+                      href="https://drive.google.com/file/d/1EuN8mWnQP6zZKy7y-yRidjpiSqzAftEI/view?usp=sharing"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors flex items-center"
+                      style={{ color: theme === "light" ? "#000" : "#fff" }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#FFA500" : "#E879F9";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = theme === "light" ? "#000" : "#fff";
+                      }}
+                    >
+                      <FileText className="w-[22px] h-[22px]" />
                     </a>
                   </div>
                 </div>
