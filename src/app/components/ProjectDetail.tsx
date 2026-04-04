@@ -133,10 +133,11 @@ export function ProjectDetail() {
           <div className="mb-6">
             {project.externalUrl ? (
               <div className="space-y-6">
-                <div className="w-full h-[80vh] bg-muted rounded-lg overflow-hidden">
+                <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
                   <iframe
                     src={project.externalUrl}
                     className="w-full h-full"
+                    style={{ transform: 'scale(0.78)', transformOrigin: 'center top', width: '128.21%', height: '128.21%', marginLeft: '-14.105%', marginTop: '0' }}
                     title={`${project.title} Live Project`}
                   />
                 </div>
@@ -165,7 +166,7 @@ export function ProjectDetail() {
             ) : project.embedUrls ? (
               <div className="space-y-6">
                 {project.embedUrls.map((url, index) => (
-                  <div key={index} className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden">
+                  <div key={index} className="w-full aspect-[16/10] md:aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
                     <iframe
                       src={url}
                       className="w-full h-full"
@@ -176,7 +177,7 @@ export function ProjectDetail() {
                 ))}
               </div>
             ) : project.embedUrl ? (
-              <div className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden">
+              <div className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
                 <iframe
                   src={project.embedUrl}
                   className="w-full h-full"
