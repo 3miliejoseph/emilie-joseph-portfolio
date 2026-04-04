@@ -58,8 +58,8 @@ export function MobileSun({
     }
 
     return currentTheme === "dark"
-      ? ["#8B5CF6", "#6366F1", "#D946EF", "#A855F7", "#9333EA"]
-      : ["#FDB813", "#FFDD57", "#FFA500", "#FFD700", "#FFC107"];
+      ? ["#A855F7", "#8B5CF6", "#6366F1", "#E879F9", "#EC4899"]
+      : ["#FFB300", "#FF9E00", "#FF7A00", "#FFD54A", "#FFC107"];
   };
 
   const getSpiralPalette = (currentTheme: string) => {
@@ -70,8 +70,8 @@ export function MobileSun({
     }
 
     return currentTheme === "dark"
-      ? ["#FF6FD8", "#D946EF", "#F0ABFC", "#E879F9"]
-      : ["#FFA500", "#FFB84D", "#FFCC80", "#FFC107", "#FFD700"];
+      ? ["#FF6FD8", "#E879F9", "#F0ABFC", "#D946EF"]
+      : ["#FF8A00", "#FF9E00", "#FFB300", "#FFC107", "#FFD54A"];
   };
 
   const getRayPalettes = (currentTheme: string) => {
@@ -172,8 +172,8 @@ export function MobileSun({
       : Math.min(devicePixelRatio, hasReducedDensity ? 2 : 2.5);
     renderer.setPixelRatio(targetPixelRatio);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.0;
+    renderer.toneMapping = isDesktop ? THREE.ACESFilmicToneMapping : THREE.NoToneMapping;
+    renderer.toneMappingExposure = isDesktop ? 1.0 : 1.08;
     renderer.setClearAlpha(0);
     rendererRef.current = renderer;
 
@@ -206,10 +206,10 @@ export function MobileSun({
     const numParticles = hasReducedDensity
       ? isDesktop
         ? 620
-        : 460
+        : 560
       : isDesktop
         ? 1020
-        : 615; // Further reduced for mobile (10% reduction)
+        : 760;
     const positions = new Float32Array(numParticles * 3);
     const colors = new Float32Array(numParticles * 3);
     const radius = 0.61; // Reduced from 0.68 for smaller sun
@@ -284,8 +284,8 @@ export function MobileSun({
       vertexColors: true,
       sizeAttenuation: true,
       transparent: true,
-      opacity: hasReducedDensity ? 0.84 : 1.0,
-      blending: THREE.NormalBlending, // Remove glow effect
+      opacity: hasReducedDensity ? 0.95 : 1.0,
+      blending: isDesktop ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false, // Prevent z-fighting
     });
 
@@ -309,10 +309,10 @@ export function MobileSun({
     const particlesPerArm = hasReducedDensity
       ? isDesktop
         ? 180
-        : 96
+        : 128
       : isDesktop
         ? 306
-        : 156; // Increase mobile density moderately so the spiral reads fuller without a large performance jump
+        : 192;
     const totalSpiralParticles = spiralArms * particlesPerArm;
 
     const spiralPositions = new Float32Array(totalSpiralParticles * 3);
@@ -397,8 +397,8 @@ export function MobileSun({
       vertexColors: true,
       sizeAttenuation: true,
       transparent: true,
-      opacity: hasReducedDensity ? (isDesktop ? 0.9 : 0.96) : isDesktop ? 0.575 : 0.7475,
-      blending: THREE.NormalBlending, // Remove glow effect
+      opacity: hasReducedDensity ? (isDesktop ? 0.9 : 0.98) : isDesktop ? 0.575 : 0.86,
+      blending: isDesktop ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
     });
 
@@ -507,8 +507,8 @@ export function MobileSun({
       vertexColors: true,
       sizeAttenuation: true,
       transparent: true,
-      opacity: hasReducedDensity ? 0.74 : 1.0,
-      blending: THREE.NormalBlending, // Remove glow effect
+      opacity: hasReducedDensity ? 0.88 : 1.0,
+      blending: isDesktop ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
     });
 

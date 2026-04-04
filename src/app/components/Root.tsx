@@ -29,7 +29,7 @@ function RootContent() {
       <nav className="fixed top-0 left-0 right-0 z-[100]">
         <div className="mx-4 mt-4 sm:mx-6 lg:mx-[30px] flex justify-center">
           <div 
-            className="backdrop-blur-[20px] border rounded-full px-[14px]" 
+            className="backdrop-blur-[20px] border rounded-full pl-[14px] pr-[8px] md:pr-[14px]" 
             style={{ 
               borderColor: theme === "light" ? "rgba(255, 165, 0, 0.3)" : "rgba(139, 92, 246, 0.3)",
               backgroundColor: theme === "light" ? "rgba(250, 248, 245, 0.4)" : "rgba(0, 0, 0, 0.4)",

@@ -205,27 +205,29 @@ export function ProjectDetail() {
                       title="Magic 8 Ball Playground"
                     />
                   </div>
-                  <a
-                    href="https://3miliejoseph.github.io/magic8ball/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
-                  >
-                    Try it
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                  <div className="flex items-center justify-end">
+                    <a
+                      href="https://3miliejoseph.github.io/magic8ball/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
+                      Try it
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
                 <div className="space-y-6">
                   <div className="w-full h-[58vh] sm:h-[68vh] bg-muted rounded-lg overflow-hidden">
@@ -236,27 +238,29 @@ export function ProjectDetail() {
                       title="Static Brand Live Project"
                     />
                   </div>
-                  <a
-                    href="https://static-brand.vercel.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
-                  >
-                    Try it
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                  <div className="flex items-center justify-end">
+                    <a
+                      href="https://static-brand.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
+                      Try it
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             ) : isMobileViewport && caseStudyProject?.previewVideo ? (
@@ -272,11 +276,47 @@ export function ProjectDetail() {
                   />
                 </div>
                 {project.externalUrl && (
+                  <div className="flex items-center justify-end">
+                    <a
+                      href={project.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors"
+                    >
+                      Try it
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                )}
+              </div>
+            ) : project.externalUrl ? (
+              <div className="space-y-6">
+                <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
+                  <iframe
+                    src={project.externalUrl}
+                    className="w-full h-full"
+                    style={{ transform: 'scale(0.78)', transformOrigin: 'center top', width: '128.21%', height: '128.21%', marginLeft: '-14.105%', marginTop: '0' }}
+                    title={`${project.title} Live Project`}
+                  />
+                </div>
+                <div className="flex items-center justify-end">
                   <a
                     href={project.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors"
                   >
                     Try it
                     <svg
@@ -293,39 +333,7 @@ export function ProjectDetail() {
                       />
                     </svg>
                   </a>
-                )}
-              </div>
-            ) : project.externalUrl ? (
-              <div className="space-y-6">
-                <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
-                  <iframe
-                    src={project.externalUrl}
-                    className="w-full h-full"
-                    style={{ transform: 'scale(0.78)', transformOrigin: 'center top', width: '128.21%', height: '128.21%', marginLeft: '-14.105%', marginTop: '0' }}
-                    title={`${project.title} Live Project`}
-                  />
                 </div>
-                <a
-                  href={project.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
-                >
-                  Try it
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </a>
               </div>
             ) : project.embedUrls ? (
               <div className="space-y-6">
