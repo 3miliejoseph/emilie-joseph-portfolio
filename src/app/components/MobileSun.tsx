@@ -192,7 +192,7 @@ export function MobileSun({
     const numParticles = hasReducedDensity
       ? isDesktop
         ? 620
-        : 360
+        : 460
       : isDesktop
         ? 1020
         : 615; // Further reduced for mobile (10% reduction)
@@ -256,12 +256,12 @@ export function MobileSun({
 
     // Create material with glowing effect
     const material = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? 0.048 : 0.058) * particleScale, // Slightly smaller sphere particles to reveal the spiral
+      size: (hasReducedDensity ? 0.044 : 0.058) * particleScale, // Slightly finer reduced-density sphere for a denser desktop-like read on mobile
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
       transparent: true,
-      opacity: hasReducedDensity ? 0.72 : 1.0,
+      opacity: hasReducedDensity ? 0.84 : 1.0,
       blending: THREE.NormalBlending, // Remove glow effect
       depthWrite: false, // Prevent z-fighting
     });
