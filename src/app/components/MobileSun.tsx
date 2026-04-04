@@ -46,7 +46,7 @@ export function MobileSun({
   // Detect desktop for higher quality rendering
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
   const hasReducedDensity = densityVariant === "reduced";
-  const mobileSphereParticleSizeBoost = isDesktop ? 1 : 1.18;
+  const mobileSphereParticleSizeBoost = isDesktop ? 1 : 1.34;
 
   const pseudoRandom = (seed: number) => {
     const x = Math.sin(seed * 12.9898) * 43758.5453;
