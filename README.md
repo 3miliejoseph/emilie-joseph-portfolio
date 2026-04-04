@@ -1,11 +1,47 @@
+# Hi, I'm Emilie! 
 
-  # Interactive Systems Portfolio
+I'm a creative technologist exploring how code, space, and interaction can transform digital experiences into something more immersive, expressive, and human.
 
-  This is a code bundle for Interactive Systems Portfolio. The original project is available at https://www.figma.com/design/vVXEENgkqO781DQiaqL27Z/UX-UI-Design-Portfolio.
+I build interactive systems, 3D environments, and experimental interfaces at the intersection of art and technology.
 
-  ## Running the code
+---
 
-  Run `npm i` to install the dependencies.
+## About My Work
 
-  Run `npm run dev` to start the development server.
-  
+I'm interested in:
+
+- Spatial interfaces & 3D environments  
+- Creative coding & generative systems  
+- Interaction design that feels intuitive and alive  
+- Blending art, storytelling, and engineering  
+
+---
+
+Exploring how interactive systems can feel more spatial, expressive, and alive.
+
+Interested in opportunities in creative technology, interactive design, and experimental digital experiences.
+
+
+## Tools I Use
+
+**Creative Coding**  
+Three.js · p5.js · WebGL · GLSL  
+
+**Frontend**  
+React · TypeScript · JavaScript  
+
+**Systems & Backend**  
+Node.js · Python · Go  
+
+**Exploration**  
+Rive · Generative AI tools · Interactive prototyping  
+
+---
+
+## 🌐 Portfolio
+
+Explore more of my work here:  
+👉 https://emilie-joseph-portfolio.vercel.app/
+
+---
+
