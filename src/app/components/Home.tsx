@@ -882,7 +882,7 @@ function handlePopState(event: PopStateEvent) {
       <section className="min-h-screen relative overflow-visible pt-24 sm:pt-28 md:pt-32 lg:pt-0 flex items-start lg:items-center">
         <div className="desktop-content-gutter w-full overflow-visible">
           {/* Mobile and tablet sun - placed in normal flow between nav and intro text */}
-          <div className="lg:hidden flex w-full justify-center -mt-4 sm:-mt-3 md:-mt-2 mb-10 sm:mb-12 md:mb-14">
+          <div className="lg:hidden flex w-full justify-center -mt-5 sm:-mt-4 md:-mt-3 mb-10 sm:mb-12 md:mb-14">
             <div className="w-[360px] h-[360px] overflow-visible pointer-events-none scale-[1.64] sm:scale-[1.92] md:scale-[2.16] origin-center mx-auto">
               <MobileSun
                 theme={theme}
