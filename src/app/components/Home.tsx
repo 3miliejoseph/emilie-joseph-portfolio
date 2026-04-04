@@ -16,7 +16,7 @@ import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { Moon, Sun, Volume2, VolumeX, X, FileText } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState, useEffect, useRef, useMemo, type PointerEvent as ReactPointerEvent } from "react";
+import { useState, useEffect, useRef, useMemo, type ComponentPropsWithoutRef, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { useMusic } from "../contexts/MusicContext";
 import { NebulaSphere } from "./NebulaSphere";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -691,6 +691,18 @@ function PlaygroundInteractivePreview() {
   );
 }
 
+type ModalEmbedFrameProps = ComponentPropsWithoutRef<"iframe"> & {
+  scrollContainerRef: RefObject<HTMLDivElement | null>;
+};
+
+function ModalEmbedFrame({ scrollContainerRef: _scrollContainerRef, ...iframeProps }: ModalEmbedFrameProps) {
+  return (
+    <div className="relative h-full w-full">
+      <iframe {...iframeProps} />
+    </div>
+  );
+}
+
 export function Home() {
   const staticPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774113817/Static_pmgft8.mov";
   const muralPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774116417/MURAL_r1vxa9.mp4";
@@ -713,6 +725,7 @@ export function Home() {
   const rotationRef = useRef({ x: 0, y: 0 });
   const lastTimeRef = useRef(performance.now());
   const closeTimeoutRef = useRef<number | null>(null);
+  const modalScrollRef = useRef<HTMLDivElement>(null);
 
   const pushCaseStudyState = (slug: string, expanded: boolean) => {
     window.history.pushState({ caseStudy: true, slug, expanded }, "", window.location.href);
@@ -843,6 +856,19 @@ function handlePopState(event: PopStateEvent) {
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
+  useEffect(() => {
+    if (!selectedProject) {
+      return;
+    }
+
+    const originalBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalBodyOverflow;
+    };
+  }, [selectedProject]);
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden overflow-y-visible">
@@ -1139,6 +1165,7 @@ function handlePopState(event: PopStateEvent) {
 
       {/* Project Modal */}
       <Dialog.Root 
+        modal={false}
         open={!!selectedProject} 
         onOpenChange={(open) => {
           if (!open) {
@@ -1168,10 +1195,11 @@ function handlePopState(event: PopStateEvent) {
               style={{ pointerEvents: 'auto' }}
             />
           )}
+          <Dialog.Content asChild onOpenAutoFocus={(event) => event.preventDefault()}>
           <motion.div
             key={selectedProject?.id ?? "project-modal"}
             className={
-              "fixed z-[102] isolate bg-white dark:bg-zinc-900 shadow-lg border-2 border-zinc-200 dark:border-zinc-700 p-0 flex flex-col overflow-y-auto border-radius-[1.5rem]"
+              "fixed z-[102] isolate bg-white dark:bg-zinc-900 shadow-lg border-2 border-zinc-200 dark:border-zinc-700 p-0 flex min-h-0 flex-col overflow-hidden border-radius-[1.5rem]"
             }
             initial={
               {
@@ -1347,8 +1375,9 @@ function handlePopState(event: PopStateEvent) {
 
                 {/* Scrollable Content */}
                 <div
-                  className="flex-1 min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-700 scrollbar-track-transparent pt-6 pb-12 sm:pb-16 touch-pan-y flex flex-col"
-                  style={{ WebkitOverflowScrolling: "touch", overscrollBehavior: "contain" }}
+                  ref={modalScrollRef}
+                  className="flex-1 min-h-0 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-700 scrollbar-track-transparent pt-6 pb-12 sm:pb-16 flex flex-col"
+                  style={{ WebkitOverflowScrolling: "touch", overscrollBehaviorY: "auto" }}
                 >
                   {/* Project Details */}
                   <div className="p-6 sm:p-8">
@@ -1382,7 +1411,8 @@ function handlePopState(event: PopStateEvent) {
                                             {selectedProject.slug === "figma-experiments" && (
                                               <div className="space-y-4">
                                                 <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                                                  <iframe
+                                                  <ModalEmbedFrame
+                                                    scrollContainerRef={modalScrollRef}
                                                     src="https://embed.figma.com/proto/KgUYsHwHqSJCjEhIjIpN1N/QueueNection?node-id=5-51&scaling=scale-down&content-scaling=fixed&page-id=5%3A45&starting-point-node-id=5%3A46&embed-host=share"
                                                     className="w-full h-full"
                                                     style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
@@ -1393,7 +1423,8 @@ function handlePopState(event: PopStateEvent) {
                                                 <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] h-[78vh] rounded-2xl overflow-visible border-none p-0">
                                                   <div className={`flex flex-row items-start w-full h-full gap-6 ${isExpanding ? '' : ''}`}>
                                                     <div className={`w-full ${isExpanding ? 'max-w-3xl' : 'max-w-xl'} h-full`}>
-                                                      <iframe
+                                                      <ModalEmbedFrame
+                                                        scrollContainerRef={modalScrollRef}
                                                         src="https://embed.figma.com/proto/KRHLrDyaZMGVgPTFdBWz3N/Final-Project-Redesign?page-id=0%3A1&node-id=33-9&starting-point-node-id=33%3A9&embed-host=share"
                                                         className="w-full h-full rounded-2xl"
                                                         style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
@@ -1402,7 +1433,8 @@ function handlePopState(event: PopStateEvent) {
                                                       />
                                                     </div>
                                                     <div className={`w-full ${isExpanding ? 'max-w-3xl' : 'max-w-xl'} h-full`}>
-                                                      <iframe
+                                                      <ModalEmbedFrame
+                                                        scrollContainerRef={modalScrollRef}
                                                         src="https://embed.figma.com/proto/mVE9KxGxQtc1iPjTjsg8cM/Star-Wars-Club-UCSD?page-id=720%3A121&node-id=933-5148&viewport=-5774%2C-1639%2C0.22&scaling=scale-down&content-scaling=fixed&starting-point-node-id=933%3A5075&embed-host=share"
                                                         className="w-full h-full rounded-2xl"
                                                         style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
@@ -1415,7 +1447,8 @@ function handlePopState(event: PopStateEvent) {
                                                 {/* Third Figma Embed Below the Row */}
                                                                                                 {/* Fourth Figma Embed Below the Third */}
                                                                                                 <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] h-[78vh] rounded-2xl overflow-hidden border border-border mt-8">
-                                                                                                  <iframe
+                                                                                                  <ModalEmbedFrame
+                                                                                                    scrollContainerRef={modalScrollRef}
                                                                                                     src="https://embed.figma.com/proto/D0f4bA8hTs7pXaL7RLImMd/Houseplant?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&embed-host=share"
                                                                                                     className="w-full h-full rounded-2xl"
                                                                                                     style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
@@ -1424,7 +1457,8 @@ function handlePopState(event: PopStateEvent) {
                                                                                                   />
                                                                                                 </div>
                                                 <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] h-[78vh] rounded-2xl overflow-hidden border border-border mt-8">
-                                                  <iframe
+                                                  <ModalEmbedFrame
+                                                    scrollContainerRef={modalScrollRef}
                                                     src="https://embed.figma.com/proto/BeCgfbk1aXFaGQY0jeXrvi/Airpods-Max?page-id=0%3A1&node-id=1-2&embed-host=share"
                                                     className="w-full h-full rounded-2xl"
                                                     style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
@@ -1441,7 +1475,8 @@ function handlePopState(event: PopStateEvent) {
                       {selectedProject.slug === "tasksprout" && (
                         <div className="space-y-4">
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                            <iframe
+                            <ModalEmbedFrame
+                              scrollContainerRef={modalScrollRef}
                               src="https://task-sprout.vercel.app/"
                               className="w-full h-full"
                               style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -1480,7 +1515,8 @@ function handlePopState(event: PopStateEvent) {
                       {selectedProject.slug === "planetology" && (
                         <div className="space-y-4">
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                            <iframe
+                            <ModalEmbedFrame
+                              scrollContainerRef={modalScrollRef}
                               src="https://planetology.figma.site/"
                               className="w-full h-full"
                               style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -1521,8 +1557,9 @@ function handlePopState(event: PopStateEvent) {
                       {selectedProject.slug === "3d-museum-project" && (
                         <div className="space-y-4">
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                            <iframe
-                              src="https://emsartmuseum.netlify.app/"
+                            <ModalEmbedFrame
+                              scrollContainerRef={modalScrollRef}
+                              src="https://ems-art-museum.vercel.app/"
                               className="w-full h-full rounded-2xl"
                               style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '1rem' }}
                               title="Em's Art Museum Live Project"
@@ -1531,7 +1568,7 @@ function handlePopState(event: PopStateEvent) {
                           </div>
                           <div className="flex items-center mt-4 justify-end">
                             <a
-                              href="https://emsartmuseum.netlify.app/"
+                              href="https://ems-art-museum.vercel.app/"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
@@ -1562,7 +1599,8 @@ function handlePopState(event: PopStateEvent) {
                           <div className="space-y-4">
                             <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px]">
                               <div className="mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                                <iframe
+                                <ModalEmbedFrame
+                                  scrollContainerRef={modalScrollRef}
                                   src="https://leslispetservices.figma.site"
                                   className="w-full h-full"
                                   style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -1671,7 +1709,8 @@ function handlePopState(event: PopStateEvent) {
                         {selectedProject.slug === "tank" && (
                           <div className="space-y-4">
                             <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                              <iframe
+                              <ModalEmbedFrame
+                                scrollContainerRef={modalScrollRef}
                                 src="https://tank-gilt.vercel.app/"
                                 className="w-full h-full"
                                 style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -1747,7 +1786,8 @@ function handlePopState(event: PopStateEvent) {
                         {selectedProject.slug === "mural" && (
                           <div className="space-y-4">
                             <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                              <iframe
+                              <ModalEmbedFrame
+                                scrollContainerRef={modalScrollRef}
                                 src="https://mural-t9uc.onrender.com/"
                                 className="w-full h-full"
                                 style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -1810,7 +1850,8 @@ function handlePopState(event: PopStateEvent) {
                           <div className="space-y-20">
                             <div className="space-y-4">
                               <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                                <iframe
+                                <ModalEmbedFrame
+                                  scrollContainerRef={modalScrollRef}
                                   src="https://3miliejoseph.github.io/magic8ball/"
                                   className="w-full h-full"
                                   style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -1847,7 +1888,8 @@ function handlePopState(event: PopStateEvent) {
                             </div>
                             <div className="space-y-4">
                               <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
-                                <iframe
+                                <ModalEmbedFrame
+                                  scrollContainerRef={modalScrollRef}
                                   src="https://static-brand.vercel.app/"
                                   className="w-full h-full"
                                   style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
@@ -2070,6 +2112,7 @@ function handlePopState(event: PopStateEvent) {
             </>
             )}
           </motion.div>
+          </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
     </div>
