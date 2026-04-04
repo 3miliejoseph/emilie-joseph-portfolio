@@ -101,9 +101,10 @@ export function ProjectDetail() {
   const { projectId } = useParams();
   const project = projectId ? projectData[projectId] : null;
   const caseStudyProject = projectId ? homeProjects.find((item) => item.slug === projectId) : null;
-  const isPlaygroundProject = projectId === "playground";
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [activePrototypeIndex, setActivePrototypeIndex] = useState(0);
+  const isMobileFigmaCaseStudy = isMobileViewport && projectId === "figma-experiments";
+  const isMobilePlaygroundCaseStudy = isMobileViewport && projectId === "playground";
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -160,10 +161,43 @@ export function ProjectDetail() {
 
           {/* Embedded Project Content - Moved to top */}
           <div className="mb-6">
-            {isPlaygroundProject ? (
+            {isMobileFigmaCaseStudy && project.embedUrls ? (
+              <div className="space-y-6">
+                <div className="w-full max-w-[380px] mx-auto h-[76vh] bg-muted rounded-[2rem] overflow-hidden border border-border/60 shadow-sm">
+                  <iframe
+                    src={project.embedUrls[activePrototypeIndex]}
+                    className="w-full h-full"
+                    allowFullScreen
+                    loading="lazy"
+                    title={`${project.title} Figma Prototype ${activePrototypeIndex + 1}`}
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3 max-w-[380px] mx-auto">
+                  <button
+                    type="button"
+                    onClick={() => setActivePrototypeIndex((prev) => Math.max(0, prev - 1))}
+                    disabled={activePrototypeIndex === 0}
+                    className="px-4 py-2 rounded-full border border-border text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    Previous
+                  </button>
+                  <span className="text-sm text-muted-foreground text-center">
+                    Prototype {activePrototypeIndex + 1} of {project.embedUrls.length}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setActivePrototypeIndex((prev) => Math.min(project.embedUrls.length - 1, prev + 1))}
+                    disabled={activePrototypeIndex === project.embedUrls.length - 1}
+                    className="px-4 py-2 rounded-full border border-border text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            ) : isMobilePlaygroundCaseStudy ? (
               <div className="space-y-10">
                 <div className="space-y-6">
-                  <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
+                  <div className="w-full h-[58vh] sm:h-[68vh] bg-muted rounded-lg overflow-hidden">
                     <iframe
                       src="https://3miliejoseph.github.io/magic8ball/"
                       className="w-full h-full"
@@ -192,12 +226,9 @@ export function ProjectDetail() {
                       />
                     </svg>
                   </a>
-                  <p className="text-base text-muted-foreground">
-                    A playful interactive system that responds to user questions with dynamic, generative answers—exploring randomness, anticipation, and delight in digital experiences.
-                  </p>
                 </div>
                 <div className="space-y-6">
-                  <div className="w-full h-[58vh] sm:h-[68vh] md:h-[80vh] bg-muted rounded-lg overflow-hidden">
+                  <div className="w-full h-[58vh] sm:h-[68vh] bg-muted rounded-lg overflow-hidden">
                     <iframe
                       src="https://static-brand.vercel.app/"
                       className="w-full h-full"
@@ -226,10 +257,18 @@ export function ProjectDetail() {
                       />
                     </svg>
                   </a>
-                  <p className="text-base text-muted-foreground">
-                    An experimental brand investigating how visual systems can express ideas through structured yet flexible design language.
-                  </p>
                 </div>
+              </div>
+            ) : isMobileViewport && caseStudyProject?.previewVideo ? (
+              <div className="w-full overflow-hidden rounded-3xl bg-muted aspect-video">
+                <video
+                  src={caseStudyProject.previewVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
               </div>
             ) : project.externalUrl ? (
               <div className="space-y-6">
@@ -265,52 +304,17 @@ export function ProjectDetail() {
               </div>
             ) : project.embedUrls ? (
               <div className="space-y-6">
-                {isMobileViewport && projectId === "figma-experiments" ? (
-                  <>
-                    <div className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh]">
-                      <iframe
-                        src={project.embedUrls[activePrototypeIndex]}
-                        className="w-full h-full"
-                        allowFullScreen
-                        loading="lazy"
-                        title={`${project.title} Figma Prototype ${activePrototypeIndex + 1}`}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between gap-3">
-                      <button
-                        type="button"
-                        onClick={() => setActivePrototypeIndex((prev) => Math.max(0, prev - 1))}
-                        disabled={activePrototypeIndex === 0}
-                        className="px-4 py-2 rounded-lg border border-border text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                      >
-                        Previous
-                      </button>
-                      <span className="text-sm text-muted-foreground">
-                        Prototype {activePrototypeIndex + 1} of {project.embedUrls.length}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => setActivePrototypeIndex((prev) => Math.min(project.embedUrls.length - 1, prev + 1))}
-                        disabled={activePrototypeIndex === project.embedUrls.length - 1}
-                        className="px-4 py-2 rounded-lg border border-border text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                      >
-                        Next
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  project.embedUrls.map((url, index) => (
-                    <div key={index} className="w-full aspect-[16/10] md:aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
-                      <iframe
-                        src={url}
-                        className="w-full h-full"
-                        allowFullScreen
-                        loading="lazy"
-                        title={`${project.title} Figma Prototype ${index + 1}`}
-                      />
-                    </div>
-                  ))
-                )}
+                {project.embedUrls.map((url, index) => (
+                  <div key={index} className="w-full aspect-[16/10] md:aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
+                    <iframe
+                      src={url}
+                      className="w-full h-full"
+                      allowFullScreen
+                      loading="lazy"
+                      title={`${project.title} Figma Prototype ${index + 1}`}
+                    />
+                  </div>
+                ))}
               </div>
             ) : project.embedUrl ? (
               <div className="w-full aspect-[16/10] bg-muted rounded-lg overflow-hidden max-h-[58vh] sm:max-h-[68vh] md:max-h-none">
@@ -329,7 +333,7 @@ export function ProjectDetail() {
           </div>
 
           <div className="space-y-4">
-            {isPlaygroundProject ? (
+            {projectId === "playground" ? (
               <p
                 className="mt-8 mb-2 text-[18px] font-medium"
                 style={{ color: theme === "light" ? "#FFA500" : "#E879F9" }}
