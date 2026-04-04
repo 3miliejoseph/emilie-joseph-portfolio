@@ -1195,7 +1195,9 @@ function handlePopState(event: PopStateEvent) {
               }}
               className={
                 `fixed inset-0 z-[101] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 cursor-pointer ` +
-                (theme === 'light' ? 'bg-black/20' : 'bg-black/60')
+                (theme === 'light'
+                  ? 'bg-black/12 backdrop-blur-[1px] backdrop-saturate-110'
+                  : 'bg-black/45 backdrop-blur-[1px] backdrop-saturate-110')
               }
               style={{ pointerEvents: 'auto' }}
             />

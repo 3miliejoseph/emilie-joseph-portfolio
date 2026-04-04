@@ -41,10 +41,10 @@ const projectData: Record<string, { title: string; category: string; description
     tags: ["Prototyping", "User Interface", "Motion", "Design Systems", "Interaction Design"],
     embedUrls: [
       "https://embed.figma.com/proto/KgUYsHwHqSJCjEhIjIpN1N/QueueNection?node-id=5-51&scaling=scale-down&content-scaling=fixed&page-id=5%3A45&starting-point-node-id=5%3A46&embed-host=share",
-      "https://embed.figma.com/proto/KRHLrDyaZMGVgPTFdBWz3N/Final-Project-Redesign?page-id=0%3A1&node-id=33-9&scaling=scale-down&content-scaling=fixed&starting-point-node-id=33%3A9&embed-host=share",
+      "https://embed.figma.com/proto/KRHLrDyaZMGVgPTFdBWz3N/Final-Project-Redesign?page-id=0%3A1&node-id=33-9&starting-point-node-id=33%3A9&embed-host=share",
       "https://embed.figma.com/proto/mVE9KxGxQtc1iPjTjsg8cM/Star-Wars-Club-UCSD?page-id=720%3A121&node-id=933-5148&viewport=-5774%2C-1639%2C0.22&scaling=scale-down&content-scaling=fixed&starting-point-node-id=933%3A5075&embed-host=share",
-      "https://embed.figma.com/proto/D0f4bA8hTs7pXaL7RLImMd/Houseplant?page-id=0%3A1&node-id=1-2&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A2&embed-host=share",
-      "https://embed.figma.com/proto/BeCgfbk1aXFaGQY0jeXrvi/Airpods-Max?page-id=0%3A1&node-id=1-2&scaling=scale-down&content-scaling=fixed&embed-host=share"
+      "https://embed.figma.com/proto/D0f4bA8hTs7pXaL7RLImMd/Houseplant?page-id=0%3A1&node-id=1-2&starting-point-node-id=1%3A2&embed-host=share",
+      "https://embed.figma.com/proto/BeCgfbk1aXFaGQY0jeXrvi/Airpods-Max?page-id=0%3A1&node-id=1-2&embed-host=share"
     ]
   },
   "playground": {

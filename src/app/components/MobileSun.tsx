@@ -46,6 +46,7 @@ export function MobileSun({
   // Detect desktop for higher quality rendering
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
   const hasReducedDensity = densityVariant === "reduced";
+  const mobileParticleSizeBoost = isDesktop ? 1 : 1.14;
 
   const pseudoRandom = (seed: number) => {
     const x = Math.sin(seed * 12.9898) * 43758.5453;
@@ -281,7 +282,7 @@ export function MobileSun({
 
     // Create material with glowing effect
     const material = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? 0.044 : 0.058) * particleScale, // Slightly finer reduced-density sphere for a denser desktop-like read on mobile
+      size: (hasReducedDensity ? 0.044 : 0.058) * particleScale * mobileParticleSizeBoost,
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
@@ -356,10 +357,10 @@ export function MobileSun({
         const baseSize = hasReducedDensity
           ? isDesktop
             ? 0.084
-            : 0.05
+            : 0.056
           : isDesktop
             ? 0.066
-            : 0.064;
+            : 0.071;
         const centerBoost = hasReducedDensity
           ? isDesktop
             ? t < 0.38
@@ -394,7 +395,7 @@ export function MobileSun({
 
     // Reuse same texture for consistency
     const spiralMaterial = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.05) : isDesktop ? 0.066 : 0.064) * particleScale, // Base size (overridden by individual sizes)
+      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.056) : isDesktop ? 0.066 : 0.071) * particleScale * mobileParticleSizeBoost,
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
@@ -486,7 +487,7 @@ export function MobileSun({
           rayColors.push(color.r, color.g, color.b);
 
           // Set individual particle size
-          raySizes.push((hasReducedDensity ? 0.052 : 0.055) * particleScale); // Slightly larger footer rays for better definition while keeping the spiral readable
+          raySizes.push((hasReducedDensity ? (isDesktop ? 0.052 : 0.057) : (isDesktop ? 0.055 : 0.061)) * particleScale);
           rayArmIndices.push(arm);
         }
       }
@@ -504,7 +505,7 @@ export function MobileSun({
 
     // Reuse same texture for consistency
     const rayMaterial = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? 0.052 : 0.055) * particleScale, // Slightly larger footer rays for better definition
+      size: (hasReducedDensity ? (isDesktop ? 0.052 : 0.057) : (isDesktop ? 0.055 : 0.061)) * particleScale * mobileParticleSizeBoost,
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
