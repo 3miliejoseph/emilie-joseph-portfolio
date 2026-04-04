@@ -46,7 +46,7 @@ export function MobileSun({
   // Detect desktop for higher quality rendering
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
   const hasReducedDensity = densityVariant === "reduced";
-  const mobileParticleSizeBoost = isDesktop ? 1 : 1.14;
+  const mobileSphereParticleSizeBoost = isDesktop ? 1 : 1.18;
 
   const pseudoRandom = (seed: number) => {
     const x = Math.sin(seed * 12.9898) * 43758.5453;
@@ -287,7 +287,7 @@ export function MobileSun({
 
     // Create material with glowing effect
     const material = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? 0.044 : 0.058) * particleScale * mobileParticleSizeBoost,
+      size: (hasReducedDensity ? 0.044 : 0.058) * particleScale * mobileSphereParticleSizeBoost,
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
@@ -401,7 +401,7 @@ export function MobileSun({
 
     // Reuse same texture for consistency
     const spiralMaterial = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.056) : isDesktop ? 0.066 : 0.071) * particleScale * mobileParticleSizeBoost,
+      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.056) : isDesktop ? 0.066 : 0.071) * particleScale,
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
@@ -511,7 +511,7 @@ export function MobileSun({
 
     // Reuse same texture for consistency
     const rayMaterial = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? (isDesktop ? 0.052 : 0.057) : (isDesktop ? 0.055 : 0.061)) * particleScale * mobileParticleSizeBoost,
+      size: (hasReducedDensity ? (isDesktop ? 0.052 : 0.057) : (isDesktop ? 0.055 : 0.061)) * particleScale,
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
