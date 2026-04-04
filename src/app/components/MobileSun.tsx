@@ -331,10 +331,10 @@ export function MobileSun({
         const baseSize = hasReducedDensity
           ? isDesktop
             ? 0.084
-            : 0.108
+            : 0.098
           : isDesktop
             ? 0.066
-            : 0.090;
+            : 0.084;
         const centerBoost = hasReducedDensity
           ? t < 0.38
             ? (1 - t / 0.38) * 3.1
@@ -365,7 +365,7 @@ export function MobileSun({
 
     // Reuse same texture for consistency
     const spiralMaterial = new THREE.PointsMaterial({
-      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.108) : isDesktop ? 0.066 : 0.090) * particleScale, // Base size (overridden by individual sizes)
+      size: (hasReducedDensity ? (isDesktop ? 0.084 : 0.098) : isDesktop ? 0.066 : 0.084) * particleScale, // Base size (overridden by individual sizes)
       map: texture,
       vertexColors: true,
       sizeAttenuation: true,
