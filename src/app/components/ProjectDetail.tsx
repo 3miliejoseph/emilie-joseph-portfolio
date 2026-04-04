@@ -124,7 +124,7 @@ export function ProjectDetail() {
 
       {/* Scrollable Content */}
       <div
-        className="overflow-y-auto overscroll-y-contain flex-1 min-h-0 pt-12 touch-pan-y"
+        className="overflow-y-auto overscroll-y-contain flex-1 min-h-0 pt-28 sm:pt-32 md:pt-12 touch-pan-y"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         {/* Project Details */}
