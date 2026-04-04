@@ -763,19 +763,30 @@ export function NebulaSphere({
 
   // Use MobileSun component for all devices, animate scale on hover
   return (
-    <div ref={containerRef} className="relative" style={{ cursor: 'pointer' }}>
+    <div
+      ref={containerRef}
+      className="relative"
+      style={{
+        cursor: 'pointer',
+        transition: 'filter 0.4s ease',
+        filter: isHovered
+          ? theme === 'light'
+            ? 'drop-shadow(0 0 18px rgba(255,165,0,0.35))'
+            : 'drop-shadow(0 0 18px rgba(232,121,249,0.35))'
+          : 'none',
+      }}
+    >
       <MobileSun
         width={width}
         height={height}
         theme={theme}
         sunScale={isHovered ? 1.12 : 1}
-        // Forward pointer events to the canvas for hover detection
+        hovered={isHovered}
       />
       <div
         style={{ position: 'absolute', inset: 0, zIndex: 10 }}
-        onMouseEnter={handleMouseEnter}
-        onMouseMove={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={() => { setIsHovered(true); isHoveredRef.current = true; }}
+        onMouseLeave={() => { setIsHovered(false); isHoveredRef.current = false; }}
       />
     </div>
   );

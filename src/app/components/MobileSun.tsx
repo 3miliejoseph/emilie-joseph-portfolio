@@ -10,6 +10,7 @@ interface MobileSunProps {
   paletteVariant?: "default" | "vibrant";
   densityVariant?: "default" | "reduced";
   particleScale?: number;
+  hovered?: boolean;
 }
 
 export function MobileSun({
@@ -21,6 +22,7 @@ export function MobileSun({
   paletteVariant = "default",
   densityVariant = "default",
   particleScale = 1,
+  hovered = false,
 }: MobileSunProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -29,9 +31,15 @@ export function MobileSun({
   const particlesRef = useRef<THREE.Points | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const rotationRef = useRef({ x: 0, y: 0 });
+  const hoveredRef = useRef(false);
   const spiralRef = useRef<THREE.Points | null>(null); // Spiral particles reference
   const raysRef = useRef<THREE.Points | null>(null); // Ray particles reference
   const glowRef = useRef<THREE.Mesh | null>(null); // Center glow reference
+
+  // Sync hovered prop → ref so the animation loop can read it without re-running
+  useEffect(() => {
+    hoveredRef.current = hovered;
+  }, [hovered]);
 
   // Detect desktop for higher quality rendering
   const isDesktop = typeof window !== "undefined" && window.innerWidth >= 1024;
@@ -630,8 +638,10 @@ export function MobileSun({
         return;
       }
 
-      // Auto-spin (from Mars sphere)
-      rotationRef.current.y += 0.005; // ~17°/second at 60fps
+      // Auto-spin — speeds up on hover
+      const spinSpeed = hoveredRef.current ? 0.010 : 0.005;
+      const raySpeed = hoveredRef.current ? 0.004 : 0.002;
+      rotationRef.current.y += spinSpeed;
 
       // Apply rotation to sphere particles (rotates with sphere)
       particlesRef.current.rotation.x = rotationRef.current.x;
@@ -642,7 +652,7 @@ export function MobileSun({
 
       // Rays rotate slowly (slower than sphere)
       if (raysRef.current) {
-        raysRef.current.rotation.z += 0.002; // Slow rotation
+        raysRef.current.rotation.z += raySpeed;
       }
 
       // Render scene

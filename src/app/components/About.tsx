@@ -101,58 +101,50 @@ export function About() {
               </p>
             </div>
             <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end items-start">
-              <div className="hidden lg:flex flex-row items-start relative" style={{ height: '26rem' }}>
-                <div className="relative w-[22rem] h-[28rem]">
+              {/* Desktop: side-by-side portraits */}
+              <div className="hidden lg:flex flex-row items-start gap-6">
+                <div
+                  className="overflow-hidden rounded-2xl shadow-lg"
+                  style={{
+                    width: '22rem',
+                    height: '30rem',
+                    transition: 'transform 0.4s cubic-bezier(.4,2,.6,1), z-index 0s',
+                    transform: hoveredLeft ? 'scale(1.06) rotate(-4deg) translateY(-20px)' : 'rotate(-2deg) translateY(-20px)',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    zIndex: hoveredLeft ? 10 : 1,
+                  }}
+                  onMouseEnter={() => setHoveredLeft(true)}
+                  onMouseLeave={() => setHoveredLeft(false)}
+                >
+                  <ImageWithFallback
+                    src="/ME.png"
+                    alt="Portrait of Emilie"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div
+                  className="flex flex-col items-center"
+                  style={{ position: 'relative', zIndex: hoveredRight ? 10 : 1, marginTop: '80px' }}
+                >
                   <div
-                    className="absolute right-0 top-0 transition-transform duration-300"
+                    className="overflow-hidden rounded-2xl shadow-lg"
                     style={{
                       width: '22rem',
                       height: '30rem',
-                      zIndex: 50,
-                      transform: hoveredLeft
-                        ? 'translate(-40px, -120px) scale(1.07) rotate(-4deg)'
-                        : 'translate(-40px, -100px)',
                       transition: 'transform 0.4s cubic-bezier(.4,2,.6,1)',
-                      position: 'relative',
+                      transform: hoveredRight ? 'scale(1.06) rotate(4deg)' : 'rotate(2deg)',
                       cursor: 'pointer',
                     }}
-                    onMouseEnter={() => setHoveredLeft(true)}
-                    onMouseLeave={() => setHoveredLeft(false)}
+                    onMouseEnter={() => setHoveredRight(true)}
+                    onMouseLeave={() => setHoveredRight(false)}
                   >
                     <ImageWithFallback
-                      src="/ME.png"
-                      alt="Portrait of Emilie"
-                      className="w-full h-full object-cover rounded-lg shadow-lg"
-                      style={{ pointerEvents: 'none' }}
+                      src="/Suki.png"
+                      alt="Suki the cat"
+                      className="w-full h-full object-cover"
                     />
                   </div>
-                </div>
-              </div>
-              {/* Absolutely position the bottom image at the right edge on desktop, stack neatly on mobile/tablet */}
-              <div className="hidden lg:block">
-                <div
-                  style={{
-                    position: 'absolute',
-                    right: 0,
-                    bottom: '-40px',
-                    width: '22rem',
-                    height: '30rem',
-                    zIndex: 20,
-                    cursor: 'pointer',
-                    transition: 'transform 0.4s cubic-bezier(.4,2,.6,1)',
-                    transform: hoveredRight
-                      ? 'scale(1.08) rotate(3deg)'
-                      : 'none',
-                  }}
-                  onMouseEnter={() => setHoveredRight(true)}
-                  onMouseLeave={() => setHoveredRight(false)}
-                >
-                  <ImageWithFallback
-                    src="/Suki.png"
-                    alt="Suki the cat"
-                    className="w-full h-full object-cover rounded-lg shadow-lg"
-                    style={{ pointerEvents: 'none' }}
-                  />
                   <div className="text-center mt-2 text-sm text-muted-foreground font-medium">My cat, Suki</div>
                 </div>
               </div>
