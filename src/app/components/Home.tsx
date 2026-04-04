@@ -717,7 +717,6 @@ export function Home() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [isExpanding, setIsExpanding] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [isDesktopViewport, setIsDesktopViewport] = useState(false);
   const [interactiveHoverIndex, setInteractiveHoverIndex] = useState<number | null>(null);
   
@@ -736,7 +735,6 @@ export function Home() {
   useEffect(() => {
     const checkMobile = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 768);
       setIsDesktopViewport(width >= 1024);
     };
     
@@ -784,9 +782,9 @@ export function Home() {
 
     setIsClosing(false);
 
-    if (isMobile) {
-      // On mobile/tablet, navigate to a separate page for the case study
-      window.location.href = `/case-study/${project.slug}`;
+    if (!isDesktopViewport) {
+      // On mobile/smaller tablets, navigate directly to the case-study page route.
+      window.location.href = `/project/${project.slug}`;
       return;
     }
 
