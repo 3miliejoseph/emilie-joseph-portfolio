@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
 import { Palette, Lightbulb, Users, Code, GraduationCap } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useTheme } from "next-themes";
@@ -201,70 +200,40 @@ export function About() {
               <div className="space-y-12">
                 {/* ...crochet project block removed... */}
                 {/* Dining Table Painting - Left aligned */}
-                <Dialog.Root>
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
-                    <div className="flex-1">
-                      <div className="flex flex-row flex-wrap gap-6 mb-2 justify-center md:justify-start">
-                        <div className="flex flex-col items-center md:mr-6 w-full md:w-auto">
-                          <div className="flex flex-col sm:flex-row gap-2 mb-1 w-full items-center">
-                            <Dialog.Trigger asChild>
-                              <img src="/Fish%20table.png" alt="Fish Table Painting" className="w-full max-w-64 h-auto sm:h-96 aspect-[2/3] object-cover rounded-lg cursor-pointer" />
-                            </Dialog.Trigger>
-                            <Dialog.Trigger asChild>
-                              <img src="/Table%20Progress.png" alt="Table Progress Painting" className="w-full max-w-64 h-auto sm:h-96 aspect-[2/3] object-cover rounded-lg cursor-pointer" />
-                            </Dialog.Trigger>
-                          </div>
-                          <span className="block text-xs text-muted-foreground text-center mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                            Dining table I painted with the help of my roommates
-                          </span>
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
+                  <div className="flex-1">
+                    <div className="flex flex-row flex-wrap gap-6 mb-2 justify-center md:justify-start">
+                      <div className="flex flex-col items-center md:mr-6 w-full md:w-auto">
+                        <div className="flex flex-col sm:flex-row gap-2 mb-1 w-full items-center">
+                          <img src="/Fish%20table.png" alt="Fish Table Painting" className="w-full max-w-64 h-auto sm:h-96 aspect-[2/3] object-cover rounded-lg" />
+                          <img src="/Table%20Progress.png" alt="Table Progress Painting" className="w-full max-w-64 h-auto sm:h-96 aspect-[2/3] object-cover rounded-lg" />
                         </div>
+                        <span className="block text-xs text-muted-foreground text-center mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          Dining table I painted with the help of my roommates
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 bg-black/70 z-50" />
-                    <Dialog.Content className="fixed inset-0 flex items-center justify-center z-50">
-                      <div className="bg-background rounded-lg shadow-lg w-60 h-100 flex flex-col items-center justify-center p-4">
-                        {/* The actual previewed media will be rendered here by Radix Dialog's asChild prop */}
-                        <Dialog.Close className="absolute top-4 right-4 text-2xl text-muted-foreground cursor-pointer">×</Dialog.Close>
-                      </div>
-                    </Dialog.Content>
-                  </Dialog.Portal>
-                </Dialog.Root>
+                </div>
                 {/* Mural Image & Video - Right aligned, moved down */}
-                <Dialog.Root>
-                  <div className="flex flex-col md:flex-row-reverse items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
-                    <div className="flex-1">
-                      <div className="flex flex-row flex-wrap gap-6 mb-2 justify-end">
-                        <div className="flex flex-col items-center w-full md:w-auto">
-                          <div className="flex flex-col sm:flex-row gap-2 mb-1 w-full items-center md:items-start md:justify-end">
-                            <Dialog.Trigger asChild>
-                              <img src="/bunny%20chow.png" alt="Bunny Chow Painting" className="w-full max-w-[30rem] h-auto sm:h-80 aspect-[3/2] object-cover rounded-lg cursor-pointer" />
-                            </Dialog.Trigger>
-                            <Dialog.Trigger asChild>
-                              <video className="w-full max-w-56 h-auto sm:h-80 aspect-[7/10] object-cover rounded-lg cursor-pointer" controls>
-                                <source src="/bunnychow.mov" type="video/mp4" />
-                                Your browser does not support the video tag.
-                              </video>
-                            </Dialog.Trigger>
-                          </div>
-                          <span className="block text-xs text-muted-foreground text-center mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                            Painted a large-scale world map mural for a local restaurant in San Diego
-                          </span>
+                <div className="flex flex-col md:flex-row-reverse items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
+                  <div className="flex-1">
+                    <div className="flex flex-row flex-wrap gap-6 mb-2 justify-end">
+                      <div className="flex flex-col items-center w-full md:w-auto">
+                        <div className="flex flex-col sm:flex-row gap-2 mb-1 w-full items-center md:items-start md:justify-end">
+                          <img src="/bunny%20chow.png" alt="Bunny Chow Painting" className="w-full max-w-[30rem] h-auto sm:h-80 aspect-[3/2] object-cover rounded-lg" />
+                          <video className="w-full max-w-56 h-auto sm:h-80 aspect-[7/10] object-cover rounded-lg" controls>
+                            <source src="/bunnychow.mov" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
                         </div>
+                        <span className="block text-xs text-muted-foreground text-center mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                          Painted a large-scale world map mural for a local restaurant in San Diego
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 bg-black/70 z-50" />
-                    <Dialog.Content className="fixed inset-0 flex items-center justify-center z-50">
-                      <div className="bg-background rounded-lg shadow-lg w-60 h-100 flex flex-col items-center justify-center p-4">
-                        {/* The actual previewed media will be rendered here by Radix Dialog's asChild prop */}
-                        <Dialog.Close className="absolute top-4 right-4 text-2xl text-muted-foreground cursor-pointer">×</Dialog.Close>
-                      </div>
-                    </Dialog.Content>
-                  </Dialog.Portal>
-                </Dialog.Root>
+                </div>
                 {/* ...sketchbook project block removed... */}
                 {/* Music Mashup Demo - Right aligned */}
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 rounded-[28px] border border-border/50 bg-muted/20 px-4 py-5 sm:px-5 sm:py-6 md:px-6 md:py-7">
