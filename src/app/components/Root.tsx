@@ -133,8 +133,8 @@ function RootContent() {
               style={{ borderColor: theme === "light" ? "rgba(255, 165, 0, 0.35)" : "rgba(139, 92, 246, 0.35)" }}
             ></div>
             <div className="flex flex-col items-start gap-3">
-              <div className="flex items-center gap-6">
-                <div style={{ marginLeft: '-25px' }}>
+              <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-6">
+                <div className="sm:ml-[-25px]">
                   <MobileSun
                     isStatic
                     theme={theme}
@@ -144,8 +144,8 @@ function RootContent() {
                   />
                 </div>
                 <span
-                  className="text-[34px] sm:text-[46px] font-medium leading-none relative"
-                  style={{ fontFamily: '"Bangla MN", sans-serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
+                  className="text-[34px] sm:text-[46px] font-medium leading-none relative text-center sm:text-left sm:-left-[26px] sm:top-[8px]"
+                  style={{ fontFamily: '"Bangla MN", sans-serif', color: theme === "light" ? "#000" : "#fff" }}
                   id="footer-emilie-joseph"
                 >
                   Emilie Joseph
@@ -153,8 +153,8 @@ function RootContent() {
               </div>
 
               {/* Let's Connect and Email */}
-              <div style={{ position: 'relative', left: '198px', top: '-28px' }}>
-                <div className="flex flex-col items-start mb-1">
+              <div className="relative left-0 top-0 w-full sm:w-auto sm:left-[198px] sm:-top-[28px]">
+                <div className="flex flex-col items-center mb-1 sm:items-start">
                   <span
                     className="text-[15px] sm:text-[18px] font-medium"
                     style={{ fontFamily: 'Poppins, sans-serif', color: theme === "light" ? "#000" : "#fff" }}
@@ -171,7 +171,7 @@ function RootContent() {
                     emilieneha@gmail.com
                   </a>
                 </div>
-                <div className="flex flex-row gap-3 mt-2" style={{ position: 'relative', top: '8px' }}>
+                  <div className="relative top-0 mt-2 flex flex-row justify-center gap-3 sm:top-[8px] sm:justify-start">
                   <a
                     href="https://www.linkedin.com/in/emilie-joseph-90n982229"
                     target="_blank"
