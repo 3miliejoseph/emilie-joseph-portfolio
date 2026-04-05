@@ -145,7 +145,7 @@ function RootContent() {
                 </div>
                 <span
                   className="text-[34px] sm:text-[46px] font-medium leading-none relative"
-                  style={{ fontFamily: '"Bangla MN", serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
+                  style={{ fontFamily: '"Bangla MN", sans-serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
                   id="footer-emilie-joseph"
                 >
                   Emilie Joseph

@@ -229,6 +229,9 @@ export function ProjectDetail() {
                       </svg>
                     </a>
                   </div>
+                  <div className="text-base text-left text-muted-foreground">
+                    A playful interactive system that responds to user questions with dynamic, generative answers, exploring randomness, anticipation, and delight in digital experiences.
+                  </div>
                 </div>
                 <div className="space-y-6">
                   <div className="w-full h-[58vh] sm:h-[68vh] bg-muted rounded-lg overflow-hidden">
@@ -261,6 +264,9 @@ export function ProjectDetail() {
                         />
                       </svg>
                     </a>
+                  </div>
+                  <div className="text-base text-left text-muted-foreground">
+                    An experimental brand investigating how visual systems can express ideas through structured yet flexible design language.
                   </div>
                 </div>
               </div>
@@ -402,7 +408,7 @@ export function ProjectDetail() {
                   </div>
                   <span
                     className="text-[34px] sm:text-[46px] font-medium leading-none relative"
-                    style={{ fontFamily: '"Bangla MN", serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
+                    style={{ fontFamily: '"Bangla MN", sans-serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
                     id="footer-emilie-joseph"
                   >
                     Emilie Joseph

@@ -38,7 +38,6 @@ export const projects = [
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
         <p className="mb-4 text-base text-muted-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          What if learning about planets felt like interacting with them instead of reading about them?<br/>
           Planetology is a browser-based interactive solar system created during a Figma Makeathon with Contra. It combines particle interaction, quizzes, and hand tracking to turn space education into a playful, immersive experience.
         </p>
         <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
@@ -208,7 +207,6 @@ export const projects = [
       <>
          <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
         <p className="mb-4 text-base text-muted-foreground">
-          What if productivity felt like growing something instead of completing a checklist?<br/>
           TaskSprout is a digital task system where completing actions directly drives visual growth, turning productivity into a continuous, living feedback loop.
         </p>
         <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
@@ -249,30 +247,29 @@ export const projects = [
     previewVideo: "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774116989/LPS_hrqcin.mp4",
     caseStudy: (
       <>
-        <h2 className="text-lg font-semibold mb-2 text-foreground">The Idea</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
         <p className="mb-4 text-base text-muted-foreground">
-          What if a small business could have a digital presence that feels as thoughtful and expressive as its service?<br/>
           Lesli’s Pet Services is a cohesive brand and web system that translates identity across digital and physical touchpoints—from website to business cards to merchandise.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">The Problem I Wanted to Solve</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
         <p className="mb-4 text-base text-muted-foreground">
           Many small businesses lack cohesive, well-designed digital experiences, often resulting in fragmented branding and unclear communication. I wanted to create a unified system that builds trust while clearly expressing personality.<br/>
           I was also interested in how emerging tools like prompting could accelerate and influence the design process.
         </p>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Technical Decisions</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Technical Decisions</h2>
         <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
           <li><span className="font-semibold text-foreground">Prompt-driven design exploration</span><br/>Used prompting to rapidly generate and iterate on visual directions, treating AI as a collaborative tool within the design process.</li>
           <li><span className="font-semibold text-foreground">Cross-platform brand system</span><br/>Designed a consistent identity across web, print, and merchandise to ensure a unified experience at every touchpoint.</li>
           <li><span className="font-semibold text-foreground">Structured web experience</span><br/>Planned and organized the site architecture to create a clear, intuitive flow for users exploring services.</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">What It Demonstrates</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>What It Demonstrates</h2>
         <ul className="list-disc pl-6 mb-4 space-y-2 text-base text-muted-foreground">
           <li>Systems thinking across mediums</li>
           <li>Integrating AI into creative workflows</li>
           <li>Web design and front-end execution</li>
           <li>Translating identity into digital experiences</li>
         </ul>
-        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6">Future Iterations</h2>
+        <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Future Iterations</h2>
         <p className="text-base text-muted-foreground">
           Expanding the system with interactive features like booking flows, motion design, and more dynamic user interactions.
         </p>
@@ -684,7 +681,7 @@ function PlaygroundInteractivePreview() {
           );
         })}
       </div>
-      <div className="absolute bottom-3 left-3 text-[10px] uppercase tracking-[0.16em] text-white/75 sm:text-[11px]">
+      <div className="hidden sm:block absolute bottom-3 left-3 text-[10px] uppercase tracking-[0.16em] text-white/75 sm:text-[11px]">
         Hover to Draw
       </div>
     </div>
@@ -896,7 +893,7 @@ function handlePopState(event: PopStateEvent) {
 
           {/* Left side - Name and Bio */}
           <div className="space-y-5 sm:space-y-7 flex-shrink-0 relative text-center lg:text-left lg:max-w-[50%] mt-0 sm:mt-1 lg:mt-[calc(0.5rem+33vh)]" style={{ zIndex: 30 }}>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight lg:-translate-y-[16vh]" style={{ fontFamily: '"Bangla MN", serif' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight lg:-translate-y-[16vh]" style={{ fontFamily: '"Bangla MN", sans-serif' }}>
               Emilie Joseph
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground lg:-translate-y-[16vh]">
@@ -1563,6 +1560,9 @@ function handlePopState(event: PopStateEvent) {
 
                       {selectedProject.slug === "3d-museum-project" && (
                         <div className="space-y-4">
+                          <p className="text-xs text-muted-foreground sm:hidden">
+                            Best experienced on laptop or desktop. This preview does not work on mobile.
+                          </p>
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
                             <ModalEmbedFrame
                               scrollContainerRef={modalScrollRef}
@@ -1673,9 +1673,6 @@ function handlePopState(event: PopStateEvent) {
                             {/* Case Study Content Section */}
                             <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full max-w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
                               <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
-                              <p className="mb-4 text-base text-muted-foreground">
-                                What if a small business could have a digital presence that feels as thoughtful and expressive as its service?
-                              </p>
                               <p className="mb-4 text-base text-muted-foreground">
                                 Lesli’s Pet Services is a cohesive brand and web system that translates identity across digital and physical touchpoints—from website to business cards to merchandise.
                               </p>
@@ -1827,7 +1824,6 @@ function handlePopState(event: PopStateEvent) {
                             {/* Case Study Content Section */}
                             <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full max-w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
                               <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
-                              <p className="mb-3 text-base text-muted-foreground">What if a wall could belong to everyone at once?</p>
                               <p className="mb-4 text-base text-muted-foreground">MURAL is a shared painting experience where your phone becomes a brush. Open the canvas on any big screen — a laptop, a TV, a projector — and anyone in the room can scan a QR code and start painting together in real time. No app download. No login. Just pick up your phone and make something.<br/>The wall is a real brick wall. The paint soaks into it.</p>
                               <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
                               <p className="mb-4 text-base text-muted-foreground">Most creative tools are solitary—you make something alone, then share it. I wanted to design a system where the act of creation itself is social, where multiple people can contribute simultaneously in a shared space.<br/><br/>I was also interested in removing friction from interaction. Your phone is already in your pocket, so instead of building a new interface, I wanted to transform an existing device into a creative input tool.</p>
@@ -2047,7 +2043,7 @@ function handlePopState(event: PopStateEvent) {
                               </div>
                               <span
                                 className="text-[34px] sm:text-[46px] font-medium leading-none relative"
-                                style={{ fontFamily: '"Bangla MN", serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
+                                style={{ fontFamily: '"Bangla MN", sans-serif', left: '-26px', top: '8px', color: theme === "light" ? "#000" : "#fff" }}
                                 id="footer-emilie-joseph"
                               >
                                 Emilie Joseph

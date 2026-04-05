@@ -87,7 +87,7 @@ export function About() {
         <div className="desktop-content-gutter">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">
             <div className="mt-2 sm:mt-4 md:mt-6 lg:mt-12 order-2 lg:order-1">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-4 sm:mb-6 lg:mb-8 text-center lg:text-left" style={{ fontFamily: '"Bangla MN", serif' }}>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight mb-4 sm:mb-6 lg:mb-8 text-center lg:text-left" style={{ fontFamily: '"Bangla MN", sans-serif' }}>
                 Hi, I'm <span className="text-accent" style={{ color: theme === 'dark' ? '#E879F9' : '#FFA500' }}>Emilie</span>!
               </h1>
               <p className="text-[15px] sm:text-base md:text-lg text-muted-foreground leading-relaxed w-full text-center lg:text-left lg:ml-0">
@@ -95,7 +95,7 @@ export function About() {
                   I’m a designer interested in exploring ideas at the intersection of design, technology, and human experience. I enjoy experimenting with different creative concepts and building interactive and generative systems through creative coding that turn curiosity into playful, intuitive experiences—bringing ideas to fruition through hands-on exploration and iteration.
                   <br />
                   <span className="block mt-4">
-                    Outside of design and coding, I spend time crocheting, painting or sketching, experimenting with mixing music, and hangning out with my cat. One key detail about me: I'm always looking for new ways to stay creative and inspired!
+                    Outside of design and coding, I spend time crocheting, painting or sketching, experimenting with mixing music, and hanging out with my cat. One key detail about me: I'm always looking for new ways to stay creative and inspired!
                   </span>
                 </span>
               </p>
@@ -182,7 +182,7 @@ export function About() {
           <div className="rounded-2xl px-0 py-4 sm:p-8" style={{ fontFamily: 'Poppins, sans-serif', background: 'none', boxShadow: 'none' }}>
             <div className="mb-12 sm:mb-16">
               {/* Passion Projects label removed */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-4 sm:mb-6" style={{ fontFamily: '"Bangla MN", serif', position: 'relative' }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-4 sm:mb-6" style={{ fontFamily: '"Bangla MN", sans-serif', position: 'relative' }}>
                 Passion Projects
                 <span className="block w-12 h-1 mt-2 rounded-full" style={{ background: 'var(--accent)', opacity: 0.7 }} />
               </h2>
