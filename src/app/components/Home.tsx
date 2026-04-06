@@ -2030,7 +2030,7 @@ function handlePopState(event: PopStateEvent) {
                             className="border-t-[1.5px] mb-0"
                             style={{ borderColor: theme === "light" ? "rgba(255, 165, 0, 0.35)" : "rgba(139, 92, 246, 0.35)" }}
                           ></div>
-                          <div className="flex flex-col items-start gap-3">
+                          <div className="flex flex-col items-center gap-3 sm:items-start">
                             <div className="flex items-center gap-6">
                               <div style={{ marginLeft: '-25px' }}>
                                 <MobileSun
@@ -2049,7 +2049,7 @@ function handlePopState(event: PopStateEvent) {
                                 Emilie Joseph
                               </span>
                             </div>
-                            <div style={{ position: 'relative', left: '198px', top: '-28px' }}>
+                            <div className="mt-2 sm:mt-0" style={{ position: 'relative', left: '198px', top: '-28px' }}>
                               <div className="flex flex-col items-start mb-1">
                                 <span
                                   className="text-[15px] sm:text-[18px] font-medium"

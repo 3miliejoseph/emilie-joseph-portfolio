@@ -395,7 +395,7 @@ export function ProjectDetail() {
                 className="border-t-[1.5px] mb-0"
                 style={{ borderColor: theme === "light" ? "rgba(255, 165, 0, 0.35)" : "rgba(139, 92, 246, 0.35)" }}
               ></div>
-              <div className="flex flex-col items-start gap-3">
+              <div className="flex flex-col items-center gap-3 sm:items-start">
                 <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-6">
                   <div className="sm:ml-[-25px]">
                     <MobileSun
@@ -414,7 +414,7 @@ export function ProjectDetail() {
                     Emilie Joseph
                   </span>
                 </div>
-                <div className="relative left-0 top-0 w-full sm:w-auto sm:left-[198px] sm:-top-[28px]">
+                <div className="relative left-0 top-0 mt-2 w-full sm:mt-0 sm:w-auto sm:left-[198px] sm:-top-[28px]">
                   <div className="flex flex-col items-center mb-1 sm:items-start">
                     <span
                       className="text-[15px] sm:text-[18px] font-medium"
