@@ -488,7 +488,7 @@ export function ProjectDetail() {
                     </a>
                   </div>
                 </div>
-                <div className="mt-6 sm:mt-4 mb-6 text-muted-foreground text-sm flex justify-center w-full">
+                <div className="mt-8 sm:mt-4 mb-6 text-muted-foreground text-sm flex justify-center w-full">
                   <span className="text-center">Built with React, Three.js, and interactive systems</span>
                 </div>
               </div>

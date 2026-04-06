@@ -149,7 +149,7 @@ export function About() {
                 </div>
               </div>
               <div className="flex w-full max-w-full sm:max-w-[22rem] md:max-w-[26rem] flex-row gap-3 sm:flex-col sm:gap-4 lg:hidden">
-                <div className="flex-1 overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:w-full sm:aspect-[4/5] border border-border/40 bg-muted/20">
+                <div className="flex-1 overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:w-full sm:aspect-[4/5] border border-border/40 bg-muted/20 -rotate-2 sm:rotate-0">
                   <ImageWithFallback
                     src="/ME.png"
                     alt="Portrait of Emilie"
@@ -157,7 +157,7 @@ export function About() {
                   />
                 </div>
                 <div className="flex-1 sm:w-full">
-                  <div className="overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:aspect-[4/5] border border-border/40 bg-muted/20">
+                  <div className="overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:aspect-[4/5] border border-border/40 bg-muted/20 rotate-2 sm:rotate-0">
                     <ImageWithFallback
                       src="/Suki.png"
                       alt="Suki the cat"
