@@ -148,7 +148,7 @@ export function About() {
                   <div className="text-center mt-2 text-sm text-muted-foreground font-medium">My cat, Suki</div>
                 </div>
               </div>
-              <div className="flex w-full max-w-[17rem] sm:max-w-[22rem] md:max-w-[26rem] flex-row gap-2 sm:flex-col sm:gap-4 lg:hidden">
+              <div className="flex w-full max-w-full sm:max-w-[22rem] md:max-w-[26rem] flex-row gap-3 sm:flex-col sm:gap-4 lg:hidden">
                 <div className="flex-1 overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:w-full sm:aspect-[4/5] border border-border/40 bg-muted/20">
                   <ImageWithFallback
                     src="/ME.png"
@@ -156,14 +156,17 @@ export function About() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1 overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:w-full sm:aspect-[4/5] border border-border/40 bg-muted/20">
-                  <ImageWithFallback
-                    src="/Suki.png"
-                    alt="Suki the cat"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="flex-1 sm:w-full">
+                  <div className="overflow-hidden rounded-2xl shadow-lg aspect-[3/4] sm:aspect-[4/5] border border-border/40 bg-muted/20">
+                    <ImageWithFallback
+                      src="/Suki.png"
+                      alt="Suki the cat"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-center text-sm text-muted-foreground font-medium mt-2 sm:hidden">My cat, Suki</div>
                 </div>
-                <div className="text-center text-sm text-muted-foreground font-medium">My cat, Suki</div>
+                <div className="hidden text-center text-sm text-muted-foreground font-medium sm:block">My cat, Suki</div>
               </div>
             </div>
           </div>
