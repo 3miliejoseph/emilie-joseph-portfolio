@@ -702,11 +702,11 @@ function ModalEmbedFrame({ scrollContainerRef: _scrollContainerRef, ...iframePro
 
 export function Home() {
   const navigate = useNavigate();
-  const staticPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774113817/Static_pmgft8.mov";
+  const staticPreviewVideo = "/Static.mov";
   const muralPreviewVideo = "/MURAL.mp4";
-  const lesliPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774116989/LPS_hrqcin.mp4";
-  const figmaPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774238990/Figma_k18e1w.mp4";
-  const tankPreviewVideo = "https://res.cloudinary.com/dd7k5vprq/video/upload/v1774132085/Tank_j5g2y0.mp4";
+  const lesliPreviewVideo = "/LPS.mp4";
+  const figmaPreviewVideo = "/Figma.mp4";
+  const tankPreviewVideo = "/Tank.mp4";
   const { theme, setTheme } = useTheme();
   const { isPlaying, toggleMusic } = useMusic();
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -1072,7 +1072,7 @@ function handlePopState(event: PopStateEvent) {
                       transition={{ duration: 0.3 }}
                     >
                       <video
-                        src="https://res.cloudinary.com/dd7k5vprq/video/upload/v1774407893/Screen_Recording_2026-03-24_at_7.59.51_PM_kjhbcs.mov"
+                        src="/Tasksprout.mov"
                         autoPlay
                         loop
                         muted
@@ -1986,7 +1986,7 @@ function handlePopState(event: PopStateEvent) {
                                         />
                                       ) : project.slug === "planetology" ? (
                                         <video
-                                          src="https://res.cloudinary.com/dd7k5vprq/video/upload/v1773031107/planetgif_nwt8mc.mp4"
+                                          src="/Planetology.mp4"
                                           autoPlay
                                           loop
                                           muted
