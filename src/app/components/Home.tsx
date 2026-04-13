@@ -635,6 +635,53 @@ function PlaygroundInteractivePreview() {
 
   const isInteracting = hoveredIndex !== null || Object.keys(litParticles).length > 0;
 
+  // Touch event handlers for mobile
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (event.touches.length > 0) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const rect = event.currentTarget.getBoundingClientRect();
+      const xRatio = Math.min(Math.max((touch.clientX - rect.left) / rect.width, 0), 0.999);
+      const yRatio = Math.min(Math.max((touch.clientY - rect.top) / rect.height, 0), 0.999);
+      const index = indexFromRatios(xRatio, yRatio);
+      setHoveredIndex(index);
+      paintAt(index);
+      lastPointerRef.current = { xRatio, yRatio };
+    }
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (event.touches.length > 0) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const rect = event.currentTarget.getBoundingClientRect();
+      const xRatio = Math.min(Math.max((touch.clientX - rect.left) / rect.width, 0), 0.999);
+      const yRatio = Math.min(Math.max((touch.clientY - rect.top) / rect.height, 0), 0.999);
+      const index = indexFromRatios(xRatio, yRatio);
+      setHoveredIndex(index);
+      const previous = lastPointerRef.current;
+      if (previous) {
+        const dx = (xRatio - previous.xRatio) * columns;
+        const dy = (yRatio - previous.yRatio) * rows;
+        const steps = Math.max(1, Math.ceil(Math.hypot(dx, dy) * 1.75));
+        for (let step = 1; step <= steps; step += 1) {
+          const t = step / steps;
+          const sampleX = previous.xRatio + (xRatio - previous.xRatio) * t;
+          const sampleY = previous.yRatio + (yRatio - previous.yRatio) * t;
+          paintAt(indexFromRatios(sampleX, sampleY));
+        }
+      } else {
+        paintAt(index);
+      }
+      lastPointerRef.current = { xRatio, yRatio };
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setHoveredIndex(null);
+    lastPointerRef.current = null;
+  };
+
   return (
     <div className="relative w-full h-full overflow-hidden bg-[#06070f]">
       <div
@@ -644,6 +691,15 @@ function PlaygroundInteractivePreview() {
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         onPointerCancel={handlePointerLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
+        // Prevent scrolling while drawing
+        style={{
+          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+          touchAction: 'none',
+        }}
       >
         {particles.map((particleIndex: number) => {
           const col = particleIndex % columns;
@@ -1068,7 +1124,7 @@ function handlePopState(event: PopStateEvent) {
                     className="group cursor-pointer block w-full text-left"
                   >
                     <motion.div 
-                      className="relative overflow-hidden aspect-video mb-6 rounded-3xl transition-transform duration-300 ease-out group-hover:scale-[1.015] bg-muted"
+                      className="relative overflow-hidden aspect-video mb-6 rounded-2xl transition-transform duration-300 ease-out group-hover:scale-[1.015] bg-muted"
                       transition={{ duration: 0.3 }}
                     >
                       <video
@@ -1109,7 +1165,7 @@ function handlePopState(event: PopStateEvent) {
                     className="group cursor-pointer block w-full text-left"
                   >
                     <div
-                      className="relative overflow-hidden mb-6 rounded-3xl transition-transform duration-300 ease-out group-hover:scale-[1.015] aspect-video bg-muted"
+                      className="relative overflow-hidden mb-6 rounded-2xl transition-transform duration-300 ease-out group-hover:scale-[1.015] aspect-video bg-muted"
                     >
                       {project.slug === "playground" ? (
                         <PlaygroundInteractivePreview />
@@ -1167,7 +1223,7 @@ function handlePopState(event: PopStateEvent) {
 
       {/* Project Modal */}
       <Dialog.Root 
-        modal={false}
+        modal={true}
         open={!!selectedProject} 
         onOpenChange={(open) => {
           if (!open) {
@@ -1179,22 +1235,20 @@ function handlePopState(event: PopStateEvent) {
           {!isExpanding && (
             <Dialog.Overlay
               onClick={(e) => {
-                // Only close if clicking directly on the overlay, not on the modal content
                 if (e.target === e.currentTarget) {
                   closeProjectModal();
                 }
               }}
               onPointerDown={(e) => {
-                // Also handle pointer events for better cross-device support
                 if (e.target === e.currentTarget && e.button === 0) {
                   closeProjectModal();
                 }
               }}
               className={
-                `fixed inset-0 z-[101] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 cursor-pointer ` +
+                `fixed inset-0 z-[101] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 ` +
                 (theme === 'light'
-                  ? 'bg-black/12 backdrop-blur-[1px] backdrop-saturate-110'
-                  : 'bg-black/45 backdrop-blur-[1px] backdrop-saturate-110')
+                  ? 'bg-black/40 backdrop-blur-[2px] backdrop-saturate-110'
+                  : 'bg-black/70 backdrop-blur-[2px] backdrop-saturate-110')
               }
               style={{ pointerEvents: 'auto' }}
             />
@@ -1560,9 +1614,9 @@ function handlePopState(event: PopStateEvent) {
 
                       {selectedProject.slug === "3d-museum-project" && (
                         <div className="space-y-4">
-                          <p className="text-xs text-muted-foreground sm:hidden">
-                            Best experienced on laptop or desktop. This preview does not work on mobile.
-                          </p>
+                          <div className="text-sm sm:text-base text-muted-foreground text-left font-normal px-4 sm:px-0 mt-2 mb-1">
+                            Best experienced on laptop or desktop.
+                          </div>
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
                             <ModalEmbedFrame
                               scrollContainerRef={modalScrollRef}
@@ -1824,7 +1878,7 @@ function handlePopState(event: PopStateEvent) {
                             {/* Case Study Content Section */}
                             <section className="mt-8 mb-2 px-0 sm:px-0 lg:px-0 w-full max-w-full" style={{ fontFamily: 'Poppins, sans-serif' }}>
                               <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
-                              <p className="mb-4 text-base text-muted-foreground">MURAL is a shared painting experience where your phone becomes a brush. Open the canvas on any big screen — a laptop, a TV, a projector — and anyone in the room can scan a QR code and start painting together in real time. No app download. No login. Just pick up your phone and make something.<br/>The wall is a real brick wall. The paint soaks into it.</p>
+                              <p className="mb-4 text-base text-muted-foreground">MURAL is a shared painting experience where your phone becomes a brush. Open the canvas on any big screen — a laptop, a TV, a projector — and anyone in the room can scan a QR code and start painting together in real time. No app download. No login. Just pick up your phone and make something.</p>
                               <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>The Problem I Wanted to Solve</h2>
                               <p className="mb-4 text-base text-muted-foreground">Most creative tools are solitary—you make something alone, then share it. I wanted to design a system where the act of creation itself is social, where multiple people can contribute simultaneously in a shared space.<br/><br/>I was also interested in removing friction from interaction. Your phone is already in your pocket, so instead of building a new interface, I wanted to transform an existing device into a creative input tool.</p>
                               <h2 className="text-lg font-semibold mb-2 text-foreground mt-6" style={{ fontFamily: 'Poppins, sans-serif' }}>Technical Decisions</h2>
