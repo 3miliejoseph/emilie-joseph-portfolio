@@ -55,9 +55,9 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       {/* Hidden Audio Element */}
       <audio ref={audioRef} loop>
         {theme === "dark" ? (
-          <source src="https://res.cloudinary.com/dd7k5vprq/video/upload/v1773035037/Michael_Jackson_-_Human_Nature_Remastered_Instrumental_yziyic.mp3" type="audio/mpeg" />
+          <source src="/MJ Human Nature.mp3" type="audio/mpeg" />
         ) : (
-          <source src="https://res.cloudinary.com/dd7k5vprq/video/upload/v1773035155/Here_Comes_The_Sun_Instrumental_gg17vb.mp3" type="audio/mpeg" />
+          <source src="/Here Comes The Sun.mp3" type="audio/mpeg" />
         )}
         Your browser does not support the audio element.
       </audio>

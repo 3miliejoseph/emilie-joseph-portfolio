@@ -12,6 +12,30 @@ export function Projects() {
 
   const projects = [
     {
+      id: 12,
+      slug: "tasksprout",
+      title: "TaskSprout — A Living Productivity System",
+      category: "Behavioral Systems",
+      description: "A productivity tool that visualizes tasks as a growing system—exploring how interaction design can influence behavior.",
+      year: "2026",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      mediaAspectRatio: "4 / 3",
+      tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
+      previewVideo: "/Tasksprout.mov",
+    },
+    {
+      id: 4,
+      slug: "mural",
+      title: "MURAL — A Real-Time Collaborative Canvas",
+      category: "Collaborative Systems",
+      description: "A real-time collaborative canvas where multiple users draw simultaneously—turning individual devices into a shared, interactive system.",
+      year: "2024",
+      image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
+      mediaAspectRatio: "4 / 3",
+      tags: ["Real-time Systems", "Collaboration", "WebSockets", "Interactive Experience"],
+      previewVideo: "/MURAL.mp4",
+    },
+    {
       id: 2,
       slug: "planetology",
       title: "Planetology — Interactive Planet Systems",
@@ -32,6 +56,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1642756060888-aa5f4bc4d86b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGRlc2lnbiUyMHZpc3VhbGl6YXRpb258ZW58MXx8fHwxNzcyODY4Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Spatial Interface", "3D Interaction", "Three.js", "WebGL", "Immersive Experience"],
+      previewVideo: "/emsart.mp4",
     },
     {
       id: 1,
@@ -54,6 +79,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1760071744047-5542cbfda184?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3J0Zm9saW8lMjBwcm9qZWN0JTIwc2hvd2Nhc2V8ZW58MXx8fHwxNzcyODY4Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Brand Identity", "Web Design", "Interaction", "Motion", "Front-end Development"],
+      previewVideo: "/LPS.mp4",
     },
     {
       id: 3,
@@ -87,6 +113,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1659841064804-5f507b1b488a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwbGF5b3V0fGVufDF8fHx8MTc3Mjc4NTAzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Prototyping", "User Interface", "Motion", "Design Systems", "Interaction Design"],
+      previewVideo: "/Figma.mp4",
     },
     {
       id: 14,
@@ -120,6 +147,18 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1550376026-d14d25cf9ebd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1eCUyMGRlc2lnbiUyMHByb3RvdHlwZXxlbnwxfHx8fDE3NzI4MDI5Mjl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Accessibility", "Visual Design", "App Redesign"],
+    },
+    {
+      id: 11,
+      slug: "tank",
+      title: "Tank — A Generative Aquarium",
+      category: "Creative Technology",
+      description: "A generative, bioluminescent aquarium where fish respond to user interaction—exploring behavior, motion, and emergent systems.",
+      year: "2024",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+      mediaAspectRatio: "4 / 3",
+      tags: ["Generative Systems", "Behavioral Simulation", "Creative Coding", "Hand Tracking"],
+      previewVideo: "/Tank.mp4",
     },
   ];
 
@@ -189,11 +228,18 @@ export function Projects() {
                   style={{ aspectRatio: project.mediaAspectRatio ?? "4 / 3" }}
                 >
                   {project.slug === "planetology" ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
+                    <video
+                      src={"/Planetology.mp4"}
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                       className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                    />
+                      poster={project.image}
+                    >
+                      Your browser does not support the video tag.
+                    </video>
                   ) : (
                     <ImageWithFallback
                       src={project.image}
