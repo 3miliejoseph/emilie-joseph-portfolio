@@ -1188,6 +1188,16 @@ function handlePopState(event: PopStateEvent) {
                           onLoadStart={() => {
                             console.log('Video loading started:', project.previewVideo);
                           }}
+                          onCanPlay={(e) => {
+                            console.log('Video can play:', project.previewVideo);
+                            const target = e.target as HTMLVideoElement;
+                            // Try to play if autoplay failed
+                            if (target.paused) {
+                              target.play().catch(err => {
+                                console.log('Autoplay blocked, will play on interaction:', err);
+                              });
+                            }
+                          }}
                         />
                       ) : (
                         <ImageWithFallback
@@ -2092,7 +2102,23 @@ function handlePopState(event: PopStateEvent) {
                                           loop
                                           muted
                                           playsInline
+                                          poster={project.image}
                                           className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                                          preload="metadata"
+                                          onError={(e) => {
+                                            console.error('Modal video loading error:', project.previewVideo, e);
+                                            const target = e.target as HTMLVideoElement;
+                                            target.poster = project.image;
+                                          }}
+                                          onCanPlay={(e) => {
+                                            console.log('Modal video can play:', project.previewVideo);
+                                            const target = e.target as HTMLVideoElement;
+                                            if (target.paused) {
+                                              target.play().catch(err => {
+                                                console.log('Modal autoplay blocked:', err);
+                                              });
+                                            }
+                                          }}
                                         />
                                       ) : project.slug === "planetology" ? (
                                         <video
