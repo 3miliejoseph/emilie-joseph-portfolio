@@ -1998,7 +1998,6 @@ function handlePopState(event: PopStateEvent) {
                                   playsInline
                                   className="block aspect-video rounded-2xl"
                                   style={{ transform: 'scale(1.03)' }}
-                                  poster="/PortfolioPoster.jpg"
                                 >
                                   Your browser does not support the video tag.
                                 </video>
