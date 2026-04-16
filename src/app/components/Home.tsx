@@ -202,7 +202,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
-    previewVideo: "https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/Tasksprout.mp4",
+    previewVideo: "https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/Tasksprout.mov",
     caseStudy: (
       <>
          <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
