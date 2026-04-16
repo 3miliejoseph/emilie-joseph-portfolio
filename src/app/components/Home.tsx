@@ -1015,65 +1015,68 @@ function handlePopState(event: PopStateEvent) {
               .
             </p>
             <div className="pt-2 flex items-center gap-3 relative justify-center lg:justify-start lg:-translate-y-[16vh]">
-              <div className="relative">
-                <button
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
-                  aria-label="Toggle theme"
-                  onMouseEnter={() => setShowThemeTooltip(true)}
-                  onMouseLeave={() => setShowThemeTooltip(false)}
-                >
-                  {theme === "dark" ? (
-                    <Sun className="w-5 h-5 sun-icon" />
-                  ) : (
-                    <Moon className="w-5 h-5" />
-                  )}
-                </button>
-                <AnimatePresence>
-                  {showThemeTooltip && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
+              {isDesktopViewport && (
+                <>
+                  <div className="relative">
+                    <button
+                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                      className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                      aria-label="Toggle theme"
+                      onMouseEnter={() => setShowThemeTooltip(true)}
+                      onMouseLeave={() => setShowThemeTooltip(false)}
                     >
-                      Light/Dark Mode
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              
-              <div className="relative">
-                <button
-                  onClick={toggleMusic}
-                  className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
-                  aria-label="Toggle music"
-                  onMouseEnter={() => setShowMusicTooltip(true)}
-                  onMouseLeave={() => setShowMusicTooltip(false)}
-                >
-                  {isPlaying ? (
-                    <Volume2 className="w-5 h-5" />
-                  ) : (
-                    <VolumeX className="w-5 h-5" />
-                  )}
-                </button>
-                <AnimatePresence>
-                  {showMusicTooltip && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
+                      {theme === "dark" ? (
+                        <Sun className="w-5 h-5 sun-icon" />
+                      ) : (
+                        <Moon className="w-5 h-5" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {showThemeTooltip && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 5 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
+                        >
+                          Light/Dark Mode
+                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  <div className="relative">
+                    <button
+                      onClick={toggleMusic}
+                      className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                      aria-label="Toggle music"
+                      onMouseEnter={() => setShowMusicTooltip(true)}
+                      onMouseLeave={() => setShowMusicTooltip(false)}
                     >
-                      Tunes while you explore!
-                      <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                      {isPlaying ? (
+                        <Volume2 className="w-5 h-5" />
+                      ) : (
+                        <VolumeX className="w-5 h-5" />
+                      )}
+                    </button>
+                    <AnimatePresence>
+                      {showMusicTooltip && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 5 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
+                        >
+                          Tunes while you explore!
+                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </>
+              )}
             </div>
             <div className="pt-1 text-muted-foreground text-center lg:text-left">
               <div className="text-lg sm:text-xl md:text-2xl font-medium tracking-[0.015em] lg:-translate-y-[16vh]">
@@ -1614,9 +1617,7 @@ function handlePopState(event: PopStateEvent) {
 
                       {selectedProject.slug === "3d-museum-project" && (
                         <div className="space-y-4">
-                          <div className="text-sm sm:text-base text-muted-foreground text-left font-normal px-4 sm:px-0 mt-2 mb-1">
-                            Best experienced on laptop or desktop.
-                          </div>
+                          <p className="text-sm text-muted-foreground italic text-left">Best experienced on laptop or desktop.</p>
                           <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
                             <ModalEmbedFrame
                               scrollContainerRef={modalScrollRef}
@@ -1843,6 +1844,7 @@ function handlePopState(event: PopStateEvent) {
 
                         {selectedProject.slug === "mural" && (
                           <div className="space-y-4">
+                            <p className="text-sm text-muted-foreground italic text-left">Multiple devices needed - phones used as the brush, not the canvas.</p>
                             <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
                               <ModalEmbedFrame
                                 scrollContainerRef={modalScrollRef}
@@ -1906,12 +1908,12 @@ function handlePopState(event: PopStateEvent) {
                         {selectedProject.slug === "playground" ? (
                           <div className="space-y-20">
                             <div className="space-y-4">
-                              <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
+                              <div className="w-auto mx-auto mt-8 bg-muted rounded-2xl overflow-hidden border border-border flex items-center justify-center">
                                 <ModalEmbedFrame
                                   scrollContainerRef={modalScrollRef}
                                   src="https://3miliejoseph.github.io/magic8ball/"
-                                  className="w-full h-full"
-                                  style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
+                                  className="block"
+                                  style={{ display: 'block', maxWidth: '100%', height: 'auto', borderRadius: '1rem', aspectRatio: '16/9', minWidth: 320, minHeight: 180 }}
                                   title="Magic 8 Ball Playground"
                                   allow="fullscreen"
                                 />
@@ -1943,13 +1945,16 @@ function handlePopState(event: PopStateEvent) {
                                 A playful interactive system that responds to user questions with dynamic, generative answers—exploring randomness, anticipation, and delight in digital experiences.
                               </div>
                             </div>
+
+                            {/* New Embed for emiliejoseph.xyz */}
+                            {/* Static Brand Embed (remains above) */}
                             <div className="space-y-4">
-                              <div className="w-[calc(100%+3rem)] -mx-6 sm:w-[calc(100%+6rem)] sm:-mx-12 lg:w-[calc(100%+60px)] lg:-mx-[30px] mt-8 h-[78vh] bg-muted rounded-2xl overflow-hidden border border-border">
+                              <div className="w-auto mx-auto mt-8 bg-muted rounded-2xl overflow-hidden border border-border flex items-center justify-center">
                                 <ModalEmbedFrame
                                   scrollContainerRef={modalScrollRef}
                                   src="https://static-brand.vercel.app/"
-                                  className="w-full h-full"
-                                  style={{ transform: 'scale(0.75)', transformOrigin: 'center top', width: '133.33%', height: '133.33%', marginLeft: '-16.665%', marginTop: '0' }}
+                                  className="block"
+                                  style={{ display: 'block', maxWidth: '100%', height: 'auto', borderRadius: '1rem', aspectRatio: '16/9', minWidth: 320, minHeight: 180 }}
                                   title="Static Brand Live Project"
                                   allow="fullscreen"
                                 />
@@ -1979,6 +1984,50 @@ function handlePopState(event: PopStateEvent) {
                               </div>
                               <div className="mt-4 text-muted-foreground text-base text-left">
                                 An experimental brand investigating how visual systems can express ideas through structured yet flexible design language.
+                              </div>
+                            </div>
+
+                            {/* emiliejoseph.xyz Embed (now below static brand) */}
+                            <div className="space-y-4">
+                              <div className="w-auto mx-auto mt-8 bg-muted rounded-2xl overflow-hidden border border-border flex items-center justify-center">
+                                <video
+                                  src="/Portfolio.mp4"
+                                  autoPlay
+                                  loop
+                                  muted
+                                  playsInline
+                                  className="block aspect-video rounded-2xl"
+                                  style={{ transform: 'scale(1.03)' }}
+                                  poster="/PortfolioPoster.jpg"
+                                >
+                                  Your browser does not support the video tag.
+                                </video>
+                              </div>
+                              <div className="flex items-center mt-4 justify-end">
+                                <a
+                                  href="https://emiliejoseph.xyz/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
+                                >
+                                  Visit Site
+                                  <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                  </svg>
+                                </a>
+                              </div>
+                              <div className="mt-4 text-muted-foreground text-base text-left">
+                                Looking for more personality? Visit my previous, bold and playful portfolio!
                               </div>
                             </div>
                             <p
