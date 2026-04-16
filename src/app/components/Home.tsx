@@ -686,7 +686,10 @@ function PlaygroundInteractivePreview() {
     <div className="relative w-full h-full overflow-hidden bg-[#06070f]">
       <div
         className="absolute inset-0 grid gap-[1px] p-2 sm:p-2"
-        style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+        style={{
+          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
+          touchAction: 'none',
+        }}
         onPointerEnter={handlePointerEnter}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
@@ -695,11 +698,6 @@ function PlaygroundInteractivePreview() {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchEnd}
-        // Prevent scrolling while drawing
-        style={{
-          gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`,
-          touchAction: 'none',
-        }}
       >
         {particles.map((particleIndex: number) => {
           const col = particleIndex % columns;
@@ -1181,10 +1179,11 @@ function handlePopState(event: PopStateEvent) {
                           playsInline
                           poster={project.image}
                           className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                          preload="metadata"
                           onError={(e) => {
                             console.error('Video loading error:', project.previewVideo, e);
                             const target = e.target as HTMLVideoElement;
-                            target.style.display = 'none';
+                            target.poster = project.image;
                           }}
                           onLoadStart={() => {
                             console.log('Video loading started:', project.previewVideo);
