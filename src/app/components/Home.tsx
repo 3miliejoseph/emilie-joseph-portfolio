@@ -202,7 +202,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
-    previewVideo: "/Tasksprout.mov",
+    previewVideo: "/Tasksprout.mp4",
     caseStudy: (
       <>
          <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -301,7 +301,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Creative Coding", "Generative Art", "Experimental UI", "Interaction", "Visual Exploration"],
-    previewVideo: "/Static.mov",
+    previewVideo: "/Static.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground">Interactive Playground</h2>
@@ -756,7 +756,7 @@ function ModalEmbedFrame({ scrollContainerRef: _scrollContainerRef, ...iframePro
 
 export function Home() {
   const navigate = useNavigate();
-  const staticPreviewVideo = "/Static.mov";
+  const staticPreviewVideo = "/Static.mp4";
   const muralPreviewVideo = "/MURAL.mp4";
   const lesliPreviewVideo = "/LPS.mp4";
   const figmaPreviewVideo = "/Figma.mp4";
