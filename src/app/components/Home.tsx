@@ -33,7 +33,7 @@ export const projects = [
     image: "https://drive.google.com/uc?export=download&id=1fvUoD6E0lrXAjyV2e2VOnUgKZT7T6omp",
     mediaAspectRatio: "4 / 3",
     tags: ["Interactive Systems", "Hand Tracking", "Three.js", "Generative Visuals"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/1/Planetology.mp4",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Planetology.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -75,7 +75,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Real-time Systems", "Collaboration", "WebSockets", "Interactive Experience"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/2/MURAL.mp4",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/MURAL.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -118,7 +118,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1642756060888-aa5f4bc4d86b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGRlc2lnbiUyMHZpc3VhbGl6YXRpb258ZW58MXx8fHwxNzcyODY4Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     mediaAspectRatio: "4 / 3",
     tags: ["Spatial Interface", "3D Interaction", "Three.js", "Antigravity"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/3/emsart.mp4",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/emsart.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -159,7 +159,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Generative Systems", "Behavioral Simulation", "Creative Coding", "Hand Tracking"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/4/Tank.mp4",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Tank.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -202,7 +202,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/5/Tasksprout.mov",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Tasksprout.mov",
     caseStudy: (
       <>
          <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -244,7 +244,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1760071744047-5542cbfda184?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Brand Identity", "Web Design", "Interaction", "Front-end Development"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/6/LPS.mp4",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/LPS.mp4",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground" style={{ fontFamily: 'Poppins, sans-serif' }}>The Idea</h2>
@@ -286,7 +286,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Prototyping", "Motion", "Design Systems", "Interaction Design"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/7/Figma.mp4",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Figma.mp4",
     caseStudy: (
       <></>
     ),
@@ -301,7 +301,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Creative Coding", "Generative Art", "Experimental UI", "Interaction", "Visual Exploration"],
-    previewVideo: "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/8/Static.mov",
+    previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Static.mov",
     caseStudy: (
       <>
         <h2 className="text-lg font-semibold mb-2 text-foreground">Interactive Playground</h2>
@@ -758,11 +758,11 @@ function ModalEmbedFrame({ scrollContainerRef: _scrollContainerRef, ...iframePro
 
 export function Home() {
   const navigate = useNavigate();
-  const staticPreviewVideo = "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/8/Static.mov";
-  const muralPreviewVideo = "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/2/MURAL.mp4";
-  const lesliPreviewVideo = "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/6/LPS.mp4";
-  const figmaPreviewVideo = "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/7/Figma.mp4";
-  const tankPreviewVideo = "https://github.com/3miliejoseph/emilie-joseph-portfolio/releases/download/4/Tank.mp4";
+  const staticPreviewVideo = "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Static.mov";
+  const muralPreviewVideo = "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/MURAL.mp4";
+  const lesliPreviewVideo = "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/LPS.mp4";
+  const figmaPreviewVideo = "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Figma.mp4";
+  const tankPreviewVideo = "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Tank.mp4";
   const { theme, setTheme } = useTheme();
   const { isPlaying, toggleMusic } = useMusic();
   const [currentTime, setCurrentTime] = useState(new Date());
