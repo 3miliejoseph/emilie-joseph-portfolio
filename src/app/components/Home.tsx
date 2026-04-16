@@ -286,7 +286,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
     mediaAspectRatio: "4 / 3",
     tags: ["Prototyping", "Motion", "Design Systems", "Interaction Design"],
-    previewVideo: "/Figma.mp4",
+    previewVideo: "https://ik.imagekit.io/emilie/Figma.mp4",
     caseStudy: (
       <></>
     ),
@@ -761,7 +761,7 @@ export function Home() {
   const staticPreviewVideo = "/Static.mov";
   const muralPreviewVideo = "/MURAL.mp4";
   const lesliPreviewVideo = "/LPS.mp4";
-  const figmaPreviewVideo = "/Figma.mp4";
+  const figmaPreviewVideo = "https://ik.imagekit.io/emilie/Figma.mp4";
   const tankPreviewVideo = "/Tank.mp4";
   const { theme, setTheme } = useTheme();
   const { isPlaying, toggleMusic } = useMusic();
