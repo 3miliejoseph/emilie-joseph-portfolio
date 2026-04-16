@@ -1171,7 +1171,10 @@ function handlePopState(event: PopStateEvent) {
                       {project.slug === "playground" ? (
                         <PlaygroundInteractivePreview />
                       ) : project.previewVideo ? (
-                        <video
+                        (() => {
+                          console.log('Rendering video for:', project.slug, 'with src:', project.previewVideo);
+                          return (
+                            <video
                           src={project.previewVideo}
                           autoPlay
                           loop
@@ -1198,7 +1201,15 @@ function handlePopState(event: PopStateEvent) {
                               });
                             }
                           }}
+                          onLoadedData={(e) => {
+                            console.log('Video data loaded:', project.previewVideo);
+                          }}
+                          onLoadedMetadata={(e) => {
+                            console.log('Video metadata loaded:', project.previewVideo);
+                          }}
                         />
+                          );
+                        })()
                       ) : (
                         <ImageWithFallback
                           src={project.image}
