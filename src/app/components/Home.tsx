@@ -1179,7 +1179,16 @@ function handlePopState(event: PopStateEvent) {
                           loop
                           muted
                           playsInline
+                          poster={project.image}
                           className="w-full h-full object-cover transition-transform duration-700 ease-out"
+                          onError={(e) => {
+                            console.error('Video loading error:', project.previewVideo, e);
+                            const target = e.target as HTMLVideoElement;
+                            target.style.display = 'none';
+                          }}
+                          onLoadStart={() => {
+                            console.log('Video loading started:', project.previewVideo);
+                          }}
                         />
                       ) : (
                         <ImageWithFallback
