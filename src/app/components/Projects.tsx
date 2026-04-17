@@ -21,7 +21,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
       mediaAspectRatio: "4 / 3",
       tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
-      previewVideo: "https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/Tasksprout.mp4",
+      previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Tasksprout.mp4",
     },
     {
       id: 4,
@@ -33,7 +33,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
       mediaAspectRatio: "4 / 3",
       tags: ["Real-time Systems", "Collaboration", "WebSockets", "Interactive Experience"],
-      previewVideo: "/MURAL.mp4",
+      previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/MURAL.mp4",
     },
     {
       id: 2,
@@ -56,7 +56,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1642756060888-aa5f4bc4d86b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMGRlc2lnbiUyMHZpc3VhbGl6YXRpb258ZW58MXx8fHwxNzcyODY4Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Spatial Interface", "3D Interaction", "Three.js", "WebGL", "Immersive Experience"],
-      previewVideo: "/emsart.mp4",
+      previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/emsart.mp4",
     },
     {
       id: 1,
@@ -79,7 +79,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1760071744047-5542cbfda184?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3J0Zm9saW8lMjBwcm9qZWN0JTIwc2hvd2Nhc2V8ZW58MXx8fHwxNzcyODY4Nzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Brand Identity", "Web Design", "Interaction", "Motion", "Front-end Development"],
-      previewVideo: "/LPS.mp4",
+      previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/LPS.mp4",
     },
     {
       id: 3,
@@ -113,7 +113,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1659841064804-5f507b1b488a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJzaXRlJTIwZGVzaWduJTIwbGF5b3V0fGVufDF8fHx8MTc3Mjc4NTAzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
       mediaAspectRatio: "4 / 3",
       tags: ["Prototyping", "User Interface", "Motion", "Design Systems", "Interaction Design"],
-      previewVideo: "/Figma.mp4",
+      previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Figma.mp4",
     },
     {
       id: 14,
@@ -158,7 +158,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
       mediaAspectRatio: "4 / 3",
       tags: ["Generative Systems", "Behavioral Simulation", "Creative Coding", "Hand Tracking"],
-      previewVideo: "/Tank.mp4",
+      previewVideo: "https://raw.githubusercontent.com/3miliejoseph/emilie-joseph-portfolio/main/public/Tank.mp4",
     },
   ];
 
