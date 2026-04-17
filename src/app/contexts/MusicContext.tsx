@@ -55,9 +55,9 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       {/* Hidden Audio Element */}
       <audio ref={audioRef} loop>
         {theme === "dark" ? (
-          <source src="https://cdn.jsdelivr.net/gh/3miliejoseph/emilie-joseph-portfolio/public/MJ%20Human%20Nature.mp3" type="audio/mpeg" />
+          <source src="https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/MJ%20Human%20Nature.mp3" type="audio/mpeg" />
         ) : (
-          <source src="https://cdn.jsdelivr.net/gh/3miliejoseph/emilie-joseph-portfolio/public/Here%20Comes%20The%20Sun.mp3" type="audio/mpeg" />
+          <source src="https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/Here%20Comes%20The%20Sun.mp3" type="audio/mpeg" />
         )}
         Your browser does not support the audio element.
       </audio>

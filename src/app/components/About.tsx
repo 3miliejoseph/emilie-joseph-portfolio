@@ -356,7 +356,7 @@ export function About() {
                           className="w-full max-w-[25rem] mb-1"
                           style={{ filter: theme === 'dark' ? 'invert(0.85)' : 'none', borderRadius: '0.75rem' }}
                         >
-                          <source src="https://cdn.jsdelivr.net/gh/3miliejoseph/emilie-joseph-portfolio/public/Dontcha%20x%20Your%20Teeth%20in%20My%20Neck.mp3" type="audio/mpeg" />
+                          <source src="https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/Dontcha%20x%20Your%20Teeth%20in%20My%20Neck.mp3" type="audio/mpeg" />
                           Your browser does not support the audio element.
                         </audio>
                         <span className="text-xs text-muted-foreground mt-2" style={{ fontFamily: 'Poppins, sans-serif', width: '100%', display: 'block', textAlign: 'center' }}>
