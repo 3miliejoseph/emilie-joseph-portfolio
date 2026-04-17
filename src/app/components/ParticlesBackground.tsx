@@ -25,8 +25,8 @@ export function ParticlesBackground() {
       H = canvas.height = documentHeight;
     }
 
-    const COLS = 80;
-    const ROWS = 40;
+    const COLS = 100;
+    const ROWS = 50;
     const CAM_DIST = 900;
     const TILT = 0.15;
 
