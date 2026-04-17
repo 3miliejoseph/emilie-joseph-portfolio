@@ -123,7 +123,7 @@ export function ParticlesBackground() {
         ctx.fill();
       }
 
-      tick += 0.008;
+      tick += 0.005;
       ctx.shadowBlur = 0;
       animationFrameRef.current = requestAnimationFrame(draw);
     }
