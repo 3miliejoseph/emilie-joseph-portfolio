@@ -53,7 +53,7 @@ export function ParticlesBackground() {
       const ry = y3 * cosT - z3 * sinT;
       const rz = y3 * sinT + z3 * cosT;
       const scale = CAM_DIST / (CAM_DIST + rz);
-      return { sx: W * 0.5 + x3 * scale, sy: H * 0.5 + ry * scale, scale, rz };
+      return { sx: W * 0.4 + x3 * scale, sy: H / 2 + ry * scale, scale, rz };
     }
 
     function draw() {
@@ -64,8 +64,8 @@ export function ParticlesBackground() {
       // Clear with transparent background
       ctx.clearRect(0, 0, W, H);
 
-      const gridW = W * 0.9;
-      const gridH = H * 0.9;
+      const gridW = W * 1.1;
+      const gridH = H * 1.1;
       const cellW = gridW / (COLS - 1);
       const cellH = gridH / (ROWS - 1);
       const zAmp  = H * 0.12;
