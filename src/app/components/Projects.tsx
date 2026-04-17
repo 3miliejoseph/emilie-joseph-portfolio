@@ -21,7 +21,7 @@ export function Projects() {
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
       mediaAspectRatio: "4 / 3",
       tags: ["Interaction Design", "Behavioral Design", "UX Systems", "Prototyping"],
-      previewVideo: "/Tasksprout.mov",
+      previewVideo: "https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/Tasksprout.mp4",
     },
     {
       id: 4,
