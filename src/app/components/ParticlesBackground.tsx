@@ -28,7 +28,7 @@ export function ParticlesBackground() {
     const COLS = 80;
     const ROWS = 40;
     const CAM_DIST = 800;
-    const TILT = 0.28;
+    const TILT = 0.15;
 
     function getRibbonMask(nx, ny) {
       const d = (nx + ny - 1.0);
