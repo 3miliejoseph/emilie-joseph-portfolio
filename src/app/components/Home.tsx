@@ -1078,6 +1078,20 @@ function handlePopState(event: PopStateEvent) {
                 </>
               )}
             </div>
+            
+            {/* Mobile/Tablet Music Toggle - Below Hero */}
+            {!isDesktopViewport && (
+              <div className="flex justify-center mt-4 mb-8">
+                <button
+                  onClick={toggleMusic}
+                  className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                  aria-label="Toggle music"
+                >
+                  {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                </button>
+              </div>
+            )}
+            </div>
             <div className="pt-1 text-muted-foreground text-center lg:text-left">
               <div className="text-lg sm:text-xl md:text-2xl font-medium tracking-[0.015em] lg:-translate-y-[16vh]">
                 {formatTime(currentTime)}
