@@ -1014,16 +1014,16 @@ function handlePopState(event: PopStateEvent) {
             </p>
             
                   if (theme === "light") {
-                    e.currentTarget.style.backgroundColor = "#FFD700";
+                    e.currentTarget.style.backgroundColor = "#FFA500";
                   } else {
-                    e.currentTarget.style.backgroundColor = "#8B5CF6";
+                    e.currentTarget.style.backgroundColor = "#E879F9";
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (theme === "light") {
-                    e.currentTarget.style.backgroundColor = "#FFA500";
+                    e.currentTarget.style.backgroundColor = "#FFD700";
                   } else {
-                    e.currentTarget.style.backgroundColor = "#E879F9";
+                    e.currentTarget.style.backgroundColor = "#8B5CF6";
                   }
                 }}
               >
@@ -1063,6 +1063,17 @@ function handlePopState(event: PopStateEvent) {
                         </motion.div>
                       )}
                     </AnimatePresence>
+                  </div>
+                  
+                  {/* Music Toggle */}
+                  <div className="relative">
+                    <button
+                      onClick={toggleMusic}
+                      className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                      aria-label="Toggle music"
+                    >
+                      {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                    </button>
                   </div>
                 </>
               )}
