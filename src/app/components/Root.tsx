@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from "react-router";
 import { MobileSun } from "./MobileSun";
-import { Menu, X, Moon, Volume2, VolumeX, Home, Linkedin, Github, FileText } from "lucide-react";
+import { Menu, X, Moon, Sun, Volume2, VolumeX, Home, Linkedin, Github, FileText, Headphones } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { MusicProvider, useMusic } from "../contexts/MusicContext";
@@ -39,18 +39,6 @@ function RootContent() {
             }}
           >
             <div className="flex justify-between items-center h-14 md:h-16">
-              {/* Mobile Menu Button - Only on mobile */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-colors"
-                style={{ 
-                  backgroundColor: theme === "light" ? "rgba(250, 248, 245, 0.8)" : "rgba(0, 0, 0, 0.8)",
-                  color: theme === "light" ? "#000" : "#fff"
-                }}
-              >
-                <Menu className="w-5 h-5" />
-              </button>
-
               {/* Navigation - Centered on all screen sizes */}
               <div className="flex items-center gap-3 md:gap-12">
                 {navItems.map((item) => (
@@ -124,6 +112,7 @@ function RootContent() {
                   Contact
                 </a>
               </div>
+              
               {/* Theme & Music Controls - Mobile Only */}
               <div className="md:hidden flex items-center gap-2">
                 {/* Theme Toggle */}
@@ -135,7 +124,7 @@ function RootContent() {
                     color: theme === "light" ? "#000" : "#fff"
                   }}
                 >
-                  {theme === "light" ? <Moon className="w-4 h-4" /> : <span className="text-[18px]">☀️</span>}
+                  {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
                 </button>
 
                 {/* Music Toggle */}
@@ -147,7 +136,7 @@ function RootContent() {
                     color: theme === "light" ? "#000" : "#fff"
                   }}
                 >
-                  {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  {isPlaying ? <VolumeX className="w-4 h-4" /> : <Headphones className="w-4 h-4" />}
                 </button>
               </div>
             </div>
