@@ -14,7 +14,7 @@ import { MobileSun } from "./MobileSun";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Link, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { Moon, Sun, Volume2, VolumeX, X, FileText, Headphones } from "lucide-react";
+import { Moon, Sun, Volume2, VolumeX, X, FileText } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState, useEffect, useRef, useMemo, type ComponentPropsWithoutRef, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { useMusic } from "../contexts/MusicContext";
@@ -1012,26 +1012,6 @@ function handlePopState(event: PopStateEvent) {
               </span>
               .
             </p>
-            
-                  if (theme === "light") {
-                    e.currentTarget.style.backgroundColor = "#FFA500";
-                  } else {
-                    e.currentTarget.style.backgroundColor = "#E879F9";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (theme === "light") {
-                    e.currentTarget.style.backgroundColor = "#FFD700";
-                  } else {
-                    e.currentTarget.style.backgroundColor = "#8B5CF6";
-                  }
-                }}
-              >
-                {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-            </div>
-
-            {/* Desktop Theme & Music Controls - Left Side */}
             <div className="pt-2 flex items-center gap-3 relative justify-center lg:justify-start lg:-translate-y-[16vh]">
               {isDesktopViewport && (
                 <>
@@ -1064,33 +1044,37 @@ function handlePopState(event: PopStateEvent) {
                       )}
                     </AnimatePresence>
                   </div>
-                  
-                  {/* Music Toggle */}
                   <div className="relative">
                     <button
                       onClick={toggleMusic}
                       className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
                       aria-label="Toggle music"
+                      onMouseEnter={() => setShowMusicTooltip(true)}
+                      onMouseLeave={() => setShowMusicTooltip(false)}
                     >
-                      {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                      {isPlaying ? (
+                        <Volume2 className="w-5 h-5" />
+                      ) : (
+                        <VolumeX className="w-5 h-5" />
+                      )}
                     </button>
+                    <AnimatePresence>
+                      {showMusicTooltip && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 5 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
+                        >
+                          Tunes while you explore!
+                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </>
               )}
-            </div>
-            
-            {/* Mobile/Tablet Music Toggle - Below Hero */}
-            {!isDesktopViewport && (
-              <div className="flex justify-center mt-4 mb-8">
-                <button
-                  onClick={toggleMusic}
-                  className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
-                  aria-label="Toggle music"
-                >
-                  {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                </button>
-              </div>
-            )}
             </div>
             <div className="pt-1 text-muted-foreground text-center lg:text-left">
               <div className="text-lg sm:text-xl md:text-2xl font-medium tracking-[0.015em] lg:-translate-y-[16vh]">
@@ -1449,7 +1433,7 @@ function handlePopState(event: PopStateEvent) {
                 {!isExpanding && (
                   <button
                     onClick={handleExpandToFullPage}
-                    className="absolute top-4 left-4 z-10 p-2 hover:bg-black transition-colors rounded-md"
+                    className="absolute top-4 left-4 z-10 p-2 hover:bg-accent transition-colors rounded-md"
                   >
                     {/* Diagonal expand arrows (↖ ↘) */}
                     <svg
@@ -1473,7 +1457,7 @@ function handlePopState(event: PopStateEvent) {
                 {!isExpanding && (
                   <button
                     onClick={closeProjectModal}
-                    className="absolute top-4 right-4 z-10 p-2 hover:bg-black transition-colors rounded-md"
+                    className="absolute top-4 right-4 z-10 p-2 hover:bg-accent transition-colors rounded-md"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -1594,7 +1578,7 @@ function handlePopState(event: PopStateEvent) {
                               href="https://task-sprout.vercel.app/"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                             >
                               Try it
                               <svg
@@ -1635,7 +1619,7 @@ function handlePopState(event: PopStateEvent) {
                               href="https://planetology.figma.site/"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                             >
                               Try it
                               <svg
@@ -1678,7 +1662,7 @@ function handlePopState(event: PopStateEvent) {
                               href="https://ems-art-museum.vercel.app/"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                              className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                             >
                               Try it
                               <svg
@@ -1719,7 +1703,7 @@ function handlePopState(event: PopStateEvent) {
                                   href="https://leslispetservices.figma.site"
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                                 >
                                   Try it
                                   <svg
@@ -1826,7 +1810,7 @@ function handlePopState(event: PopStateEvent) {
                                 href="https://tank-gilt.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                                className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                               >
                                 Try it
                                 <svg
@@ -1904,7 +1888,7 @@ function handlePopState(event: PopStateEvent) {
                                 href="https://mural-t9uc.onrender.com/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                                className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                               >
                                 Try it
                                 <svg
@@ -1968,7 +1952,7 @@ function handlePopState(event: PopStateEvent) {
                                   href="https://3miliejoseph.github.io/magic8ball/"
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                                 >
                                   Try it
                                   <svg
@@ -2009,7 +1993,7 @@ function handlePopState(event: PopStateEvent) {
                                   href="https://static-brand.vercel.app/"
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                                 >
                                   Try it
                                   <svg
@@ -2052,7 +2036,7 @@ function handlePopState(event: PopStateEvent) {
                                   href="https://emiliejoseph.xyz/"
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-black transition-colors ml-auto block"
+                                  className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
                                 >
                                   Visit Site
                                   <svg
