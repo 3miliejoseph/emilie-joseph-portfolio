@@ -292,7 +292,7 @@ export function About() {
               }}
             >
               Passion Projects
-              <span className="block h-1 mt-2 rounded-full sm:w-[515px] w-[280px]" style={{ background: theme === 'light' ? '#FFA500' : '#E879F9', opacity: 0.7 }} />
+              <span className="block h-1 mt-2 rounded-full" style={{ width: '515px', background: theme === 'light' ? '#FFA500' : '#E879F9', opacity: 0.7 }} />
             </h2>
               <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mb-10 text-center lg:text-left">
                 A collection of personal creative explorations! Each project is a hands-on journey into new materials, techniques, and playful ideas.
