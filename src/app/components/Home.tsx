@@ -1031,13 +1031,14 @@ function handlePopState(event: PopStateEvent) {
               </button>
             </div>
 
+            {/* Desktop Theme & Music Controls - Left Side */}
             <div className="pt-2 flex items-center gap-3 relative justify-center lg:justify-start lg:-translate-y-[16vh]">
               {isDesktopViewport && (
                 <>
                   <div className="relative">
                     <button
                       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                      className="p-3 border border-border rounded-full hover:bg-black transition-colors"
+                      className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
                       aria-label="Toggle theme"
                       onMouseEnter={() => setShowThemeTooltip(true)}
                       onMouseLeave={() => setShowThemeTooltip(false)}
