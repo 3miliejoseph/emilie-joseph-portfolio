@@ -929,7 +929,7 @@ function handlePopState(event: PopStateEvent) {
       <style>{sunScaleStyles}</style>
       
       {/* Hero Section */}
-      <section className="min-h-screen relative overflow-visible pt-24 sm:pt-28 md:pt-32 lg:pt-0 flex items-start lg:items-center">
+      <section className="min-h-screen relative overflow-visible pt-16 sm:pt-20 md:pt-24 lg:pt-0 flex items-start lg:items-center">
         <div className="desktop-content-gutter w-full overflow-visible">
           {/* Mobile and tablet sun - placed in normal flow between nav and intro text */}
           <div className="lg:hidden flex w-full justify-center -mt-5 sm:-mt-4 md:-mt-3 mb-10 sm:mb-12 md:mb-14">
@@ -1013,6 +1013,39 @@ function handlePopState(event: PopStateEvent) {
               .
             </p>
             <div className="pt-2 flex items-center gap-3 relative justify-center lg:justify-start lg:-translate-y-[16vh]">
+              {/* Mobile theme and music toggles */}
+              {!isDesktopViewport && (
+                <>
+                  <div className="relative">
+                    <button
+                      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                      className="p-3 border border-border rounded-full hover:bg-accent"
+                      aria-label="Toggle theme"
+                    >
+                      {theme === "dark" ? (
+                        <Sun className="w-5 h-5 sun-icon" />
+                      ) : (
+                        <Moon className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                  <div className="relative">
+                    <button
+                      onClick={toggleMusic}
+                      className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                      aria-label="Toggle music"
+                    >
+                      {isPlaying ? (
+                        <Volume2 className="w-5 h-5" />
+                      ) : (
+                        <VolumeX className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                </>
+              )}
+              
+              {/* Desktop theme and music toggles */}
               {isDesktopViewport && (
                 <>
                   <div className="relative">
