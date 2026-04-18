@@ -29,7 +29,7 @@ function RootContent() {
       <nav className="fixed top-0 left-0 right-0 z-[100]">
         <div className="mx-4 mt-4 sm:mx-6 lg:mx-[30px] flex justify-center">
           <div 
-            className="backdrop-blur-[20px] border rounded-full pl-[14px] pr-[8px] md:pr-[14px]" 
+            className="backdrop-blur-[20px] border rounded-full pl-[14px] pr-[8px] md:pr-[14px]"
             style={{ 
               borderColor: theme === "light" ? "rgba(255, 165, 0, 0.3)" : "rgba(139, 92, 246, 0.3)",
               backgroundColor: theme === "light" ? "rgba(250, 248, 245, 0.4)" : "rgba(0, 0, 0, 0.4)",
@@ -39,6 +39,18 @@ function RootContent() {
             }}
           >
             <div className="flex justify-between items-center h-14 md:h-16">
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden flex items-center justify-center w-10 h-10 rounded-full transition-colors"
+                style={{ 
+                  backgroundColor: theme === "light" ? "rgba(250, 248, 245, 0.8)" : "rgba(0, 0, 0, 0.8)",
+                  color: theme === "light" ? "#000" : "#fff"
+                }}
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+
               {/* Navigation - Centered on all screen sizes */}
               <div className="flex items-center gap-3 md:gap-12">
                 {navItems.map((item) => (
@@ -116,6 +128,113 @@ function RootContent() {
           </div>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div 
+            className="bg-background border rounded-2xl p-6 mx-4 max-w-sm w-full"
+            style={{ 
+              borderColor: theme === "light" ? "rgba(255, 165, 0, 0.2)" : "rgba(139, 92, 246, 0.2)",
+              boxShadow: theme === "light" 
+                ? "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.5)"
+                : "0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)"
+            }}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-lg font-medium" style={{ color: theme === "light" ? "#000" : "#fff" }}>
+                Menu
+              </h2>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-2 rounded-full transition-colors"
+                style={{ 
+                  backgroundColor: theme === "light" ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.1)",
+                  color: theme === "light" ? "#000" : "#fff"
+                }}
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="space-y-4 mb-6">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block py-3 px-4 rounded-lg transition-colors text-center"
+                  style={{
+                    color: isActive(item.path)
+                      ? theme === "light"
+                        ? "#FFA500"
+                        : "#E879F9"
+                      : theme === "light" ? "#000" : "#fff",
+                    backgroundColor: isActive(item.path)
+                      ? theme === "light"
+                        ? "rgba(255, 165, 0, 0.1)"
+                        : "rgba(232, 121, 249, 0.1)"
+                      : "transparent"
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive(item.path)) {
+                      e.currentTarget.style.backgroundColor = theme === "light" ? "rgba(255, 165, 0, 0.1)" : "rgba(232, 121, 249, 0.1)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive(item.path)) {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }
+                  }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+
+            {/* Theme Toggle */}
+            <div className="flex justify-center mb-4">
+              <button
+                onClick={() => {
+                  setTheme(theme === "light" ? "dark" : "light");
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-2 px-4 py-3 rounded-full transition-colors"
+                style={{
+                  backgroundColor: theme === "light" 
+                    ? "rgba(250, 248, 245, 0.8)" 
+                    : "rgba(0, 0, 0, 0.8)",
+                  color: theme === "light" ? "#000" : "#fff"
+                }}
+              >
+                {theme === "light" ? <Moon className="w-4 h-4" /> : <span className="text-[18px]">☀️</span>}
+                <span className="text-sm">Theme</span>
+              </button>
+            </div>
+
+            {/* Music Toggle */}
+            <div className="flex justify-center">
+              <button
+                onClick={() => {
+                  toggleMusic();
+                  setMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-2 px-4 py-3 rounded-full transition-colors"
+                style={{
+                  backgroundColor: theme === "light" 
+                    ? "rgba(250, 248, 245, 0.8)" 
+                    : "rgba(0, 0, 0, 0.8)",
+                  color: theme === "light" ? "#000" : "#fff"
+                }}
+              >
+                {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                <span className="text-sm">Music</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="flex-1">
