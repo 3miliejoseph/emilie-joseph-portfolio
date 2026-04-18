@@ -120,7 +120,7 @@ export function About() {
         />
       </motion.svg>
       <motion.svg
-        className="absolute top-1/2 right-8 w-[320px] h-[320px] z-10 opacity-30"
+        className="absolute top-1/2 right-8 w-[320px] h-[320px] lg:w-[400px] lg:h-[400px] z-10 opacity-30"
         style={{ transform: 'translateY(-50%)', overflow: 'visible' }}
         viewBox="0 0 420 420"
         fill="none"
