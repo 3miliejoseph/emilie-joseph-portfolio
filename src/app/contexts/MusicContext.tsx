@@ -53,7 +53,7 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     <MusicContext.Provider value={{ isPlaying, toggleMusic }}>
       {children}
       {/* Hidden Audio Element */}
-      <audio ref={audioRef}>
+      <audio ref={audioRef} controls style={{ display: 'none' }}>
         {theme === "dark" ? (
           <source src="https://media.githubusercontent.com/media/3miliejoseph/emilie-joseph-portfolio/main/public/MJ%20Human%20Nature.mp3" type="audio/mpeg" />
         ) : (

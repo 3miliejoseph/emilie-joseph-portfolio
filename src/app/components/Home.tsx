@@ -1048,8 +1048,20 @@ function handlePopState(event: PopStateEvent) {
                 onClick={toggleMusic}
                 className="p-3 border border-border rounded-full hover:bg-black transition-colors"
                 aria-label="Toggle music"
-                onMouseEnter={() => setShowMusicTooltip(true)}
-                onMouseLeave={() => setShowMusicTooltip(false)}
+                onMouseEnter={(e) => {
+                  if (theme === "light") {
+                    e.currentTarget.style.backgroundColor = "#FFD700";
+                  } else {
+                    e.currentTarget.style.backgroundColor = "#8B5CF6";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (theme === "light") {
+                    e.currentTarget.style.backgroundColor = "#FFA500";
+                  } else {
+                    e.currentTarget.style.backgroundColor = "#E879F9";
+                  }
+                }}
               >
                 {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
               </button>
@@ -1119,35 +1131,6 @@ function handlePopState(event: PopStateEvent) {
                           className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
                         >
                           Light/Dark Mode
-                          <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                  <div className="relative">
-                    <button
-                      onClick={toggleMusic}
-                      className="p-3 border border-border rounded-full hover:bg-black transition-colors"
-                      aria-label="Toggle music"
-                      onMouseEnter={() => setShowMusicTooltip(true)}
-                      onMouseLeave={() => setShowMusicTooltip(false)}
-                    >
-                      {isPlaying ? (
-                        <Volume2 className="w-5 h-5" />
-                      ) : (
-                        <VolumeX className="w-5 h-5" />
-                      )}
-                    </button>
-                    <AnimatePresence>
-                      {showMusicTooltip && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 5 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-foreground text-background text-xs rounded-md whitespace-nowrap pointer-events-none z-50"
-                        >
-                          Tunes while you explore!
                           <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-foreground rotate-45" />
                         </motion.div>
                       )}
