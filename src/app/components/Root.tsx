@@ -112,33 +112,6 @@ function RootContent() {
                   Contact
                 </a>
               </div>
-              
-              {/* Theme & Music Controls - Mobile Only */}
-              <div className="md:hidden flex items-center gap-2">
-                {/* Theme Toggle */}
-                <button
-                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                  className="flex items-center justify-center w-10 h-10 rounded-full transition-colors"
-                  style={{ 
-                    backgroundColor: theme === "light" ? "rgba(250, 248, 245, 0.8)" : "rgba(0, 0, 0, 0.8)",
-                    color: theme === "light" ? "#000" : "#fff"
-                  }}
-                >
-                  {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-                </button>
-
-                {/* Music Toggle */}
-                <button
-                  onClick={toggleMusic}
-                  className="flex items-center justify-center w-10 h-10 rounded-full transition-colors"
-                  style={{ 
-                    backgroundColor: theme === "light" ? "rgba(250, 248, 245, 0.8)" : "rgba(0, 0, 0, 0.8)",
-                    color: theme === "light" ? "#000" : "#fff"
-                  }}
-                >
-                  {isPlaying ? <VolumeX className="w-4 h-4" /> : <Headphones className="w-4 h-4" />}
-                </button>
-              </div>
             </div>
           </div>
         </div>

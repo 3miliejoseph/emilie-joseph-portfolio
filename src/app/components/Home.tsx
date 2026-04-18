@@ -14,7 +14,7 @@ import { MobileSun } from "./MobileSun";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Link, useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { Moon, Sun, Volume2, VolumeX, X, FileText } from "lucide-react";
+import { Moon, Sun, Volume2, VolumeX, X, FileText, Headphones } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState, useEffect, useRef, useMemo, type ComponentPropsWithoutRef, type PointerEvent as ReactPointerEvent, type RefObject } from "react";
 import { useMusic } from "../contexts/MusicContext";
@@ -1012,6 +1012,66 @@ function handlePopState(event: PopStateEvent) {
               </span>
               .
             </p>
+            
+            {/* Mobile Theme & Music Controls */}
+            <div className="md:hidden flex items-center gap-4 mt-8 justify-center">
+              {/* Theme Toggle */}
+              <button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                style={{
+                  backgroundColor: theme === "light" 
+                      ? "rgba(250, 248, 245, 0.8)" 
+                      : "rgba(139, 92, 246, 0.8)",
+                    color: theme === "light" ? "#000" : "#fff"
+                }}
+                onMouseEnter={(e) => {
+                  if (theme === "light") {
+                    e.currentTarget.style.backgroundColor = "#FFD700";
+                  } else {
+                    e.currentTarget.style.backgroundColor = "#8B5CF6";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (theme === "light") {
+                    e.currentTarget.style.backgroundColor = "#FFA500";
+                  } else {
+                    e.currentTarget.style.backgroundColor = "#E879F9";
+                  }
+                }}
+              >
+                {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+              </button>
+
+              {/* Music Toggle */}
+              <button
+                onClick={toggleMusic}
+                className="p-3 border border-border rounded-full hover:bg-accent transition-colors"
+                style={{
+                  backgroundColor: theme === "light" 
+                      ? "rgba(250, 248, 245, 0.8)" 
+                      : "rgba(139, 92, 246, 0.8)",
+                    color: theme === "light" ? "#000" : "#fff"
+                }}
+                onMouseEnter={(e) => {
+                  if (theme === "light") {
+                    e.currentTarget.style.backgroundColor = "#FFD700";
+                  } else {
+                    e.currentTarget.style.backgroundColor = "#8B5CF6";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (theme === "light") {
+                    e.currentTarget.style.backgroundColor = "#FFA500";
+                  } else {
+                    e.currentTarget.style.backgroundColor = "#E879F9";
+                  }
+                }}
+              >
+                {isPlaying ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+              </button>
+            </div>
+
             <div className="pt-2 flex items-center gap-3 relative justify-center lg:justify-start lg:-translate-y-[16vh]">
               {isDesktopViewport && (
                 <>
