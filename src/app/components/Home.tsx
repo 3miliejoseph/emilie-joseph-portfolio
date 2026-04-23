@@ -2066,7 +2066,7 @@ function handlePopState(event: PopStateEvent) {
                               </div>
                               <div className="flex items-center mt-4 justify-end">
                                 <a
-                                  href="https://emiliejoseph.xyz/"
+                                  href="https://readymag.website/5210925"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="inline-flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-full hover:bg-accent transition-colors ml-auto block"
