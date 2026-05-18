@@ -34,7 +34,7 @@ React · TypeScript · JavaScript
 Node.js · Python · Go  
 
 **Exploration**  
-Rive · Generative AI tools · Interactive prototyping  
+Generative AI tools · Interactive prototyping  
 
 ---
 
