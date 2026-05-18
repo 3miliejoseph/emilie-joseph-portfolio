@@ -68,7 +68,7 @@ function RootContent() {
                   </Link>
                 ))}
                 <a
-                  href="https://drive.google.com/file/d/1EuN8mWnQP6zZKy7y-yRidjpiSqzAftEI/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1RWPwW1SifZBGeLDluvIZW8TP8rT9b9Ej/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs md:text-sm transition-colors"
@@ -207,7 +207,7 @@ function RootContent() {
                     </svg>
                   </a>
                   <a
-                    href="https://drive.google.com/file/d/1EuN8mWnQP6zZKy7y-yRidjpiSqzAftEI/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1RWPwW1SifZBGeLDluvIZW8TP8rT9b9Ej/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="transition-colors flex items-center"
